@@ -10,13 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/cub3d.h"
-#define WIDTH	2560
-#define HEIGHT	1440
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
-}
+#include "../include/cub3d.h"
 
 # define WIDTH 1024
 # define HEIGHT 512
@@ -88,39 +82,39 @@ void ft_hook(void* param)
 		player->instances[0].x += 5;
 }
 
-int main()
+int main(int argc, char **argv)
 {
-    
-    mlx_t *mlx;
-    
-    if (!(mlx =mlx_init(WIDTH, HEIGHT, "cub3d", false )))
+	mlx_t *mlx;
+
+	put_data(argc, argv);
+	if (!(mlx =mlx_init(WIDTH, HEIGHT, "cub3d", false )))
 	{
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-    if (!(player = mlx_new_image(mlx, 14, 14)))
+	if (!(player = mlx_new_image(mlx, 14, 14)))
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-    if ((mlx_image_to_window(mlx, player, WIDTH / 2, HEIGHT / 2)) == -1)
+	if ((mlx_image_to_window(mlx, player, WIDTH / 2, HEIGHT / 2)) == -1)
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));
 		EXIT_FAILURE;
 	}
-    if (!(wall = mlx_new_image(mlx, 64, 64)))
+	if (!(wall = mlx_new_image(mlx, 64, 64)))
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-    mlx_loop_hook(mlx, ft_hook, mlx);
-    draw_map(mlx);
-    mlx_loop_hook(mlx, draw_player, mlx);
-    mlx_loop(mlx);
-    mlx_terminate(mlx);
-    return 0;
+	mlx_loop_hook(mlx, ft_hook, mlx);
+	draw_map(mlx);
+	mlx_loop_hook(mlx, draw_player, mlx);
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
+	return 0;
 }
 
