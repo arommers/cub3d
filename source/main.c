@@ -6,11 +6,11 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:42:30 by arommers      #+#    #+#                 */
-/*   Updated: 2023/10/26 14:23:24 by arommers      ########   odam.nl         */
+/*   Updated: 2023/10/26 14:30:40 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/cub3d.h"
+#include "../include/cub3d.h"
 
 # define WIDTH 1024
 # define HEIGHT 512
@@ -191,7 +191,7 @@ void draw_map(mlx_t *mlx)
 void draw_player(void* param)
 {
     int32_t color = ft_pixel(255, 255, 0, 255);
-    for (int32_t i = 0; i < player->width; ++i)
+	for (int32_t i = 0; i < player->width; ++i)
 	{
 		for (int32_t y = 0; y < player->height; ++y)
 
@@ -248,18 +248,19 @@ void ft_hook(void* param)
 	}
 }
 
-int main()
+int main(int argc, char **argv)
 {
-    mlx_t *mlx;
-    
-    pdx = cos(pa) * 5; // gives you the x-component of a unit vector pointing in the direction of pa.
+	mlx_t *mlx;
+
+	put_data(argc, argv);
+	pdx = cos(pa) * 5; // gives you the x-component of a unit vector pointing in the direction of pa.
 	pdy = sin(pa) * 5; // gives you the y-component of the same unit vector.
 	if (!(mlx =mlx_init(WIDTH, HEIGHT, "cub3d", false )))
 	{
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-    if (!(player = mlx_new_image(mlx, 14, 14)))
+	if (!(player = mlx_new_image(mlx, 14, 14)))
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));
