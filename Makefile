@@ -1,7 +1,7 @@
 PROJECT = Cub3d
 NAME = cub3d
 CC = cc
-CFLAGS =
+CFLAGS = -lm
 LIBFT	:= ./libft
 HEADERS := -I $(LIBFT)/include -I include
 LIB	:= $(LIBFT)/libft.a
@@ -45,7 +45,7 @@ libft:
 
 $(NAME): $(OBJ)
 	@echo "Compiled with $(BLUE)$(BOLD)$(CFLAGS)$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJ) $(LIB) $(HEADERS) libmlx42.a -Iinclude -lglfw -o $(NAME)
+	@$(CC) $(OBJ) $(CFLAGS) $(LIB) $(HEADERS) libmlx42.a -Iinclude -lglfw -o $(NAME)
 	@echo "$(PINK)$(BOLD)----------------------------------------"
 	@echo "     $(PROJECT) = NOW READY FOR USE!"
 	@echo "----------------------------------------$(RESET)"

@@ -162,7 +162,7 @@ void draw_map(mlx_t *mlx)
 void draw_player(void* param)
 {
     int32_t color = ft_pixel(255, 255, 0, 255);
-    for (int32_t i = 0; i < player->width; ++i)
+	for (int32_t i = 0; i < player->width; ++i)
 	{
 		for (int32_t y = 0; y < player->height; ++y)
 
@@ -206,10 +206,10 @@ void ft_hook(void* param)
 
 int main(int argc, char **argv)
 {
-    mlx_t *mlx;
-    
+	mlx_t *mlx;
+
 	put_data(argc, argv);
-    pdx = cos(pa) * 5; // gives you the x-component of a unit vector pointing in the direction of pa.
+	pdx = cos(pa) * 5; // gives you the x-component of a unit vector pointing in the direction of pa.
 	pdy = sin(pa) * 5; // gives you the y-component of the same unit vector.
 	if (!(mlx =mlx_init(WIDTH, HEIGHT, "cub3d", false )))
 	{

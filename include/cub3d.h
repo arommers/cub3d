@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <math.h>
 
 typedef struct s_data
 {
@@ -52,6 +53,7 @@ t_data	*initialize_data_struct(t_data *data);
 int		check_colors(t_data *data);
 int		check_map(t_data *data);
 int		check_data(t_data *data);
-# include <math.h>
+
+int main(int argc, char **argv);
 
 #endif
