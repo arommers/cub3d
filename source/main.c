@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:42:30 by arommers      #+#    #+#                 */
-/*   Updated: 2023/10/25 16:11:34 by arommers      ########   odam.nl         */
+/*   Updated: 2023/10/26 14:30:40 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define PI2 PI / 2
 # define PI3 3 * PI / 2
 
-static  mlx_image_t *player, *wall, *background, *dir;
+static  mlx_image_t *player, *wall, *background, *dir, *line;
 static  float pdx, pdy, pa;
 static  int mapX = 8, mapY = 8, mapS = 64;
 static  int map[]=
@@ -159,6 +159,35 @@ void draw_map(mlx_t *mlx)
 // 	}
 // }
 
+// void draw_line(mlx_image_t *image, int x0, int y0, int x1, int y1, int32_t color)
+// {
+//     int dx = abs(x1 - x0);
+//     int dy = abs(y1 - y0);
+//     int sx = (x0 < x1) ? 1 : -1;
+//     int sy = (y0 < y1) ? 1 : -1;
+//     int err = dx - dy;
+
+//     while (1)
+//     {
+//         mlx_put_pixel(image, x0, y0, color);
+
+//         if (x0 == x1 && y0 == y1)
+//             break;
+
+//         int e2 = 2 * err;
+//         if (e2 > -dy)
+//         {
+//             err -= dy;
+//             x0 += sx;
+//         }
+//         if (e2 < dx)
+//         {
+//             err += dx;
+//             y0 += sy;
+//         }
+//     }
+// }
+
 void draw_player(void* param)
 {
     int32_t color = ft_pixel(255, 255, 0, 255);
@@ -169,6 +198,21 @@ void draw_player(void* param)
 			mlx_put_pixel(player, i, y, color);
 	}
 }
+
+// void draw_player_and_line(void* param)
+// {
+//     mlx_t* mlx = param;
+//     int32_t color = ft_pixel(255, 255, 0, 255);
+
+//     draw_player(param);
+
+//     int line_length = 32;
+//     int x1 = player->instances[0].x + (pdx * line_length);
+//     int y1 = player->instances[0].y + (pdy * line_length);
+
+//     draw_line(line, player->instances[0].x, player->instances[0].y, x1, y1, color);
+// }
+
 
 void ft_hook(void* param)
 {
@@ -228,7 +272,13 @@ int main(int argc, char **argv)
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	if (!(wall = mlx_new_image(mlx, 64, 64)))
+	// if (!(line = mlx_new_image(mlx, WIDTH, HEIGHT)))
+	// {
+    // 	mlx_close_window(mlx);
+    // 	puts(mlx_strerror(mlx_errno));
+    // 	return(EXIT_FAILURE);
+	// }
+    if (!(wall = mlx_new_image(mlx, 64, 64)))
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));
@@ -247,7 +297,8 @@ int main(int argc, char **argv)
 		puts(mlx_strerror(mlx_errno));
 		EXIT_FAILURE;
 	}
-    mlx_loop_hook(mlx, draw_player, mlx);
+    // mlx_loop_hook(mlx, draw_player, mlx);
+	mlx_loop_hook(mlx, draw_player, mlx);
     mlx_loop_hook(mlx, ft_hook, mlx);
     mlx_loop(mlx);
     mlx_terminate(mlx);
