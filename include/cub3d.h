@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/10/23 14:04:38 by arommers      ########   odam.nl         */
+/*   Updated: 2023/10/25 11:37:19 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ t_data	*initialize_data_struct(t_data *data);
 int		check_colors(t_data *data);
 int		check_map(t_data *data);
 int		check_data(t_data *data);
+# include <math.h>
 
 #endif
