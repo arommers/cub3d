@@ -72,4 +72,17 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strnstr(const char *haystack, const char *needle,
 						size_t len);
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
+char	*get_next_line(int fd);
+char	*read_and_save(int fd, char *stash);
+char	*find_char(char *str, char p);
+char	*join_stash_and_buffer(char *stash, char *buffer);
+char	*get_new_stash(char *stash);
+char	*print_line(char	*stash);
+char	*ft_substr_gnl(char	*s, unsigned int start, size_t	len);
+char	*ft_strdup_gnl(char *str);
+
 #endif
