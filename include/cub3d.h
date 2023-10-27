@@ -21,6 +21,27 @@
 # include <unistd.h>
 # include <math.h>
 
+# define WIDTH 1024
+# define HEIGHT 512
+# define PI 3.14159
+# define PI2 PI / 2
+# define PI3 3 * PI / 2
+
+static mlx_image_t *player, *wall, *background, *dir, *line;
+static float pdx, pdy, pa; //player position
+static int mapX = 8, mapY = 8, mapS = 64;
+static  int map[]=
+	{
+		1,1,1,1,1,1,1,1,
+		1,0,1,0,0,0,0,1,
+		1,0,1,0,0,0,0,1,
+		1,0,1,0,0,0,0,1,
+		1,0,0,0,0,0,0,1,
+		1,0,0,0,0,1,0,1,
+		1,0,0,0,0,0,0,1,
+		1,1,1,1,1,1,1,1,
+	};
+
 typedef struct t_dir
 {
 	float	startx;
@@ -70,5 +91,8 @@ int		check_map(t_data *data);
 int		check_data(t_data *data);
 
 int main(int argc, char **argv);
+//void bresenhams_line_draw(int x1, int y1, int x2, int y2, mlx_t *mlx);
+void bresenhams_line_draw(int x1, int y1, int x2, int y2);
+int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 #endif
