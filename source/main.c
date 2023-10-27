@@ -6,11 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:42:30 by arommers      #+#    #+#                 */
-<<<<<<< HEAD
-/*   Updated: 2023/10/26 14:30:40 by arommers      ########   odam.nl         */
-=======
 /*   Updated: 2023/10/27 11:26:29 by arommers      ########   odam.nl         */
->>>>>>> paris
 /*                                                                            */
 /* ************************************************************************** */
 
