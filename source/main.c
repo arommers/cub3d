@@ -50,22 +50,22 @@ void draw_map(mlx_t *mlx)
 			mlx_put_pixel(wall, i, y, color);
 	}
 	color = ft_pixel(192, 192, 192, 255);
-    for (int32_t i = 0; i < background->width -1; i++)
+	for (int32_t i = 0; i < background->width -1; i++)
 	{
 		for (int32_t y = 0; y < background->height -1; y++)
 
 			mlx_put_pixel(background, i, y, color);
 	}
-    for (y = 0; y < mapY; y++)
-    {
-        for (x = 0; x < mapX; x++)
-        {
-            if (map[y * mapX + x] == 1)
-                mlx_image_to_window(mlx, wall, y * 64, x * 64);
+	for (y = 0; y < mapY; y++)
+	{
+		for (x = 0; x < mapX; x++)
+		{
+			if (map[y * mapX + x] == 1)
+				mlx_image_to_window(mlx, wall, y * 64, x * 64);
 			else
 				mlx_image_to_window(mlx, background, y * 64, x * 64); 
-        }
-    }
+		}
+	}
 }
 
 // void draw_rays(void *param)
@@ -223,7 +223,7 @@ void ft_hook(void* param)
 	if (mlx_is_key_down(mlx, MLX_KEY_W))
 	{
 		player->instances[0].x += pdx;
-		player->instances[0].y += pdy;
+		//aaawwwplayer->instances[0].y += pdy;
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_S))
 	{
@@ -245,7 +245,7 @@ void ft_hook(void* param)
 		pa += 0.1;
 		pdx = cos(pa) * 5;
 		pdy = sin(pa) * 5;
-	}
+	} 
 }
 
 int main(int argc, char **argv)
