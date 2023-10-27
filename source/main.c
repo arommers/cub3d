@@ -6,7 +6,11 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:42:30 by arommers      #+#    #+#                 */
+<<<<<<< HEAD
 /*   Updated: 2023/10/26 14:30:40 by arommers      ########   odam.nl         */
+=======
+/*   Updated: 2023/10/27 11:26:29 by arommers      ########   odam.nl         */
+>>>>>>> paris
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,126 +71,6 @@ void draw_map(mlx_t *mlx)
         }
     }
 }
-
-// void draw_rays(void *param)
-// {
-// 	mlx_t	*mlx = param;
-// 	int32_t color = ft_pixel(255, 255, 0, 255);
-	
-// 	int r, mx, my, mp, dof;
-// 	float rx, ry, ra, xo, yo;
-	
-// 	ra = pa;
-// 	for (r = 0; r < 1; r++)
-// 	{
-// 		// Check horizontal lines
-// 		dof = 0;
-// 		xo = 0;
-// 		yo = 0;
-// 		float aTan = -1/tan(ra);
-// 		if (ra > PI)
-// 		{
-// 			ry =((player->instances[0].y >> 6) << 6) - 0.0001;
-// 			rx = ((player->instances[0].y - ry) * aTan + player->instances[0].x);
-// 			yo = -64;
-// 			xo = -yo * aTan;
-// 		}
-// 		if (ra < PI)
-// 		{
-// 			ry =((player->instances[0].y >> 6) << 6) + 64;
-// 			rx = ((player->instances[0].y - ry) * aTan + player->instances[0].x);
-// 			yo = 64;
-// 			xo = yo * aTan;
-// 		}
-// 		if (ra == 0 || ra == PI)
-// 		{
-// 			rx = player->instances[0].x;
-// 			ry = player->instances[0].y;
-// 			while (dof < 8)
-// 			{
-// 				mx = (int)(rx) >> 6;
-// 				my = (int) (ry) >> 6;
-// 				mp = my * mapX + mx;
-// 				if (mp < mapX * mapY && map[mp] == 1) // hit a wall
-// 					dof = 8;
-// 				else // next line
-// 				{
-// 					rx += xo;
-// 					ry += yo;
-// 					dof += 1;
-// 				}
-// 			}
-// 		}
-// 				// Check vertical lines
-// 		dof = 0;
-// 		xo = 0;
-// 		yo = 0;
-// 		float nTan = -tan(ra);
-// 		if (ra > PI2 && ra < PI3)
-// 		{
-// 			rx =((player->instances[0].x >> 6) << 6) - 0.0001;
-// 			ry = ((player->instances[0].x - rx) * nTan + player->instances[0].y);
-// 			xo = -64;
-// 			yo = -xo * nTan; // looking left
-// 		}
-// 		if (ra < PI2 || ra < PI3)
-// 		{
-// 			rx =((player->instances[0].x >> 6) << 6) + 64;
-// 			ry = ((player->instances[0].x - rx) * nTan + player->instances[0].y);
-// 			xo = 64;
-// 			yo = xo * nTan; // looking right
-// 		}
-// 		if (ra == 0 || ra == PI)
-// 		{
-// 			rx = player->instances[0].x;
-// 			ry = player->instances[0].y;
-// 			while (dof < 8)
-// 			{
-// 				mx = (int)(rx) >> 6;
-// 				my = (int)(ry) >> 6;
-// 				mp = my * mapX + mx;
-// 				if (mp < mapX * mapY && map[mp] == 1) // hit a wall
-// 					dof = 8;
-// 				else // next line
-// 				{
-// 					rx += xo;
-// 					ry += yo;
-// 					dof += 1;
-// 				}
-// 			}
-// 		}
-// 		mlx_put_pixel(wall, rx, ry, color);
-// 	}
-// }
-
-// void draw_line(mlx_image_t *image, int x0, int y0, int x1, int y1, int32_t color)
-// {
-//     int dx = abs(x1 - x0);
-//     int dy = abs(y1 - y0);
-//     int sx = (x0 < x1) ? 1 : -1;
-//     int sy = (y0 < y1) ? 1 : -1;
-//     int err = dx - dy;
-
-//     while (1)
-//     {
-//         mlx_put_pixel(image, x0, y0, color);
-
-//         if (x0 == x1 && y0 == y1)
-//             break;
-
-//         int e2 = 2 * err;
-//         if (e2 > -dy)
-//         {
-//             err -= dy;
-//             x0 += sx;
-//         }
-//         if (e2 < dx)
-//         {
-//             err += dx;
-//             y0 += sy;
-//         }
-//     }
-// }
 
 void draw_player(void* param)
 {
