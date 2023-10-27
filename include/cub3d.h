@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/10/25 11:37:19 by arommers      ########   odam.nl         */
+/*   Updated: 2023/10/27 11:28:13 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,41 @@
 # include <unistd.h>
 # include <math.h>
 
+typedef struct t_dir
+{
+	float	startx;
+	float	starty;
+	float	endx;
+	float	endy;
+}	t_dir;
+
+typedef struct s_player
+{
+	float		x;
+	float		y;
+	float		dx;
+	float		dy;
+	float		angle;
+	mlx_image_t	*img;
+}	t_player;
+
 typedef struct s_data
 {
-	char	*no_texture;
-	char	*so_texture;
-	char	*we_texture;
-	char	*ea_texture;
-	int		f_r;
-	int		f_g;
-	int		f_b;
-	int		c_r;
-	int		c_g;
-	int		c_b;
-	char	**map;
+	char		*no_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*ea_texture;
+	int			f_r;
+	int			f_g;
+	int			f_b;
+	int			c_r;
+	int			c_g;
+	int			c_b;
+	t_player	*player;
+	char		**map;
 }		t_data;
 
-int	main(int argc, char **argv);
-
-
 // Parsing the input
-
 void	put_data(int argc, char **argv);
 t_data	*map_init(t_data *data, char *with_nl, int fd, int size_map);
 t_data	*texture_color_init(t_data *data, char *with_nl);
