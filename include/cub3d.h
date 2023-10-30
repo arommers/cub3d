@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/10/27 11:28:13 by arommers      ########   odam.nl         */
+/*   Updated: 2023/10/30 13:26:57 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <unistd.h>
 # include <math.h>
 
+# define WIDTH 1024
+# define HEIGHT 512
+
 typedef struct t_dir
 {
 	float	startx;
@@ -33,8 +36,10 @@ typedef struct s_player
 {
 	float		x;
 	float		y;
-	float		dx;
-	float		dy;
+	float		dirx;
+	float		diry;
+	float		planex;
+	float		planey;
 	float		angle;
 	mlx_image_t	*img;
 }	t_player;
