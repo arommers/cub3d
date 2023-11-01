@@ -254,6 +254,15 @@ void ft_hook(void* param)
 int main(int argc, char **argv)
 {
 	mlx_t *mlx;
+	mlx_image_t	*game;
+
+	double posX = 22, posY = 12;  //x and y start position
+	double dirX = -1, dirY = 0; //initial direction vector
+	double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
+
+	double time = 0; //time of current frame
+	double oldTime = 0; //time of previous frame
+
 
 	put_data(argc, argv);
 	pdx = cos(pa) * 5; // gives you the x-component of a unit vector pointing in the direction of pa.
@@ -270,6 +279,12 @@ int main(int argc, char **argv)
 		return(EXIT_FAILURE);
 	}
 	if (!(dir = mlx_new_image(mlx, 20, 20)))
+	{
+		mlx_close_window(mlx);
+		puts(mlx_strerror(mlx_errno));
+		return(EXIT_FAILURE);
+	}
+	if (!(game = mlx_new_image(mlx, 512, 512)))
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));
@@ -295,6 +310,12 @@ int main(int argc, char **argv)
 	}
 	draw_map(mlx);
 	if ((mlx_image_to_window(mlx, player, WIDTH / 4, HEIGHT / 4)) == -1)
+	{
+		mlx_close_window(mlx);
+		puts(mlx_strerror(mlx_errno));
+		EXIT_FAILURE;
+	}
+	if ((mlx_image_to_window(mlx, game, 512, 512)) == -1)
 	{
 		mlx_close_window(mlx);
 		puts(mlx_strerror(mlx_errno));

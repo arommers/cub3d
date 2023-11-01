@@ -42,6 +42,7 @@ static  int map[]=
 		1,1,1,1,1,1,1,1,
 	};
 
+
 typedef struct t_dir
 {
 	float	startx;
