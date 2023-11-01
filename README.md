@@ -7,7 +7,7 @@ A "3D" game realized with ray casting
 
 ### Math
 
-Well, well, well it's the consequences of my actions. I knew i should have paid moer attention to maths in middle school, but now i'm stuck with this:  
+Well, well, well if it isn't the consequences of my actions. I knew not paying enough attention during middle school match classes would come back to bite me in the ass, and here we are.
 
 [reliving middleschool maths](https://www.youtube.com/watch?v=NbSee-XM7WA)
 
