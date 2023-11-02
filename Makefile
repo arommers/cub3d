@@ -10,6 +10,8 @@ OBJ_DIR := object
 SRC =	main.c\
 		input.c input_utils.c\
 		check_data.c\
+		line_draw.c\
+		controls.c\
 
 SRC := $(SRC:%=$(SRC_DIR)/%)
 OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
