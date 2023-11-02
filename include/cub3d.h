@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/10/27 11:28:13 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/02 10:24:22 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,6 @@
 
 # define WIDTH 1024
 # define HEIGHT 512
-# define PI 3.14159
-# define PI2 PI / 2
-# define PI3 3 * PI / 2
-
-static mlx_image_t *player, *wall, *background, *dir, *line;
-static float pdx, pdy, pa; //player position
-static int mapX = 8, mapY = 8, mapS = 64;
-static  int map[]=
-	{
-		1,1,1,1,1,1,1,1,
-		1,0,1,0,0,0,0,1,
-		1,0,1,0,0,0,0,1,
-		1,0,1,0,0,0,0,1,
-		1,0,0,0,0,0,0,1,
-		1,0,0,0,0,1,0,1,
-		1,0,0,0,0,0,0,1,
-		1,1,1,1,1,1,1,1,
-	};
 
 typedef struct t_dir
 {
@@ -54,8 +36,10 @@ typedef struct s_player
 {
 	float		x;
 	float		y;
-	float		dx;
-	float		dy;
+	float		dirx;
+	float		diry;
+	float		planex;
+	float		planey;
 	float		angle;
 	mlx_image_t	*img;
 }	t_player;
