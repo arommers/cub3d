@@ -8,10 +8,11 @@ LIB	:= $(LIBFT)/libft.a
 SRC_DIR := source
 OBJ_DIR := object
 SRC =	main.c\
-		input.c input_utils.c\
+		input_data.c input_data_utils.c\
 		check_data.c\
 		line_draw.c\
 		controls.c\
+		input_player.c\
 
 SRC := $(SRC:%=$(SRC_DIR)/%)
 OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/02 16:34:00 by parisasadeq   ########   odam.nl         */
+/*   Updated: 2023/11/02 22:12:44 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_player
 	int			mapY;
 	int32_t		color;
 	mlx_image_t	*img;
+	struct s_data		*data;
 }	t_player;
 
 typedef struct s_data
@@ -96,7 +97,7 @@ typedef struct s_data
 }		t_data;
 
 // Parsing the input
-void	put_data(int argc, char **argv);
+t_data	*put_data(int argc, char **argv);
 t_data	*map_init(t_data *data, char *with_nl, int fd, int size_map);
 t_data	*texture_color_init(t_data *data, char *with_nl);
 t_data	*f_c_colors(t_data *data, char *line);
@@ -108,6 +109,9 @@ t_data	*initialize_data_struct(t_data *data);
 int		check_colors(t_data *data);
 int		check_map(t_data *data);
 int		check_data(t_data *data);
+
+// Input Player
+t_player	*input_player(t_player *player, int argc, char **argv);
 
 int		main(int argc, char **argv);
 //void bresenhams_line_draw(int x1, int y1, int x2, int y2, mlx_t *mlx);
