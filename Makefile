@@ -1,7 +1,7 @@
 PROJECT = Cub3d
 NAME = cub3d
 CC = cc
-CFLAGS = -lm -fsanitize=address -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/" -framework Cocoa -framework OpenGL -framework IOKit
+CFLAGS = -lm -fsanitize=address #-lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/" -framework Cocoa -framework OpenGL -framework IOKit
 LIBFT	:= ./libft
 HEADERS := -I $(LIBFT)/include -I include
 LIB	:= $(LIBFT)/libft.a
@@ -11,6 +11,7 @@ SRC =	main.c\
 		input_data.c input_data_utils.c\
 		check_data.c\
 		line_draw.c\
+		wall.c\
 		controls.c\
 		input_player.c\
 

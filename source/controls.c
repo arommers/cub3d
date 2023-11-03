@@ -22,25 +22,20 @@ void	color_as_bg(t_player *player)
 	return ;
 }
 
-void	control_keys(mlx_key_data_t keydata, void *param)
+void	move_straight(mlx_key_data_t keydata, void *param)
 {
 	t_player	*player;
-
+	double		moveSpeed;
+	
 	player = param;
-
-	//timing for input and FPS counter
-	color_as_bg(player);
-
-	//speed modifiers
-	double moveSpeed = 0.8; //the constant value is in squares/second
-	double rotSpeed = 0.3; //the constant value is in radians/second
+	//speed modifier
+	moveSpeed = 0.8; //the constant value is in squares/second
 	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
 	{
 		if (worldMap[(int)(player->x + player->dirX * moveSpeed)][(int)(player->y)] == 0)
 			player->x += player->dirX * moveSpeed;
 		if (worldMap[(int)(player->x)][(int)(player->y + player->dirY * moveSpeed)] == 0)
 			player->y += player->dirY * moveSpeed;
-		//game_loop(player);
 	}
 	//move backwards if no wall behind you
 	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
@@ -50,6 +45,16 @@ void	control_keys(mlx_key_data_t keydata, void *param)
 		if (worldMap[(int)(player->x)][(int)(player->y - player->dirY * moveSpeed)] == 0)
 			player->y -= player->dirY * moveSpeed;
 	}
+}
+
+void	rotate(mlx_key_data_t keydata, void *param)
+{
+	t_player	*player;
+	double		rotSpeed;
+	
+	player = param;
+	//speed modifier
+	rotSpeed = 0.3; //the constant value is in radians/second
 	//rotate to the right
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 	{
@@ -72,4 +77,16 @@ void	control_keys(mlx_key_data_t keydata, void *param)
 		player->planeX =player->planeX * cos(rotSpeed) - player->planeY * sin(rotSpeed);
 		player->planeY = oldPlaneX * sin(rotSpeed) + player->planeY * cos(rotSpeed);
 	}
+}
+
+void	control_keys(mlx_key_data_t keydata, void *param)
+{
+	t_player	*player;
+
+	player = param;
+
+	//timing for input and FPS counter
+	color_as_bg(player);
+	move_straight(keydata, player);
+	rotate(keydata, player);
 }

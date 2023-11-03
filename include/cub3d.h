@@ -71,11 +71,26 @@ typedef struct s_player
 	double		dirY;
 	double		planeX;
 	double		planeY;
-	double		angle;
-	double		time;
-	double		oldTime;
+	double		cameraX;
+	double		rayDirX;
+	double		rayDirY;
+	// length of the ray from current position to next x or y side
+	double		sideDistX;
+	double		sideDistY;
+	//length of the ray from one x or y side to next x or y side
+	double		deltaDistX;
+	double		deltaDistY;
+	double		perpWallDist;
+	//what direction to step in x or y direction (+1 or -1)
+	int			stepX;
+	int			stepY;
+	int			hit; //was there a wall hit?
+	int			side; //was a NS or a EW wall hit?
 	int			mapX;
 	int			mapY;
+	int			drawStart;
+	int			drawEnd;
+	int			lineHeight;
 	int32_t		color;
 	mlx_image_t	*img;
 	struct s_data		*data;
@@ -121,5 +136,11 @@ int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	control_keys(mlx_key_data_t keydata, void *param);
 //void	game_loop(t_player *player);
 void	game_loop(void	*param);
+void	wall_color(t_player *player);
+void	draw_wall(t_player *player, int x);
+void	init_deltaDist(t_player *player);
+void	init_sideDist(t_player *player);
+void	till_hitting_wall(t_player *player);
+void	prev_fisheye(t_player *player);
 
 #endif

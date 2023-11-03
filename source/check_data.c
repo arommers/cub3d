@@ -26,9 +26,10 @@ int	check_map(t_data *data)
 	j = 0;
 	while (data->map[i] != NULL)
 	{
-		while(data->map[i][j] != '\0')
+		while (data->map[i][j] != '\0')
 		{
-			if (!(data->map[i][j] == '0' || data->map[i][j] == '1' || data->map[i][j] == ' ' \
+			if (!(data->map[i][j] == '0' || \
+			data->map[i][j] == '1' || data->map[i][j] == ' ' \
 			|| data->map[i][j] == 'N' || data->map[i][j] == 'S' || \
 			data->map[i][j] == 'W' || data->map[i][j] == 'E'))
 			{
