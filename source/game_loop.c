@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/03 11:18:01 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/03 12:46:47 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,24 @@ void    run_DDA_algo(t_data *data, t_ray *ray)
 
 void    game_loop(void *param)
 {
-    int         i;
+    int         x;
     t_data      *data;
     t_player    *tmp_p;
     t_ray       *tmp_r;
 
-    i = 0;
+    x = 0;
     data = param;
     tmp_p = data->player;
     tmp_r = data->ray;
-    while (i < WIDTH)
+    while (x < WIDTH)
     {
-        tmp_r->camera_x = 2 * i / (double)WIDTH -1;
+        tmp_r->camera_x = 2 * x / (double)WIDTH -1;
         tmp_r->dirx = tmp_p->dirx + tmp_p->planex * tmp_r->camera_x;
         tmp_r->diry = tmp_p->diry + tmp_p->planey * tmp_r->camera_x;
         prep_DDA_algo(tmp_r, tmp_p);
         run_DDA_algo(data, tmp_r);
         prep_wall_draw(tmp_r);
-        draw_wall(data, i, tmp_r->line->draw_start, tmp_r->line->draw_end);
-        i++;
+        draw_wall(data, x, tmp_r->line->draw_start, tmp_r->line->draw_end);
+        x++;
     }
 }

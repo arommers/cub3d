@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/30 13:04:05 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/03 10:53:45 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/03 13:52:33 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int main(int argc, char *argv[])
     data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
     mlx_image_to_window(data.mlx, data.img, 0, 0);
     mlx_loop_hook(data.mlx, &game_loop, &data);
+    mlx_key_hook(data.mlx, &moves, &data);
     mlx_loop(data.mlx);
     mlx_terminate(data.mlx);
     return (0);

@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/03 11:17:36 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/03 14:14:26 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void    prep_wall_draw(t_ray *ray)
     tmp->draw_end = (int)((tmp->line_height / 2) + (HEIGHT / 2));
     if (tmp->draw_end >= HEIGHT)
         tmp->draw_end = HEIGHT -1;
-    printf("draw_start: %d, draw_end: %d\n", tmp->draw_start, tmp->draw_end);
 }
 
 void    draw_wall(t_data *data, int x, int start, int end)
@@ -38,16 +37,15 @@ void    draw_wall(t_data *data, int x, int start, int end)
     int mapValue = data->map[data->ray->mapx][data->ray->mapy];
     
     if (mapValue == 1)
-        color = ft_pixel(255, 0, 0, 255);  
+        color = ft_pixel(0, 255, 255, 255);  //red
     else if (mapValue == 2)
         color = ft_pixel(0, 255, 0, 255); //green
     else if (mapValue == 3)
         color = ft_pixel(0, 0, 255, 255); //blue
     else if (mapValue == 4)
-        color = ft_pixel(255, 255, 255, 255); //white
+        color = ft_pixel(255, 105, 180, 255); //pink
     else
         color = ft_pixel(255, 255, 0, 255); //yellow
-
     if (data->ray->side == 1) 
         color = color / 2; // Reduce intensity for side walls
     while (start < end)
