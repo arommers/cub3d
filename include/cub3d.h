@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/02 21:28:38 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/03 10:54:25 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_ray
 	int			stepx; // What direction to step in during DDA (+1 or -1)
 	int			stepy; // What direction to step in during DDA (+1 or -1) 
 	int			side; // Did we hit a vertical or horizontal side of a wall
-	bool		wall; // Did the ray hit a wall?
+	int			wall; // Did the ray hit a wall?
 	double		camera_x; // Coordinate in camera space
 	double		dirx; // x part of ray direction vector
 	double		diry; // y part of ray direction vector
@@ -77,7 +77,7 @@ typedef struct s_data
 	// int			c_r;
 	// int			c_g;
 	// int			c_b;
-	int			**map;
+	int			(*map)[MAPH];
 	mlx_t		*mlx;
 	t_ray		*ray;
 	t_player	*player;
@@ -109,12 +109,13 @@ void    prep_DDA_algo(t_ray *ray, t_player *player);
 // Draw functions
 void    prep_wall_draw(t_ray *ray);
 void    draw_wall(t_data *data, int x, int start, int end);
+int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 // temporary init functions
 void 	init_line(t_line *line);
 void 	init_player(t_player *player);
 void 	init_ray(t_ray *ray, t_line *line);
-void 	init_data(t_data *data, t_player *player, t_ray *ray, int map[][MAPH]);
+void 	init_data(t_data *data, t_player *player, t_ray *ray);
 
 int main(int argc, char **argv);
 

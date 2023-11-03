@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/02 21:26:07 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/03 11:18:01 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ void    run_DDA_algo(t_data *data, t_ray *ray)
             ray->mapy += ray->stepy;
             ray->side = 1;
         }
-        if (data->map[ray->mapx][ray->mapy] == 1)
-            ray->wall = true;
+        // printf("data->map[%d][%d]: %d\n", ray->mapx, ray->mapy, data->map[ray->mapx][ray->mapy]);
+        if (data->map[ray->mapx][ray->mapy] != 0)
+            ray->wall = 1;
     }
     calc_ray_length(ray);
 }
@@ -104,7 +105,7 @@ void    game_loop(void *param)
         prep_DDA_algo(tmp_r, tmp_p);
         run_DDA_algo(data, tmp_r);
         prep_wall_draw(tmp_r);
-        draw_wall(data, tmp_r->camera_x, tmp_r->line->draw_start, tmp_r->line->draw_end);
+        draw_wall(data, i, tmp_r->line->draw_start, tmp_r->line->draw_end);
         i++;
     }
 }
