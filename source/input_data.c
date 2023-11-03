@@ -65,8 +65,6 @@ t_data	*texture_color_init(t_data *data, char *with_nl)
 	char	*line;
 
 	line = ft_strtrim(with_nl, "\n");
-	//printf("after remove = %s", line);
-	//free(with_nl);
 	if (line[0] == 'F' || line[0] == 'C')
 	{
 		data = f_c_colors(data, line);

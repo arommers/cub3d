@@ -1,24 +1,17 @@
 PROJECT = Cub3d
-NAME = cub3d
-CC = cc
-CFLAGS = -lm -fsanitize=address #-lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/" -framework Cocoa -framework OpenGL -framework IOKit
+NAME 	= cub3d
+CC 		= cc
+CFLAGS 	= -lm -fsanitize=address
 LIBFT	:= ./libft
 HEADERS := -I $(LIBFT)/include -I include
-LIB	:= $(LIBFT)/libft.a
+LIB		:= $(LIBFT)/libft.a
 SRC_DIR := source
 OBJ_DIR := object
-SRC =	main.c\
-		input_data.c input_data_utils.c\
-		check_data.c\
-		line_draw.c\
-		wall.c\
-		controls.c\
-		input_player.c\
-
-SRC := $(SRC:%=$(SRC_DIR)/%)
-OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+SRC 	=	main.c game_loop.c draw_walls.c init_data.c
+SRC 	:= $(SRC:%=$(SRC_DIR)/%)
+OBJ 	:= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DIR_DUP = mkdir -p $(@D)
-RM := rm -rf
+RM 		:= rm -rf
 
 #OBJ_DIR = obj
 #OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
