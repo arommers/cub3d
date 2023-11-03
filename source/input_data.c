@@ -106,7 +106,7 @@ t_data	*map_init(t_data *data, char *with_nl, int fd, int size_map)
 	return (data);
 }
 
-void	put_data(int argc, char **argv)
+t_data	*put_data(int argc, char **argv)
 {
 	t_data	*data;
 	int		fd;
@@ -119,7 +119,7 @@ void	put_data(int argc, char **argv)
 	if (argc > 2 || argc == 1)
 	{
 		printf("put the right amount of input\n");
-		return ;
+		return(NULL) ;
 	}
 	file_lines = line_counter(argv[1]);
 	data = initialize_data_struct(data);
@@ -129,7 +129,7 @@ void	put_data(int argc, char **argv)
 		line = get_next_line(fd);
 		//printf("line = %s\n", line);
 		if (!line)
-			return ;
+			return(NULL) ;
 		if (strcmp(line, "\n") == 0)
 		{
 			count_line++;
@@ -148,5 +148,6 @@ void	put_data(int argc, char **argv)
 	lines_left = file_lines - count_line;
 	data = map_init(data, line, fd, lines_left);
 	if (check_data(data) != 0)
-		return ;
+		return(NULL) ;
+	return (data);
 }
