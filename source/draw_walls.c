@@ -24,7 +24,6 @@ void	prep_wall_draw(t_ray *ray)
 	tmp->draw_end = (int)((tmp->line_height / 2) + (HEIGHT / 2));
 	if (tmp->draw_end >= HEIGHT)
 		tmp->draw_end = HEIGHT -1;
-	printf("draw_start: %d, draw_end: %d\n", tmp->draw_start, tmp->draw_end);
 }
 
 void	draw_wall(t_data *data, int x, int start, int end)
@@ -39,7 +38,7 @@ void	draw_wall(t_data *data, int x, int start, int end)
 	else if (mapValue == 3)
 		color = ft_pixel(0, 0, 255, 255); //blue
 	else if (mapValue == 4)
-		color = ft_pixel(255, 255, 255, 255); //white
+		color = ft_pixel(255, 108, 125, 255); //white
 	else
 		color = ft_pixel(255, 255, 0, 255); //yellow
 

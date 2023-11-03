@@ -91,6 +91,10 @@ typedef struct s_data
 	mlx_image_t	*img;
 }	t_data;
 
+
+int		line_counter(char *file);
+t_input	*initialize_data_struct(t_input *input);
+int		check_input(t_input *input);
 t_input	*put_data(int argc, char **argv, t_input *input);
 t_input	*map_init(t_input *input, char *with_nl, int fd, int size_map);
 t_input	*texture_color_init(t_input *input, char *with_nl);
