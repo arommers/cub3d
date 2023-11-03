@@ -47,13 +47,12 @@ int main(int argc, char *argv[])
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
 	
-	t_data      data;
-	t_player    player;
-	t_ray       ray;
-	t_line      line;
-	
-	mlx_t       *mlx;
-	mlx_image_t *game_window;
+	t_data		data;
+	t_player	player;
+	t_ray		ray;
+	t_line		line;
+	mlx_t		*mlx;
+	mlx_image_t	*game_window;
 	
 	init_data (&data, &player, &ray);
 	data.mlx = mlx;
@@ -63,7 +62,7 @@ int main(int argc, char *argv[])
 	init_ray(&ray, &line);
 	init_line(&line);
 	
-	put_data(argc, argv);
+	data.input = put_data(argc, argv, data.input);
 	data.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);

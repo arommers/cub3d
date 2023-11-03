@@ -22,18 +22,18 @@ int	line_counter(char *file)
 	return (count_line);
 }
 
-t_data	*initialize_data_struct(t_data *data)
+t_input	*initialize_data_struct(t_input *input)
 {
-	data->no_texture = NULL;
-	data->so_texture = NULL;
-	data->we_texture = NULL;
-	data->ea_texture = NULL;
-	data->f_r = 0;
-	data->f_g = 0;
-	data->f_b = 0;
-	data->c_r = 0;
-	data->c_g = 0;
-	data->c_b = 0;
-	data->map = NULL;
-	return (data);
+	input->no_texture = NULL;
+	input->so_texture = NULL;
+	input->we_texture = NULL;
+	input->ea_texture = NULL;
+	input->f_r = 0;
+	input->f_g = 0;
+	input->f_b = 0;
+	input->c_r = 0;
+	input->c_g = 0;
+	input->c_b = 0;
+	input->map = NULL;
+	return (input);
 }

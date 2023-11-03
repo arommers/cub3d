@@ -1,6 +1,6 @@
 #include "../include/cub3d.h"
 
-t_data	*texture_data(t_data *data, char *line)
+t_input	*texture_data(t_input *input, char *line)
 {
 	char	**path_data;
 	char	*texture_path;
@@ -10,30 +10,30 @@ t_data	*texture_data(t_data *data, char *line)
 	if (line[0] == 'N' && line[1] == 'O')
 	{
 		printf("texture_path = %s\n", texture_path);
-		data->no_texture = texture_path;
+		input->no_texture = texture_path;
 	}
 	else if (line[0] == 'S' && line[1] == 'O')
 	{
 		printf("texture_path = %s\n", texture_path);
-		data->so_texture = texture_path;
+		input->so_texture = texture_path;
 	}
 	else if (line[0] == 'W' && line[1] == 'E')
 	{
 		printf("texture_path = %s\n", texture_path);
-		data->we_texture = texture_path;
+		input->we_texture = texture_path;
 	}
 	else if (line[0] == 'E' && line[1] == 'A')
 	{
 		printf("texture_path = %s\n", texture_path);
-		data->ea_texture = texture_path;
+		input->ea_texture = texture_path;
 	}
 	free(path_data[0]);
 	free(path_data[1]);
 	free(path_data);
-	return (data);
+	return (input);
 }
 
-t_data	*f_c_colors(t_data *data, char *line)
+t_input	*f_c_colors(t_input *input, char *line)
 {
 	char	*before_split;
 	char	**colors;
@@ -42,71 +42,70 @@ t_data	*f_c_colors(t_data *data, char *line)
 	colors = ft_split(before_split, ',');
 	if (line[0] == 'F')
 	{
-		data->f_r = ft_atoi(colors[0]);
-		data->f_g = ft_atoi(colors[1]);
-		data->f_b = ft_atoi(colors[2]);
+		input->f_r = ft_atoi(colors[0]);
+		input->f_g = ft_atoi(colors[1]);
+		input->f_b = ft_atoi(colors[2]);
 	}
 	if (line[0] == 'C')
 	{
-		data->c_r = ft_atoi(colors[0]);
-		data->c_g = ft_atoi(colors[1]);
-		data->c_b = ft_atoi(colors[2]);
+		input->c_r = ft_atoi(colors[0]);
+		input->c_g = ft_atoi(colors[1]);
+		input->c_b = ft_atoi(colors[2]);
 	}
 	free(colors[0]);
 	free(colors[1]);
 	free(colors[2]);
 	free(colors);
 	free(before_split);
-	return (data);
+	return (input);
 }
 
-t_data	*texture_color_init(t_data *data, char *with_nl)
+t_input	*texture_color_init(t_input *input, char *with_nl)
 {
 	char	*line;
 
 	line = ft_strtrim(with_nl, "\n");
 	if (line[0] == 'F' || line[0] == 'C')
 	{
-		data = f_c_colors(data, line);
+		input = f_c_colors(input, line);
 	}
 	else
 	{
-		data = texture_data(data, line);
+		input = texture_data(input, line);
 	}
-	return (data);
+	return (input);
 }
 
-t_data	*map_init(t_data *data, char *with_nl, int fd, int size_map)
+t_input	*map_init(t_input *input, char *with_nl, int fd, int size_map)
 {
 	int		i;
 	char	*line;
 
 	i = 1;
-	data->map = malloc(sizeof(char *) * (size_map + 1));
+	input->map = malloc(sizeof(char *) * (size_map + 1));
 	line = ft_strtrim(with_nl, "\n");
 	free(with_nl);
-	data->map[0] = line;
+	input->map[0] = line;
 	while (i < size_map)
 	{
 		with_nl = get_next_line(fd);
 		line = ft_strtrim(with_nl, "\n");
 		free(with_nl);
-		data->map[i] = line;
+		input->map[i] = line;
 		i++;
 	}
-	data->map[i] = NULL;
+	input->map[i] = NULL;
 	i = 0;
-	while (data->map[i] != NULL)
+	while (input->map[i] != NULL)
 	{
-		printf("data->map[%d] = %s\n", i, data->map[i]);
+		printf("input->map[%d] = %s\n", i, input->map[i]);
 		i++;
 	}
-	return (data);
+	return (input);
 }
 
-t_data	*put_data(int argc, char **argv)
+t_input	*put_data(int argc, char **argv, t_input *input)
 {
-	t_data	*data;
 	int		fd;
 	char	*line;
 	int		count_line;
@@ -120,12 +119,11 @@ t_data	*put_data(int argc, char **argv)
 		return(NULL) ;
 	}
 	file_lines = line_counter(argv[1]);
-	data = initialize_data_struct(data);
+	input = initialize_data_struct(input);
 	fd = open(argv[1], O_RDONLY);
 	while(1)
 	{
 		line = get_next_line(fd);
-		//printf("line = %s\n", line);
 		if (!line)
 			return(NULL) ;
 		if (strcmp(line, "\n") == 0)
@@ -137,15 +135,15 @@ t_data	*put_data(int argc, char **argv)
 		if ((line[0] >= 'C' && line[0] <= 'W'))
 		{
 			count_line++;
-			data = texture_color_init(data, line);
+			input = texture_color_init(input, line);
 		}
 		else
 			break;
 		free(line);
 	}
 	lines_left = file_lines - count_line;
-	data = map_init(data, line, fd, lines_left);
-	if (check_data(data) != 0)
+	input = map_init(input, line, fd, lines_left);
+	if (check_input(input) != 0)
 		return(NULL) ;
-	return (data);
+	return (input);
 }

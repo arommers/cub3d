@@ -66,7 +66,7 @@ typedef struct s_player
 	struct s_data		*data;
 }	t_player;
 
-typedef struct s_data
+typedef struct		s_input
 {
 	char		*no_texture;
 	char		*so_texture;
@@ -78,7 +78,12 @@ typedef struct s_data
 	int			c_r;
 	int			c_g;
 	int			c_b;
-	//char		**map;
+	char		**map;
+}	t_input;
+
+typedef struct s_data
+{
+	t_input		*input;
 	int			(*map)[MAPH];
 	mlx_t		*mlx;
 	t_ray		*ray;
@@ -86,19 +91,11 @@ typedef struct s_data
 	mlx_image_t	*img;
 }	t_data;
 
-// Parsing the input
-// int		line_counter(char *file);
-// void	put_data(int argc, char **argv);
-// t_data	*initialize_data_struct(t_data *data);
-// t_data	*f_c_colors(t_data *data, char *line);
-// t_data	*texture_data(t_data *data, char *line);
-// t_data	*texture_color_init(t_data *data, char *with_nl);
-// t_data	*map_init(t_data *data, char *with_nl, int fd, int size_map);
-
-// // Check data
-// int		check_map(t_data *data);
-// int		check_data(t_data *data);
-// int		check_colors(t_data *data);
+t_input	*put_data(int argc, char **argv, t_input *input);
+t_input	*map_init(t_input *input, char *with_nl, int fd, int size_map);
+t_input	*texture_color_init(t_input *input, char *with_nl);
+t_input	*f_c_colors(t_input *input, char *line);
+t_input	*texture_data(t_input *input, char *line);
 
 // DDA algorithm function
 void	game_loop(void *param);
