@@ -10,7 +10,7 @@ t_player	*input_player(t_player *player, int argc, char **argv)
 	}
 	player->x = 22; //x of start position
 	player->y = 12; //y of start position
-	player->dirX = -1; //initial direction vector
+	player->dirX = 1; //initial direction vector
 	player->dirY = 0; //initial direction vector
 	player->planeX = 0; //the 2d raycaster version of camera plane
 	player->planeY = 0.66; //the 2d raycaster version of camera plane

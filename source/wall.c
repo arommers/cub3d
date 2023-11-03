@@ -8,7 +8,7 @@ void	wall_color(t_player *player)
 		case 1:  player->color = ft_pixel(255, 0, 0, 255);  break; //red
 		case 2:  player->color = ft_pixel(0, 255, 0, 255);  break; //green
 		case 3:  player->color = ft_pixel(0, 0, 255, 255);   break; //blue
-		case 4:  player->color = ft_pixel(255, 255, 255, 255);   break; //white
+		case 4:  player->color = ft_pixel(255, 105, 180, 255);   break; //white
 		default: player->color = ft_pixel(255, 255, 0, 255); break; //yellow
 	}
 	//give x and y sides different brightness
