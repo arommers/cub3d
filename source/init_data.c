@@ -18,25 +18,56 @@ void init_data(t_data *data, t_player *player, t_ray *ray)
 	data->ray = ray;
 }
 
-void init_player(t_player *player)
+void	player_pos(t_data *data)
 {
-	player->x = 22;
-	player->y = 12; 
-	player->dirx = -1;
-	player->diry = 0;
-	player->planex = 0;
-	player->planey = 0.66;
-	player->angle = 66;
+	int	x;
+	int	y;
+	char	**map;
+
+	x = 0;
+	y = 0;
+	map = data->input->map;
+	while (map[y] != NULL)
+	{
+		printf("here\n");
+		while (map[y][x] != '\0')
+		{
+			if (map[y][x] == 'E' || map[y][x] == 'W' || \
+			map[y][x] == 'N' || map[y][x] == 'S')
+			{
+				data->player->x = x;
+				data->player->y = y;
+				//write a function for giving the directions
+				return ;
+			}
+			else
+				x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
+void init_player(t_data *data)
+{
+	player_pos(data);
+	// data->player->x = 22;
+	// data->player->y = 12; 
+	data->player->dirx = -1;
+	data->player->diry = 0;
+	data->player->planex = 0;
+	data->player->planey = 0.66;
+	data->player->angle = 66;
 }
 
 void init_ray(t_ray *ray, t_line *line)
 {
-    ray->mapx = 0;
-    ray->mapy = 0;
-    ray->stepx = 0;
-    ray->stepy = 0;
-    ray->side = 0;
-    ray->wall = 0;
+	ray->mapx = 0;
+	ray->mapy = 0;
+	ray->stepx = 0;
+	ray->stepy = 0;
+	ray->side = 0;
+	ray->wall = 0;
 	ray->camera_x = 0.0;
 	ray->dirx = 0.0;
 	ray->diry = 0.0;

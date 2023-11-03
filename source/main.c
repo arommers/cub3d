@@ -58,11 +58,10 @@ int main(int argc, char *argv[])
 	data.mlx = mlx;
 	data.img = game_window;
 	data.map = worldMap;
-	init_player(&player);
+	data.input = input_data(argc, argv, data.input);
+	init_player(&data);
 	init_ray(&ray, &line);
 	init_line(&line);
-	
-	// put_data(argc, argv);
 	data.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);

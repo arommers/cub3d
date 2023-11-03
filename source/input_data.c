@@ -86,6 +86,7 @@ t_input	*map_init(t_input *input, char *with_nl, int fd, int size_map)
 	line = ft_strtrim(with_nl, "\n");
 	free(with_nl);
 	input->map[0] = line;
+	printf("input->map[0] = %s\n", input->map[0]);
 	while (i < size_map)
 	{
 		with_nl = get_next_line(fd);
@@ -104,7 +105,7 @@ t_input	*map_init(t_input *input, char *with_nl, int fd, int size_map)
 	return (input);
 }
 
-t_input	*put_data(int argc, char **argv, t_input *input)
+t_input	*input_data(int argc, char **argv, t_input *input)
 {
 	int		fd;
 	char	*line;

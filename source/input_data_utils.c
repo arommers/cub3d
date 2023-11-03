@@ -24,6 +24,7 @@ int	line_counter(char *file)
 
 t_input	*initialize_data_struct(t_input *input)
 {
+	input = malloc(sizeof(t_input));
 	input->no_texture = NULL;
 	input->so_texture = NULL;
 	input->we_texture = NULL;

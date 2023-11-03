@@ -78,7 +78,6 @@ void	run_DDA_algo(t_data *data, t_ray *ray)
 			ray->mapy += ray->stepy;
 			ray->side = 1;
 		}
-		// printf("data->map[%d][%d]: %d\n", ray->mapx, ray->mapy, data->map[ray->mapx][ray->mapy]);
 		if (data->map[ray->mapx][ray->mapy] != 0)
 			ray->wall = 1;
 	}
