@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/03 10:40:05 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/03 14:15:06 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void init_player(t_player *player)
 
 void init_ray(t_ray *ray, t_line *line)
 {
-	ray->mapx = 0;
-	ray->mapy = 0;
-	ray->stepx = 0;
-	ray->stepy = 0;
-	ray->side = 0;
-	ray->wall = false;
+    ray->mapx = 0;
+    ray->mapy = 0;
+    ray->stepx = 0;
+    ray->stepy = 0;
+    ray->side = 0;
+    ray->wall = 0;
 	ray->camera_x = 0.0;
 	ray->dirx = 0.0;
 	ray->diry = 0.0;

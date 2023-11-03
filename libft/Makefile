@@ -6,7 +6,7 @@
 #    By: arommers <arommers@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/10 14:07:45 by arommers      #+#    #+#                  #
-#    Updated: 2023/03/18 22:29:33 by adri          ########   odam.nl          #
+#    Updated: 2023/11/03 13:55:30 by arommers      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,15 +64,15 @@ PINK 	:= \033[35m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "Compiled with $(BLUE)$(BOLD)$(CFLAGS)$(RESET)"
+	@echo "Compiled with $(GREEN)$(BOLD)$(CFLAGS)$(RESET)"
 	@ar -rcs $@ $^
-	@echo "$(PINK)$(BOLD)----------------------------------------"
+	@echo "$(BLUE)$(BOLD)----------------------------------------"
 	@echo "     $(PROJECT) = NOW READY FOR USE!"
 	@echo "----------------------------------------$(RESET)"
 	
 $(OBJ_DIR)/%.o: ./src/%.c
 	@mkdir -p $(OBJ_DIR)
-	@echo "Compiled ✅ $(PINK) $(BOLD) $^ $(RESET)"
+	@echo "Compiled ✅ $(BLUE) $(BOLD) $^ $(RESET)"
 	@$(CC) $(CFLAGS) $(INCLUDE) -c -o $@ $^
 	
 clean:

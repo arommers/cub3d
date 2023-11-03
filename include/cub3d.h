@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/03 10:54:25 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/03 13:17:22 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 # define MAPW 24
 # define MAPH 24
-# define WIDTH 640
-# define HEIGHT 480
+# define WIDTH 1024
+# define HEIGHT 512
 
 typedef struct s_line
 {
@@ -120,6 +120,11 @@ void 	init_player(t_player *player);
 void 	init_ray(t_ray *ray, t_line *line);
 void 	init_data(t_data *data, t_player *player, t_ray *ray);
 
-int		main(int argc, char **argv);
+// Moves
+
+void	clear_frame(t_data *data);
+void	moves(mlx_key_data_t keydata, void *param);
+
+int main(int argc, char **argv);
 
 #endif
