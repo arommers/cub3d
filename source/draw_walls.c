@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/05 16:23:54 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/05 21:13:57 by adri          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ void    put_texture(t_data *data, int x, int start, int end)
     tex_start = (start - HEIGHT / 2 + data->ray->line->line_height / 2) * step;
     while (start < end)
     {
-        tex_y = (int)tex_x & (TEXH -1);
-        tex_x += step;
+        tex_y = (int)start & (TEXH - 1);
+        tex_start += step;
         color = get_pixel(data->walls->tex, tex_x, tex_y);
         if (data->ray->side == 1)
             color = color / 2;
