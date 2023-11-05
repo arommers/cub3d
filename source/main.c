@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/30 13:04:05 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/03 13:52:33 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/05 16:02:35 by adri          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,18 @@ int main(int argc, char *argv[])
     mlx_t       *mlx;
     mlx_image_t *game_window;
     
+    // put_data(argc, argv);
+    
     init_data (&data, &player, &ray);
     data.mlx = mlx;
     data.img = game_window;
     data.map = worldMap;
+    data.walls = ft_calloc(1, sizeof(t_wall));
     init_player(&player);
     init_ray(&ray, &line);
     init_line(&line);
+    load_textures(&data);
     
-    // put_data(argc, argv);
     data.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
     data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
     mlx_image_to_window(data.mlx, data.img, 0, 0);

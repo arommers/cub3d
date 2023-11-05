@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 12:59:35 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/03 14:04:27 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/05 16:23:00 by adri          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	moves(mlx_key_data_t keydata, void *param)
 	data = param;
     player = data->player; 
 
-	//timing for input and FPS counter  
 	clear_frame(data);
 
 	//speed modifiers
