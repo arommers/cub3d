@@ -78,7 +78,7 @@ void	run_DDA_algo(t_data *data, t_ray *ray)
 			ray->mapy += ray->stepy;
 			ray->side = 1;
 		}
-		if (data->map[ray->mapx][ray->mapy] != 0)
+		if (data->input->map[ray->mapx][ray->mapy] != '0')
 			ray->wall = 1;
 	}
 	calc_ray_length(ray);

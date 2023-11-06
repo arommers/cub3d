@@ -29,15 +29,16 @@ void	prep_wall_draw(t_ray *ray)
 void	draw_wall(t_data *data, int x, int start, int end)
 {
 	int color;
-	int mapValue = data->map[data->ray->mapx][data->ray->mapy];
+	char mapValue;
 	
-	if (mapValue == 1)
+	mapValue = data->input->map[data->ray->mapx][data->ray->mapy];
+	if (mapValue == '1')
 		color = ft_pixel(0, 255, 255, 255);  //red
-	else if (mapValue == 2)
+	else if (mapValue == '2')
 		color = ft_pixel(0, 255, 0, 255); //green
-	else if (mapValue == 3)
+	else if (mapValue == '3')
 		color = ft_pixel(0, 0, 255, 255); //blue
-	else if (mapValue == 4)
+	else if (mapValue == '4')
 		color = ft_pixel(255, 105, 180, 255); //pink
 	else
 		color = ft_pixel(255, 255, 0, 255); //yellow

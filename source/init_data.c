@@ -18,7 +18,7 @@ void init_data(t_data *data, t_player *player, t_ray *ray)
 	data->ray = ray;
 }
 
-void	player_pos(t_data *data)
+char	player_pos(t_data *data)
 {
 	int	x;
 	int	y;
@@ -26,19 +26,21 @@ void	player_pos(t_data *data)
 
 	x = 0;
 	y = 0;
+	if (data->input == NULL)
+		printf("i am empty\n");
+	printf("data->input->map[0] = %s\n", data->input->map[0]);
 	map = data->input->map;
 	while (map[y] != NULL)
 	{
-		printf("here\n");
 		while (map[y][x] != '\0')
 		{
 			if (map[y][x] == 'E' || map[y][x] == 'W' || \
 			map[y][x] == 'N' || map[y][x] == 'S')
 			{
 				data->player->x = x;
+				printf("x = %d and y = %d\n", x, y);
 				data->player->y = y;
-				//write a function for giving the directions
-				return ;
+				return (map[y][x]);
 			}
 			else
 				x++;
@@ -46,18 +48,49 @@ void	player_pos(t_data *data)
 		x = 0;
 		y++;
 	}
+	return (map[y][x]);
+}
+
+
+void	player_direction(t_data *data, char dir)
+{
+	printf("%c\n", dir);
+	if (dir == 'N')
+	{
+		data->player->dirx = 0;
+		data->player->diry = 1;
+	}
+	else if (dir == 'S')
+	{
+		data->player->dirx = 0;
+		data->player->diry = -1;
+	}
+	else if (dir == 'W')
+	{
+		data->player->dirx = -1;
+		data->player->diry = 0;
+	}
+	else if (dir == 'E')
+	{
+		data->player->dirx = 1;
+		data->player->diry = 0;
+	}
 }
 
 void init_player(t_data *data)
 {
-	player_pos(data);
+	char	player_dir;
+
+	player_dir = player_pos(data);
+	player_direction(data, player_dir);
+	printf("data->player->dirx = %f\n", data->player->dirx);
+	printf("data->player->diry = %f\n", data->player->diry);
 	// data->player->x = 22;
 	// data->player->y = 12; 
-	data->player->dirx = -1;
-	data->player->diry = 0;
+	// data->player->dirx = -1;
+	// data->player->diry = 0;
 	data->player->planex = 0;
 	data->player->planey = 0.66;
-	data->player->angle = 66;
 }
 
 void init_ray(t_ray *ray, t_line *line)

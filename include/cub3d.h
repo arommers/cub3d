@@ -92,10 +92,14 @@ typedef struct s_data
 }	t_data;
 
 
+// Input Data
+char	player_pos(t_data *data);
+void	player_direction(t_data *data, char dir);
+
 int		line_counter(char *file);
 t_input	*initialize_data_struct(t_input *input);
 int		check_input(t_input *input);
-t_input	*input_data(int argc, char **argv, t_input *input);
+t_input	*input_data(int argc, char **argv, t_input *input, t_data *data);
 t_input	*map_init(t_input *input, char *with_nl, int fd, int size_map);
 t_input	*texture_color_init(t_input *input, char *with_nl);
 t_input	*f_c_colors(t_input *input, char *line);
@@ -118,7 +122,7 @@ int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	init_line(t_line *line);
 void	init_player(t_data *data);
 void	init_ray(t_ray *ray, t_line *line);
-void	init_data(t_data *data, t_player *player, t_ray *ray);
+void init_data(t_data *data, t_player *player, t_ray *ray);
 
 // Moves
 

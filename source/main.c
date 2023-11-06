@@ -51,14 +51,15 @@ int main(int argc, char *argv[])
 	t_player	player;
 	t_ray		ray;
 	t_line		line;
+	t_input		input;
 	mlx_t		*mlx;
 	mlx_image_t	*game_window;
 	
-	init_data (&data, &player, &ray);
+	init_data(&data, &player, &ray);
 	data.mlx = mlx;
 	data.img = game_window;
-	data.map = worldMap;
-	data.input = input_data(argc, argv, data.input);
+	// data.map = worldMap;
+	input_data(argc, argv, &input, &data);
 	init_player(&data);
 	init_ray(&ray, &line);
 	init_line(&line);

@@ -36,11 +36,11 @@ void	clear_frame(t_data *data)
 
 void	moves(mlx_key_data_t keydata, void *param)
 {
-	t_data      *data;
-    t_player	*player;
+	t_data		*data;
+	t_player	*player;
 
 	data = param;
-    player = data->player; 
+	player = data->player; 
 
 	//timing for input and FPS counter  
 	clear_frame(data);
@@ -48,22 +48,22 @@ void	moves(mlx_key_data_t keydata, void *param)
 	//speed modifiers
 	double moveSpeed = 0.8; //the constant value is in squares/second
 	double rotSpeed = 0.3; //the constant value is in radians/second
-    if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
 	{
-		if (data->map[(int)(player->x + player->dirx * moveSpeed)][(int)(player->y)] == 0)
+		if (data->input->map[(int)(player->x + player->dirx * moveSpeed)][(int)(player->y)] == '0')
 			player->x += player->dirx * moveSpeed;
-		if (data->map[(int)(player->x)][(int)(player->y + player->diry * moveSpeed)] == 0)
+		if (data->input->map[(int)(player->x)][(int)(player->y + player->diry * moveSpeed)] == '0')
 			player->y += player->diry * moveSpeed;
 		//game_loop(player);
 	}
 	//move backwards if no wall behind you
 	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
 	{
-		if (data->map[(int)(player->x - player->dirx * moveSpeed)][(int)(player->y)] == 0)
+		if (data->input->map[(int)(player->x - player->dirx * moveSpeed)][(int)(player->y)] == '0')
 			player->x -= player->dirx * moveSpeed;
-		if (data->map[(int)(player->x)][(int)(player->y - player->diry * moveSpeed)] == 0)
+		if (data->input->map[(int)(player->x)][(int)(player->y - player->diry * moveSpeed)] == '0')
 			player->y -= player->diry * moveSpeed;
 	}
 	//rotate to the right

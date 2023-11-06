@@ -80,32 +80,34 @@ t_input	*map_init(t_input *input, char *with_nl, int fd, int size_map)
 {
 	int		i;
 	char	*line;
+	t_input	*temp;
 
 	i = 1;
 	input->map = malloc(sizeof(char *) * (size_map + 1));
+	temp = input;
 	line = ft_strtrim(with_nl, "\n");
 	free(with_nl);
-	input->map[0] = line;
-	printf("input->map[0] = %s\n", input->map[0]);
+	temp->map[0] = line;
+	printf("temp->map[0] = %s\n", temp->map[0]);
 	while (i < size_map)
 	{
 		with_nl = get_next_line(fd);
 		line = ft_strtrim(with_nl, "\n");
 		free(with_nl);
-		input->map[i] = line;
+		temp->map[i] = line;
 		i++;
 	}
-	input->map[i] = NULL;
+	temp->map[i] = NULL;
 	i = 0;
-	while (input->map[i] != NULL)
+	while (temp->map[i] != NULL)
 	{
-		printf("input->map[%d] = %s\n", i, input->map[i]);
+		printf("temp->map[%d] = %s\n", i, temp->map[i]);
 		i++;
 	}
 	return (input);
 }
 
-t_input	*input_data(int argc, char **argv, t_input *input)
+t_input	*input_data(int argc, char **argv, t_input *input, t_data *data)
 {
 	int		fd;
 	char	*line;
@@ -113,6 +115,7 @@ t_input	*input_data(int argc, char **argv, t_input *input)
 	int		file_lines;
 	int		lines_left;
 
+	input = malloc(sizeof(t_input));
 	count_line = 0;
 	if (argc > 2 || argc == 1)
 	{
@@ -144,7 +147,8 @@ t_input	*input_data(int argc, char **argv, t_input *input)
 	}
 	lines_left = file_lines - count_line;
 	input = map_init(input, line, fd, lines_left);
-	if (check_input(input) != 0)
-		return(NULL) ;
+	// if (check_input(input) != 0)
+	// 	return(NULL) ;
+	data->input = input;
 	return (input);
 }
