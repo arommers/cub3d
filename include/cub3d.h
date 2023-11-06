@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/05 16:23:44 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/06 14:39:44 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct s_player
 	double		diry;
 	double		planex;
 	double		planey;
-	float		angle;
 	mlx_image_t	*img;
 }	t_player;
 
@@ -116,11 +115,11 @@ void	calc_start(t_ray *ray, t_player *player);
 void    prep_DDA_algo(t_ray *ray, t_player *player);
 
 // Draw functions
-void    	prep_wall_draw(t_ray *ray);
-// void   		draw_wall(t_data *data, int x, int start, int end);
-void    	put_texture(t_data *data, int x, int start, int end);
-int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
-int32_t		get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
+void    		prep_wall_draw(t_ray *ray);
+void   			draw_wall(t_data *data, int x, int start, int end);
+void    		put_texture(t_data *data, int x, int start, int end);
+int32_t			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+unsigned int	get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/03 14:15:06 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/06 14:23:37 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void init_player(t_player *player)
     player->diry = 0;
     player->planex = 0;
     player->planey = 0.66;
-    player->angle = 66;
 }
 
 void init_ray(t_ray *ray, t_line *line)

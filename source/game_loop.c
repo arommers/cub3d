@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/05 16:14:06 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/06 14:40:24 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ void    prep_DDA_algo(t_ray *ray, t_player *player)
     if (ray->delta_dist_x == 0)
         ray->delta_dist_x = 1e30;
     else
-        ray->delta_dist_x = sqrt(1 + (ray->diry * ray->diry) / (ray->dirx * ray->dirx));
+        ray->delta_dist_x = fabs(1 / ray->dirx);
+        // ray->delta_dist_x = sqrt(1 + (ray->diry * ray->diry) / (ray->dirx * ray->dirx));
     if (ray->delta_dist_y == 0)
         ray->delta_dist_y = 1e30;
     else
-        ray->delta_dist_y = sqrt(1 + (ray->dirx * ray->dirx) / (ray->diry * ray->diry));
+        ray->delta_dist_y = fabs(1 / ray->diry);
+        // ray->delta_dist_y = sqrt(1 + (ray->dirx * ray->dirx) / (ray->diry * ray->diry));
     calc_start(ray, player);
     ray->wall = 0;
         
