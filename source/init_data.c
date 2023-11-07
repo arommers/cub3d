@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/03 14:15:06 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/07 09:36:08 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,20 @@ void	player_direction(t_data *data, char dir)
 void init_player(t_data *data)
 {
 	char	player_dir;
+	double	planeRatio;
+	double	dirLength;
 
 	player_dir = player_pos(data);
 	player_direction(data, player_dir);
 	printf("data->player->dirx = %f\n", data->player->dirx);
 	printf("data->player->diry = %f\n", data->player->diry);
-	// data->player->x = 22;
-	// data->player->y = 12; 
-	// data->player->dirx = -1;
-	// data->player->diry = 0;
-	data->player->planex = 0;
-	data->player->planey = 0.66;
+	planeRatio = 0.66; // specified length ratio
+	// Calculate the length of the direction vector
+	dirLength = sqrt(data->player->dirx * data->player->dirx \
+	+ data->player->diry * data->player->diry);
+	// Calculate the new planeX and planeY based on the ratio
+	data->player->planex = data->player->diry / dirLength * planeRatio;
+	data->player->planey = -data->player->dirx / dirLength * planeRatio;
 }
 
 void init_ray(t_ray *ray, t_line *line)

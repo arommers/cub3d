@@ -1,7 +1,7 @@
 PROJECT = Cub3d
 NAME 	= cub3d
 CC 		= cc
-CFLAGS 	= -lm -fsanitize=address
+CFLAGS 	= -lm -fsanitize=address -Iinclude -lglfw -L"/opt/homebrew/Cellar/glfw/3.3.8/lib/" -framework Cocoa -framework OpenGL -framework IOKit
 LIBFT	:= ./libft
 HEADERS := -I $(LIBFT)/include -I include
 LIB		:= $(LIBFT)/libft.a
