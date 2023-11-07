@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/03 13:17:22 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/07 12:18:55 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define MAPW 24
 # define MAPH 24
+# define TEXW 64
+# define TEXH 64
 # define WIDTH 1024
 # define HEIGHT 512
 
@@ -33,6 +35,12 @@ typedef struct s_line
 	int		draw_end;
 	
 }	t_line;
+
+typedef struct t_wall
+{
+	char			*path;
+	mlx_texture_t	*tex;
+}	t_wall;
 
 typedef struct s_ray
 {
@@ -61,7 +69,6 @@ typedef struct s_player
 	double		diry;
 	double		planex;
 	double		planey;
-	float		angle;
 	mlx_image_t	*img;
 	struct s_data		*data;
 }	t_player;
@@ -87,6 +94,7 @@ typedef struct s_data
 	int			(*map)[MAPH];
 	mlx_t		*mlx;
 	t_ray		*ray;
+	t_wall		*walls;
 	t_player	*player;
 	mlx_image_t	*img;
 }	t_data;
@@ -114,18 +122,22 @@ void	calc_start(t_ray *ray, t_player *player);
 void	prep_DDA_algo(t_ray *ray, t_player *player);
 
 // Draw functions
-void	prep_wall_draw(t_ray *ray);
-void	draw_wall(t_data *data, int x, int start, int end);
-int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void			prep_wall_draw(t_ray *ray);
+void			draw_wall(t_data *data, int x, int start, int end);
+void			put_texture(t_data *data, int x, int start, int end);
+int32_t			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+unsigned int	get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
+
+
 
 // temporary init functions
 void	init_line(t_line *line);
 void	init_player(t_data *data);
 void	init_ray(t_ray *ray, t_line *line);
-void init_data(t_data *data, t_player *player, t_ray *ray);
+void	init_data(t_data *data, t_player *player, t_ray *ray);
+void	load_textures(t_data *data);
 
 // Moves
-
 void	clear_frame(t_data *data);
 void	moves(mlx_key_data_t keydata, void *param);
 

@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/03 14:14:26 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/07 12:45:55 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,61 @@ void	prep_wall_draw(t_ray *ray)
 	tmp->draw_end = (int)((tmp->line_height / 2) + (HEIGHT / 2));
 	if (tmp->draw_end >= HEIGHT)
 		tmp->draw_end = HEIGHT -1;
+}
+
+unsigned int	get_pixel(mlx_texture_t	*t, int32_t x, int32_t y)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = t->pixels[(y * t->width + x) * t->bytes_per_pixel];
+	g = t->pixels[(y * t->width + x) * t->bytes_per_pixel + 1];
+	b = t->pixels[(y * t->width + x) * t->bytes_per_pixel + 2];
+	
+	return ((unsigned int)(r << 24 | g << 16 | b << 8 | 0xFF));
+}
+
+// Calculate the x coordinate of our texture from where the ray hits the wall
+
+void	put_texture(t_data *data, int x, int start, int end)
+{
+	int		tex_x; // x coordinate of the texture
+	double	wall_hit; // coordinate where the wall was hit, either x on a horo line or y on a vert line
+
+	load_textures(data);
+	// Calculate the value of wall_hit
+	if (data->ray->side == 0)   // a vertical line is hit
+		wall_hit = data->player->y + data->ray->perp_wall_dist * data->ray->diry;
+	else    // a horizontal line is hit
+		wall_hit = data->player->x + data->ray->perp_wall_dist * data->ray->dirx;
+	wall_hit -= floor(wall_hit);
+
+	// determine the x coordinate of the texture and mirror the location if necessary
+	tex_x = (int)(wall_hit * (double)TEXW);
+	if (data->ray->side == 0 && data->ray->dirx > 0)
+		tex_x =  TEXW - tex_x - 1;
+	if (data->ray->side == 1 && data->ray->diry < 0)
+		tex_x =  TEXW - tex_x - 1;
+
+	int32_t	color;
+	int		tex_y; // y coordinatie of the texture
+	double	step; // determines our increment
+	double	tex_start; // initial texture coordinate
+
+	step = 1.0 * TEXH / data->ray->line->line_height;
+	tex_start = (start - HEIGHT / 2 + data->ray->line->line_height / 2) * step;
+	int y = start;
+	while (y < end)
+	{
+		tex_y = (int)tex_start & (TEXH - 1);
+		tex_start += step;
+		color = get_pixel(data->walls->tex, tex_x, tex_y);
+		if (data->ray->side == 1)
+			color *= 0.75;
+		mlx_put_pixel(data->img, x, y, color);
+		y++;
+	}
 }
 
 void	draw_wall(t_data *data, int x, int start, int end)

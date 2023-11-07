@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/07 09:28:44 by parisasadeq   ########   odam.nl         */
+/*   Updated: 2023/11/07 12:34:31 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ void	prep_DDA_algo(t_ray *ray, t_player *player)
 	if (ray->delta_dist_x == 0)
 		ray->delta_dist_x = 1e30;
 	else
-		ray->delta_dist_x = sqrt(1 + (ray->diry * ray->diry) / (ray->dirx * ray->dirx));
+		ray->delta_dist_x = fabs(1 / ray->dirx);
+		// ray->delta_dist_x = sqrt(1 + (ray->diry * ray->diry) / (ray->dirx * ray->dirx));
 	if (ray->delta_dist_y == 0)
 		ray->delta_dist_y = 1e30;
 	else
-		ray->delta_dist_y = sqrt(1 + (ray->dirx * ray->dirx) / (ray->diry * ray->diry));
+		ray->delta_dist_y = fabs(1 / ray->diry);
+		// ray->delta_dist_y = sqrt(1 + (ray->dirx * ray->dirx) / (ray->diry * ray->diry));
 	calc_start(ray, player);
 	ray->wall = 0;
 		
@@ -104,7 +106,8 @@ void	game_loop(void *param)
 		prep_DDA_algo(tmp_r, tmp_p);
 		run_DDA_algo(data, tmp_r);
 		prep_wall_draw(tmp_r);
-		draw_wall(data, x, tmp_r->line->draw_start, tmp_r->line->draw_end);
+		//draw_wall(data, x, tmp_r->line->draw_start, tmp_r->line->draw_end);
+		put_texture(data, x, tmp_r->line->draw_start, tmp_r->line->draw_end);
 		x++;
 	}
 }

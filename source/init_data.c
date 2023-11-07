@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/07 09:36:08 by parisasadeq   ########   odam.nl         */
+/*   Updated: 2023/11/07 12:47:36 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ void init_player(t_data *data)
 
 	player_dir = player_pos(data);
 	player_direction(data, player_dir);
-	printf("data->player->dirx = %f\n", data->player->dirx);
-	printf("data->player->diry = %f\n", data->player->diry);
 	planeRatio = 0.66; // specified length ratio
 	// Calculate the length of the direction vector
 	dirLength = sqrt(data->player->dirx * data->player->dirx \

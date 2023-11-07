@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 12:59:35 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/03 14:04:27 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/07 12:22:32 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	moves(mlx_key_data_t keydata, void *param)
 	data = param;
 	player = data->player; 
 
-	//timing for input and FPS counter  
 	clear_frame(data);
 
 	//speed modifiers
@@ -50,21 +49,36 @@ void	moves(mlx_key_data_t keydata, void *param)
 	double rotSpeed = 0.3; //the constant value is in radians/second
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
-	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 	{
 		if (data->input->map[(int)(player->x + player->dirx * moveSpeed)][(int)(player->y)] == '0')
 			player->x += player->dirx * moveSpeed;
 		if (data->input->map[(int)(player->x)][(int)(player->y + player->diry * moveSpeed)] == '0')
 			player->y += player->diry * moveSpeed;
-		//game_loop(player);
 	}
 	//move backwards if no wall behind you
-	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
+	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
 	{
 		if (data->input->map[(int)(player->x - player->dirx * moveSpeed)][(int)(player->y)] == '0')
 			player->x -= player->dirx * moveSpeed;
 		if (data->input->map[(int)(player->x)][(int)(player->y - player->diry * moveSpeed)] == '0')
 			player->y -= player->diry * moveSpeed;
+	}
+	// strave left
+	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+	{
+		if (data->input->map[(int)(player->x - player->diry * moveSpeed)][(int)(player->y)] == '0')
+			player->x -= player->diry * moveSpeed;
+		if (data->input->map[(int)(player->x)][(int)(player->y + player->dirx * moveSpeed)] == '0')
+			player->y += player->dirx * moveSpeed;
+	}
+	// strave right
+	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+	{
+		if (data->input->map[(int)(player->x + player->diry * moveSpeed)][(int)(player->y)] == '0')
+			player->x += player->diry * moveSpeed;
+		if (data->input->map[(int)(player->x)][(int)(player->y - player->dirx * moveSpeed)] == '0')
+			player->y -= player->dirx * moveSpeed;
 	}
 	//rotate to the right
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)

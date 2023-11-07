@@ -7,7 +7,7 @@ HEADERS := -I $(LIBFT)/include -I include
 LIB		:= $(LIBFT)/libft.a
 SRC_DIR := source
 OBJ_DIR := object
-SRC 	=	main.c game_loop.c draw_walls.c moves.c init_data.c input_data.c input_data_utils.c check_input.c
+SRC 	=	main.c game_loop.c draw_walls.c moves.c init_data.c input_data.c input_data_utils.c check_input.c load_texts.c
 SRC 	:= $(SRC:%=$(SRC_DIR)/%)
 OBJ 	:= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DIR_DUP = mkdir -p $(@D)
@@ -41,9 +41,9 @@ libft:
 	@$(MAKE) -C $(LIBFT)
 
 $(NAME): $(OBJ)
-	@echo "Compiled with $(BLUE)$(BOLD)$(CFLAGS)$(RESET)"
+	@echo "Compiled with $(GREEN)$(BOLD)$(CFLAGS)$(RESET)"
 	@$(CC) $(OBJ) $(CFLAGS) $(LIB) $(HEADERS) ./MLX42/build/libmlx42.a -Iinclude -lglfw -o $(NAME)
-	@echo "$(PINK)$(BOLD)----------------------------------------"
+	@echo "$(BLUE)$(BOLD)----------------------------------------"
 	@echo "     $(PROJECT) = NOW READY FOR USE!"
 	@echo "----------------------------------------$(RESET)"
 	
