@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/08 11:48:38 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/08 15:53:12 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,45 @@ unsigned int	get_pixel(mlx_texture_t	*t, int32_t x, int32_t y)
 	g = t->pixels[(y * t->width + x) * t->bytes_per_pixel + 1];
 	b = t->pixels[(y * t->width + x) * t->bytes_per_pixel + 2];
 	
-	return ((unsigned int)(r << 24 | g << 16 | b << 8 | 0xFF));
+	return ((unsigned int)(r << 24 | g << 16 | b << 8 | 255));
 }
 
-// Calculate the x coordinate of our texture from where the ray hits the wall
+/*	Fill in the celing color pixels on the x coordinate of the screen 
+	until the start of the texture */
 
-void	put_texture(t_data *data, int x, int start, int end)
+void	put_ceiling(t_data *data, int x,  int start)
+{
+	int		y;
+	int32_t	color;
+
+	y = 0;
+	color = ft_pixel(data->input->c_r, data->input->c_g, data->input->c_b, 255);
+	while (y < start)
+		mlx_put_pixel(data->img, x, y++, color);
+}
+
+/*	Fill in the floor color pixels on the x coordinate of the screen 
+	from the end of the texture untill the bottom */
+
+void	put_floor(t_data *data, int x, int start,  int height)
+{
+	int32_t	color;
+
+	color = ft_pixel(data->input->f_r, data->input->f_g, data->input->f_b, 255);
+	while (start < height)
+		mlx_put_pixel(data->img, x, start++, color);
+}
+
+/*	Calculate the x coordinate of our texture from where the ray hits the wall
+	- If necessary the x coordinate of the texture is mirrored
+	- x  		= coordinate of the texture
+	- wall hit	= coordinate where the wall was hit, either x on a horo line or y on a vert line */
+
+void	prep_vert_line(t_data *data, int x, int start, int end)
 {
 	int		tex_x; // x coordinate of the texture
 	double	wall_hit; // coordinate where the wall was hit, either x on a horo line or y on a vert line
 
-	load_textures(data);
 	// Calculate the value of wall_hit
 	if (data->ray->side == 0)   // a vertical line is hit
 		wall_hit = data->player->y + data->ray->perp_wall_dist * data->ray->diry;
@@ -60,7 +88,19 @@ void	put_texture(t_data *data, int x, int start, int end)
 		tex_x =  TEXW - tex_x - 1;
 	if (data->ray->side == 1 && data->ray->diry < 0)
 		tex_x =  TEXW - tex_x - 1;
+	put_vert_line(data, x, start, end, tex_x);
+}
 
+/*	Fill in a vertical line of pixels for the passed x coordinate of the screen
+	- First we determine how many pixels in our texture we need to increment based on the lineheigh.
+	  This is stored in 'step'
+	- Then we determine where we start drawing the texture pixels in our screen image
+	- We fill the screen up until start with ceiling pixels
+	- We retreive pixels from the corresponding texture and put them in the screen image
+	- We fill the rest of the vertical line with floor pixels*/
+
+void	put_vert_line(t_data *data, int x, int start, int end, int tex_x)
+{
 	int32_t	color;
 	int		tex_y; // y coordinate of the texture
 	double	step; // determines our increment
@@ -69,6 +109,7 @@ void	put_texture(t_data *data, int x, int start, int end)
 	step = 1.0 * TEXH / data->ray->line->line_height;
 	tex_start = (start - HEIGHT / 2 + data->ray->line->line_height / 2) * step;
 	int y = start;
+	put_ceiling(data, x, start);
 	while (y < end)
 	{
 		tex_y = (int)tex_start & (TEXH - 1);
@@ -79,7 +120,10 @@ void	put_texture(t_data *data, int x, int start, int end)
 		mlx_put_pixel(data->img, x, y, color);
 		y++;
 	}
+	put_floor(data, x, end, HEIGHT);
 }
+
+// Draw al the walls by putting pixels where our rays hit the walls.
 
 // void	draw_wall(t_data *data, int x, int start, int end)
 // {

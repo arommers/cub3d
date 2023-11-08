@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/08 11:47:29 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/08 15:19:49 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,10 +132,15 @@ void			prep_DDA_algo(t_ray *ray, t_player *player);
 // Draw functions
 mlx_texture_t	*check_side(t_data *data);
 void			prep_wall_draw(t_ray *ray);
+void			put_ceiling(t_data *data, int x,  int start);
 void			draw_wall(t_data *data, int x, int start, int end);
-void			put_texture(t_data *data, int x, int start, int end);
+void			prep_vert_line(t_data *data, int x, int start, int end);
+void			put_vert_line(t_data *data, int x, int start, int end, int tex_x);
 int32_t			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void			put_floor(t_data *data, int x, int start,  int height);
 unsigned int	get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
+
+
 
 // temporary init functions
 void			init_line(t_line *line);
