@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/30 13:04:05 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/08 11:54:01 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/08 14:48:53 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
 	init_player(&data);
 	init_ray(&ray, &line);
 	init_line(&line);
+	load_textures(&data);
 	data.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);

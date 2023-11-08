@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/07 12:34:31 by parisasadeq   ########   odam.nl         */
+/*   Updated: 2023/11/08 15:22:43 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	game_loop(void *param)
 		run_DDA_algo(data, tmp_r);
 		prep_wall_draw(tmp_r);
 		//draw_wall(data, x, tmp_r->line->draw_start, tmp_r->line->draw_end);
-		put_texture(data, x, tmp_r->line->draw_start, tmp_r->line->draw_end);
+		prep_vert_line(data, x, tmp_r->line->draw_start, tmp_r->line->draw_end);
 		x++;
 	}
 }
