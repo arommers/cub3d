@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/07 12:45:55 by parisasadeq   ########   odam.nl         */
+/*   Updated: 2023/11/08 11:18:10 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	put_texture(t_data *data, int x, int start, int end)
 		tex_x =  TEXW - tex_x - 1;
 
 	int32_t	color;
-	int		tex_y; // y coordinatie of the texture
+	int		tex_y; // y coordinate of the texture
 	double	step; // determines our increment
 	double	tex_start; // initial texture coordinate
 
@@ -81,24 +81,24 @@ void	put_texture(t_data *data, int x, int start, int end)
 	}
 }
 
-void	draw_wall(t_data *data, int x, int start, int end)
-{
-	int color;
-	char mapValue;
+// void	draw_wall(t_data *data, int x, int start, int end)
+// {
+// 	int color;
+// 	char mapValue;
 	
-	mapValue = data->input->map[data->ray->mapx][data->ray->mapy];
-	if (mapValue == '1')
-		color = ft_pixel(0, 255, 255, 255);  //red
-	else if (mapValue == '2')
-		color = ft_pixel(0, 255, 0, 255); //green
-	else if (mapValue == '3')
-		color = ft_pixel(0, 0, 255, 255); //blue
-	else if (mapValue == '4')
-		color = ft_pixel(255, 105, 180, 255); //pink
-	else
-		color = ft_pixel(255, 255, 0, 255); //yellow
-	if (data->ray->side == 1) 
-		color = color / 2; // Reduce intensity for side walls
-	while (start < end)
-		mlx_put_pixel(data->img, x, start++, color);
-}
+// 	mapValue = data->input->map[data->ray->mapx][data->ray->mapy];
+// 	if (mapValue == '1')
+// 		color = ft_pixel(0, 255, 255, 255);  //red
+// 	else if (mapValue == '2')
+// 		color = ft_pixel(0, 255, 0, 255); //green
+// 	else if (mapValue == '3')
+// 		color = ft_pixel(0, 0, 255, 255); //blue
+// 	else if (mapValue == '4')
+// 		color = ft_pixel(255, 105, 180, 255); //pink
+// 	else
+// 		color = ft_pixel(255, 255, 0, 255); //yellow
+// 	if (data->ray->side == 1) 
+// 		color = color / 2; // Reduce intensity for side walls
+// 	while (start < end)
+// 		mlx_put_pixel(data->img, x, start++, color);
+// }

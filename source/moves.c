@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 12:59:35 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/07 12:22:32 by parisasadeq   ########   odam.nl         */
+/*   Updated: 2023/11/08 11:14:35 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	clear_frame(t_data *data)
 	color = ft_pixel(0x00, 0x00, 0x00, 0x00);
 	x = 0;
 	y = 0;
-	while (y <= HEIGHT)
+	while (y < HEIGHT)
 	{
-		while (x <= WIDTH)
+		while (x < WIDTH)
 		{
 			mlx_put_pixel(data->img, x, y, color);
 			x++;
