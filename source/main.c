@@ -33,7 +33,6 @@ int main(int argc, char *argv[])
 	data.img = game_window;
 	data.walls = ft_calloc(4, sizeof(t_wall));
 	input_data(argc, argv, &input, &data);
-	printf("are we after in mian\n");
 	init_player(&data);
 	init_ray(&ray, &line);
 	init_line(&line);

@@ -85,11 +85,6 @@ t_input	*map_init(t_input *input, char *with_nl, int fd, int size_map)
 	t_input	*temp;
 
 	i = 1;
-	if (!with_nl)
-	{
-		printf("there is no map!\n");
-		exit (1);
-	}
 	input->map = malloc(sizeof(char *) * (size_map + 1));
 	temp = input;
 	line = ft_strtrim(with_nl, "\n");
@@ -142,7 +137,6 @@ t_input	*input_data(int argc, char **argv, t_input *input, t_data *data)
 		{
 			count_line++;
 			input = texture_color_init(input, line);
-			printf("1 are we getting here? line = %s\n", line);
 		}
 		else
 			break;
