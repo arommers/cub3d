@@ -27,11 +27,13 @@ int main(int argc, char *argv[])
 	mlx_t		*mlx;
 	mlx_image_t	*game_window;
 	
+	check_args(argc, argv);
 	init_data(&data, &player, &ray);
 	data.mlx = mlx;
 	data.img = game_window;
 	data.walls = ft_calloc(4, sizeof(t_wall));
 	input_data(argc, argv, &input, &data);
+	printf("are we after in mian\n");
 	init_player(&data);
 	init_ray(&ray, &line);
 	init_line(&line);
@@ -40,6 +42,7 @@ int main(int argc, char *argv[])
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
 	mlx_loop_hook(data.mlx, &game_loop, &data);
 	mlx_key_hook(data.mlx, &moves, &data);
+	mlx_scroll_hook(data.mlx, &scroll, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	return (0);

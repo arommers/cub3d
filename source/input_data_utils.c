@@ -29,6 +29,8 @@ t_input	*initialize_data_struct(t_input *input)
 	input->so_texture = NULL;
 	input->we_texture = NULL;
 	input->ea_texture = NULL;
+	input->floor_color = false;
+	input->ceiling_color = false;
 	input->f_r = 0;
 	input->f_g = 0;
 	input->f_b = 0;

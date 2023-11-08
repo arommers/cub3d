@@ -1,0 +1,13 @@
+NO ./cub_include/textures/happy_weevil.png
+SO ./cub_include/textures/rainbow_weevil.png
+WE ./cub_include/textures/flying_weevil.png
+EA ./cub_include/textures/smol_weevil.png
+
+1111111111111
+1000001100001
+1011011100001
+100100000E001
+1111111111111
+
+C 200,250,250
+F 50,75,50

@@ -26,7 +26,7 @@
 # define TEXW 64
 # define TEXH 64
 # define WIDTH 1024
-# define HEIGHT 512
+# define HEIGHT 1024
 
 typedef struct s_line
 {
@@ -87,6 +87,8 @@ typedef struct		s_input
 	char		*so_texture;
 	char		*we_texture;
 	char		*ea_texture;
+	bool		floor_color;
+	bool		ceiling_color;
 	int			f_r;
 	int			f_g;
 	int			f_b;
@@ -111,9 +113,11 @@ typedef struct s_data
 // Input Data
 char			player_pos(t_data *data);
 void			player_direction(t_data *data, char dir);
-
+void			check_args(int argc, char **argv);
 int				line_counter(char *file);
-int				check_input(t_input *input);
+int				check_input(t_input *input, int size_map);
+int				check_wall_spaces(char **map, int size_map);
+int				check_wall_leftside(char **map);
 t_input			*initialize_data_struct(t_input *input);
 t_input			*f_c_colors(t_input *input, char *line);
 t_input			*texture_data(t_input *input, char *line);
@@ -147,6 +151,7 @@ void			load_textures(t_data *data);
 // Moves
 void			clear_frame(t_data *data);
 void			moves(mlx_key_data_t keydata, void *param);
+void			scroll(double xdelta, double ydelta, void *param);
 
 int main(int argc, char **argv);
 

@@ -1,7 +1,7 @@
 PROJECT = Cub3d
 NAME 	= cub3d
 CC 		= cc
-CFLAGS 	= -lm
+CFLAGS 	= -lm -fsanitize=address
 LIBFT	:= ./libft
 HEADERS := -I $(LIBFT)/include -I include
 LIB		:= $(LIBFT)/libft.a

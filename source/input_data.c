@@ -42,12 +42,14 @@ t_input	*f_c_colors(t_input *input, char *line)
 	colors = ft_split(before_split, ',');
 	if (line[0] == 'F')
 	{
+		input->floor_color = true;
 		input->f_r = ft_atoi(colors[0]);
 		input->f_g = ft_atoi(colors[1]);
 		input->f_b = ft_atoi(colors[2]);
 	}
 	if (line[0] == 'C')
 	{
+		input->ceiling_color = true;
 		input->c_r = ft_atoi(colors[0]);
 		input->c_g = ft_atoi(colors[1]);
 		input->c_b = ft_atoi(colors[2]);
@@ -83,6 +85,11 @@ t_input	*map_init(t_input *input, char *with_nl, int fd, int size_map)
 	t_input	*temp;
 
 	i = 1;
+	if (!with_nl)
+	{
+		printf("there is no map!\n");
+		exit (1);
+	}
 	input->map = malloc(sizeof(char *) * (size_map + 1));
 	temp = input;
 	line = ft_strtrim(with_nl, "\n");
@@ -117,11 +124,6 @@ t_input	*input_data(int argc, char **argv, t_input *input, t_data *data)
 
 	input = malloc(sizeof(t_input));
 	count_line = 0;
-	if (argc > 2 || argc == 1)
-	{
-		printf("put the right amount of input\n");
-		return(NULL) ;
-	}
 	file_lines = line_counter(argv[1]);
 	input = initialize_data_struct(input);
 	fd = open(argv[1], O_RDONLY);
@@ -129,7 +131,7 @@ t_input	*input_data(int argc, char **argv, t_input *input, t_data *data)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return(NULL) ;
+			break ;
 		if (strcmp(line, "\n") == 0)
 		{
 			count_line++;
@@ -140,15 +142,29 @@ t_input	*input_data(int argc, char **argv, t_input *input, t_data *data)
 		{
 			count_line++;
 			input = texture_color_init(input, line);
+			printf("1 are we getting here? line = %s\n", line);
 		}
 		else
 			break;
 		free(line);
 	}
 	lines_left = file_lines - count_line;
+	if (!line)
+	{
+		if (lines_left == 0)
+			printf("invalid map\n");
+		else
+			printf("allocation failed!\n");
+		exit (1);
+	}
+	if (input->no_texture == NULL || input->so_texture == NULL || input->ea_texture == NULL || input->we_texture == NULL || input->ceiling_color == false || input->floor_color == false)
+	{
+		printf("Invalid map!\n");
+		exit (1);
+	}
 	input = map_init(input, line, fd, lines_left);
-	// if (check_input(input) != 0)
-	// 	return(NULL) ;
+	if (check_input(input, lines_left) != 0)
+		return(NULL) ;
 	data->input = input;
 	return (input);
 }

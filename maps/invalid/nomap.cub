@@ -1,0 +1,7 @@
+NO ./cub_include/textures/dungeonTexture.png
+SO ./cub_include/textures/dungeonTexture.png
+WE ./cub_include/textures/dungeonTexture.png
+EA ./cub_include/textures/dungeonTexture.png
+
+C 100,100,100
+F 100,100,100

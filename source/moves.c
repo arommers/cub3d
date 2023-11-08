@@ -34,6 +34,41 @@ void	clear_frame(t_data *data)
 	return ;
 }
 
+
+void	scroll(double xdelta, double ydelta, void *param)
+{
+	t_data		*data;
+	t_player	*player;
+	double		rotSpeed;
+
+	data = param;
+	player = data->player; 
+	rotSpeed = 0.3; //the constant value is in radians/second
+	clear_frame(data);
+	//rotate to the right
+	if (ydelta > 0)
+	{
+		//both camera direction and camera plane must be rotated
+		double oldDirX = player->dirx;
+		player->dirx = player->dirx * cos(-rotSpeed) - player->diry * sin(-rotSpeed);
+		player->diry = oldDirX * sin(-rotSpeed) + player->diry * cos(-rotSpeed);
+		double oldPlaneX =player->planex;
+		player->planex =player->planex * cos(-rotSpeed) - player->planey * sin(-rotSpeed);
+		player->planey = oldPlaneX * sin(-rotSpeed) + player->planey * cos(-rotSpeed);
+	}
+	//rotate to the left
+	if (ydelta < 0 && xdelta == 0)
+	{
+		//both camera direction and camera plane must be rotated
+		double oldDirX = player->dirx;
+		player->dirx = player->dirx * cos(rotSpeed) - player->diry * sin(rotSpeed);
+		player->diry = oldDirX * sin(rotSpeed) + player->diry * cos(rotSpeed);
+		double oldPlaneX =player->planex;
+		player->planex =player->planex * cos(rotSpeed) - player->planey * sin(rotSpeed);
+		player->planey = oldPlaneX * sin(rotSpeed) + player->planey * cos(rotSpeed);
+	}
+}
+
 void	moves(mlx_key_data_t keydata, void *param)
 {
 	t_data		*data;
