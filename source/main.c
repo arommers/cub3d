@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/30 13:04:05 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/08 09:47:34 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/08 11:54:01 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	init_data(&data, &player, &ray);
 	data.mlx = mlx;
 	data.img = game_window;
-	data.walls = ft_calloc(1, sizeof(t_wall));
+	data.walls = ft_calloc(4, sizeof(t_wall));
 	input_data(argc, argv, &input, &data);
 	init_player(&data);
 	init_ray(&ray, &line);

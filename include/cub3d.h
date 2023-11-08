@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/08 10:58:53 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/08 11:47:29 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void			calc_start(t_ray *ray, t_player *player);
 void			prep_DDA_algo(t_ray *ray, t_player *player);
 
 // Draw functions
+mlx_texture_t	*check_side(t_data *data);
 void			prep_wall_draw(t_ray *ray);
 void			draw_wall(t_data *data, int x, int start, int end);
 void			put_texture(t_data *data, int x, int start, int end);
