@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/08 15:19:49 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/10 12:14:21 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,8 @@ unsigned int	get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
 // temporary init functions
 void			init_line(t_line *line);
 void			init_player(t_data *data);
-void			init_ray(t_ray *ray, t_line *line);
-void			init_data(t_data *data, t_player *player, t_ray *ray);
+void			init_ray(t_ray *ray);
+void			init_data(t_data *data, mlx_t *mlx, mlx_image_t * img);
 void			load_textures(t_data *data);
 
 // Moves

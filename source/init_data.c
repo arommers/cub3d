@@ -6,16 +6,21 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/07 12:47:36 by parisasadeq   ########   odam.nl         */
+/*   Updated: 2023/11/10 12:24:15 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void init_data(t_data *data, t_player *player, t_ray *ray)
+void	init_data(t_data *data, mlx_t *mlx, mlx_image_t * img)
 {
-	data->player = player;
-	data->ray = ray;
+	data->input = NULL;
+	data->map = NULL;
+	data->ray = malloc(sizeof(t_ray));
+	data->walls = malloc(4 * sizeof(t_wall));
+	data->player = malloc(sizeof(t_player));
+	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 }
 
 char	player_pos(t_data *data)
@@ -94,7 +99,7 @@ void init_player(t_data *data)
 	data->player->planey = -data->player->dirx / dirLength * planeRatio;
 }
 
-void init_ray(t_ray *ray, t_line *line)
+void init_ray(t_ray *ray)
 {
 	ray->mapx = 0;
 	ray->mapy = 0;
@@ -110,7 +115,8 @@ void init_ray(t_ray *ray, t_line *line)
 	ray->delta_dist_x = 0.0;
 	ray->delta_dist_y = 0.0;
 	ray->perp_wall_dist = 0.0;
-	ray ->line = line;
+	ray ->line = malloc(sizeof(t_line));
+	init_line(ray->line);
 }
 
 void init_line(t_line *line)

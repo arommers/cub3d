@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/08 15:53:12 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/08 15:56:28 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	put_floor(t_data *data, int x, int start,  int height)
 		mlx_put_pixel(data->img, x, start++, color);
 }
 
-/*	Calculate the x coordinate of our texture from where the ray hits the wall
-	- If necessary the x coordinate of the texture is mirrored
+/*	Calculate the x coordinate of our texture from where the ray hits the wall.
+	If necessary the x coordinate of the texture is mirrored
 	- x  		= coordinate of the texture
 	- wall hit	= coordinate where the wall was hit, either x on a horo line or y on a vert line */
 
