@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/05 13:52:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/08 15:03:30 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/10 15:55:51 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 
 void	load_textures(t_data *data)
 {
-	// int	i;
-	
-	// i = 0;
-	// while (i < 4)
-	// {
 	data->walls[NO].path = "./textures/colorstone.png";
 	data->walls[NO].tex = mlx_load_png(data->walls[NO].path);
 	data->walls[EA].path = "./textures/colorstone.png";
@@ -29,24 +24,18 @@ void	load_textures(t_data *data)
 	data->walls[SO].tex = mlx_load_png(data->walls[SO].path);
 	data->walls[WE].path = "./textures/mossy.png";
 	data->walls[WE].tex = mlx_load_png(data->walls[WE].path);
-
-	// 	// if (!data->walls[i].tex)
+	
+	// int	i;
+	
+	// i = 0;
+	// while (i < 4)
+	// {
+			// data->walls[i].tex = mlx_load_png(data->walls[i].path)
+	// 		if (!data->walls[i].tex)
 	// 		// error handling
 	// 	i++;
 	// }
 }
-
-// Clean up the saved mlx_texture_t textures
-
-void	clean_textures(t_data *data)
-{
-	int	i;
-	
-	i = 0;
-	while (i < 4)
-		mlx_delete_texture(data->walls[i++].tex);
-}
-
 
 /*	Determines which texture to retrieve the pixels from based on the direction of the ray
 	Using the four quadrants of a unit circle */
@@ -70,8 +59,6 @@ mlx_texture_t	*check_side(t_data *data)
 		return (data->walls[NO].tex);
 	if (r->dirx >= 0 && r->diry >= 0 && r->side == 0)
 		return (data->walls[WE].tex);
-	else if (r->dirx >= 0 && r->diry >= 0 && r->side == 1)
-		return (data->walls[NO].tex);
 	else
-		return (NULL);
+		return (data->walls[NO].tex);
 }

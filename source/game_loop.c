@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/08 15:22:43 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/10 16:03:35 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	calc_start(t_ray *ray, t_player *player)
 	if (ray->dirx < 0)
 	{
 		ray->stepx = -1;
-		ray->init_dist_x =(player->x - ray->mapx) * ray->delta_dist_x;
+		ray->init_dist_x = (player->x - ray->mapx) * ray->delta_dist_x;
 	}
 	else
 	{
@@ -27,7 +27,7 @@ void	calc_start(t_ray *ray, t_player *player)
 	if (ray->diry < 0)
 	{
 		ray->stepy = -1;
-		ray->init_dist_y =(player->y - ray->mapy) * ray->delta_dist_y;
+		ray->init_dist_y = (player->y - ray->mapy) * ray->delta_dist_y;
 	}
 	else
 	{
@@ -44,7 +44,7 @@ void	calc_ray_length(t_ray *ray)
 		ray->perp_wall_dist = (ray->init_dist_y - ray->delta_dist_y);
 }
 
-void	prep_DDA_algo(t_ray *ray, t_player *player)
+void	prep_dda_algo(t_ray *ray, t_player *player)
 {
 	ray->mapx = (int)player->x;
 	ray->mapy = (int)player->y;
@@ -61,10 +61,9 @@ void	prep_DDA_algo(t_ray *ray, t_player *player)
 		// ray->delta_dist_y = sqrt(1 + (ray->dirx * ray->dirx) / (ray->diry * ray->diry));
 	calc_start(ray, player);
 	ray->wall = 0;
-		
 }
 
-void	run_DDA_algo(t_data *data, t_ray *ray)
+void	run_dda_algo(t_data *data, t_ray *ray)
 {
 	while (!ray->wall)
 	{
@@ -86,7 +85,6 @@ void	run_DDA_algo(t_data *data, t_ray *ray)
 	calc_ray_length(ray);
 }
 
-
 void	game_loop(void *param)
 {
 	int			x;
@@ -103,8 +101,8 @@ void	game_loop(void *param)
 		tmp_r->camera_x = 2 * x / (double)WIDTH -1;
 		tmp_r->dirx = tmp_p->dirx + tmp_p->planex * tmp_r->camera_x;
 		tmp_r->diry = tmp_p->diry + tmp_p->planey * tmp_r->camera_x;
-		prep_DDA_algo(tmp_r, tmp_p);
-		run_DDA_algo(data, tmp_r);
+		prep_dda_algo(tmp_r, tmp_p);
+		run_dda_algo(data, tmp_r);
 		prep_wall_draw(tmp_r);
 		//draw_wall(data, x, tmp_r->line->draw_start, tmp_r->line->draw_end);
 		prep_vert_line(data, x, tmp_r->line->draw_start, tmp_r->line->draw_end);
