@@ -17,10 +17,8 @@ int	check_wall_spaces(char **map, int size_map)
 	j = 0;
 	while (map[i] != NULL)
 	{
-		printf("here i = %d\n", i);
 		while (map[i][j] != '\0')
 		{
-			printf("j = %d\n", j);
 			if (map[i][j] == ' ')
 			{
 				if (i != size_map - 1 && !(map[i + 1][j] == ' ' || map[i + 1][j] == '1'))
@@ -36,9 +34,9 @@ int	check_wall_spaces(char **map, int size_map)
 			}
 			j++;
 		}
-		if (i < size_map && map[i][j] == '\0')
+		if (i < size_map && map[i][0] == '\0')
 		{
-			printf("4 ERRROROROOROROROROOROR\n");
+			printf("5 ERRROROROOROROROROOROR\n");
 			exit (1);
 		}
 		check_wall_rightside(map[i][j - 1]);
