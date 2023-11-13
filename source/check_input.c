@@ -4,7 +4,7 @@ void	check_wall_rightside(char var)
 {
 	if (var != '1')
 	{
-		printf("3 ERRROROROOROROROROOROR\n");
+		printf("Map should be surrounded by walls!\n");
 		exit (1);
 	}
 }
@@ -23,12 +23,12 @@ int	check_wall_spaces(char **map, int size_map)
 			{
 				if (i != size_map - 1 && !(map[i + 1][j] == ' ' || map[i + 1][j] == '1'))
 				{
-					printf("1 ERRROROROOROROROROOROR\n");
+					printf("Map should be surrounded by walls!\n");
 					exit (1);
 				}
 				if (i != 0 && !(map[i - 1][j] == ' ' || map[i - 1][j] == '1'))
 				{
-					printf("2 ERRROROROOROROROROOROR\n");
+					printf("Map should be surrounded by walls!\n");
 					exit (1);
 				}
 			}
@@ -36,7 +36,7 @@ int	check_wall_spaces(char **map, int size_map)
 		}
 		if (i < size_map && map[i][0] == '\0')
 		{
-			printf("5 ERRROROROOROROROROOROR\n");
+			printf("Map should be surrounded by walls!\n");
 			exit (1);
 		}
 		check_wall_rightside(map[i][j - 1]);
@@ -65,7 +65,7 @@ int	check_wall_leftside(char **map)
 				break;
 			else
 			{
-				printf("4 ERRROROROOROROROROOROR\n");
+				printf("Map should be surrounded by walls!\n");
 				exit (1);
 			}
 		}
@@ -131,28 +131,26 @@ void	check_input(t_data *data, int size_map)
 	temp = data->input;
 	if (check_colors(data->input) != 0)
 	{
-		printf("colors should be in the range of 0 to 255\n");
+		printf("Colors should be in the range of 0 to 255\n");
 		//ft_clean(data);
 		free(data->input);
 		exit(1);
 	}
 	if (check_map_char(data->input) != 0)
 	{
-		printf("invalid map\n");
+		printf("Invalid map\n");
 		//ft_clean(data);
 		free(data->input);
 		exit(1);
 	}
 	if (check_wall_spaces(temp->map, size_map) != 0)
 	{
-		printf("!!oh no!!\n");
 		//ft_clean(data);
 		free(data->input);
 		exit (2);
 	}
 	if (check_wall_leftside(data->input->map) != 0)
 	{
-		printf("!!oh no!!\n");
 		//ft_clean(data);
 		free(data->input);
 		exit (2);
@@ -168,13 +166,13 @@ void	check_args(int argc, char **argv)
 	filename_size = ft_strlen(argv[1]);
 	if (argc > 2 || argc == 1)
 	{
-		printf("put the right amount of input\n");
+		printf("Put the right amount of input\n");
 		exit (1);
 	}
 	cub_file = ft_substr(argv[1], filename_size - 4, 4);
 	if (ft_strncmp(cub_file, ".cub", 4) != 0)
 	{
-		printf("the file name is not valid!");
+		printf("File name is not valid!");
 		free(cub_file);
 		exit (1);
 	}

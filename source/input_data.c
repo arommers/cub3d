@@ -6,27 +6,15 @@ t_input	*texture_data(t_input *input, char *line)
 	char	*texture_path;
 
 	path_data = ft_split(line, ' ');
-	texture_path = path_data[1];
+	texture_path = ft_strdup(path_data[1]);
 	if (line[0] == 'N' && line[1] == 'O')
-	{
-		printf("texture_path = %s\n", texture_path);
 		input->no_texture = texture_path;
-	}
 	else if (line[0] == 'S' && line[1] == 'O')
-	{
-		printf("texture_path = %s\n", texture_path);
 		input->so_texture = texture_path;
-	}
 	else if (line[0] == 'W' && line[1] == 'E')
-	{
-		printf("texture_path = %s\n", texture_path);
 		input->we_texture = texture_path;
-	}
 	else if (line[0] == 'E' && line[1] == 'A')
-	{
-		printf("texture_path = %s\n", texture_path);
 		input->ea_texture = texture_path;
-	}
 	free_2darray(path_data);
 	return (input);
 }

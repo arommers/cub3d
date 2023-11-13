@@ -39,6 +39,15 @@ void	free_2darray(char **arr)
 	free(arr);
 }
 
+void	clean_input(t_input *input)
+{
+	free_2darray(input->map);
+	free(input->no_texture);
+	free(input->so_texture);
+	free(input->ea_texture);
+	free(input->we_texture);
+}
+
 void	ft_clean(t_data *data)
 {
 	if (data->ray)
@@ -56,7 +65,7 @@ void	ft_clean(t_data *data)
 	}
 	if (data->input)
 	{
-		free_2darray(data->input->map);
+		clean_input(data->input);
 		free(data->input);
 	}
 }
