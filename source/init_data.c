@@ -6,16 +6,31 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/07 12:47:36 by parisasadeq   ########   odam.nl         */
+/*   Updated: 2023/11/10 16:02:18 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void init_data(t_data *data, t_player *player, t_ray *ray)
+void	init_data(t_data *data, mlx_t *mlx, mlx_image_t * img)
 {
-	data->player = player;
-	data->ray = ray;
+	data->input = NULL;
+	data->map = NULL;
+	data->ray = malloc(sizeof(t_ray));
+	if (!data->ray)
+		ft_error(data, "Malloc Failed");
+	data->walls = malloc(4 * sizeof(t_wall));
+	if (!data->walls)
+		ft_error(data, "Malloc Failed");
+	data->player = malloc(sizeof(t_player));
+	if (!data->player)
+		ft_error(data, "Malloc Failed");
+	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
+	if (!data->mlx)
+		ft_error(data, "MLX42 Error");
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (!data->img)
+		ft_error(data, "MLX42 Error");
 }
 
 char	player_pos(t_data *data)
@@ -51,7 +66,6 @@ char	player_pos(t_data *data)
 	return (map[y][x]);
 }
 
-
 void	player_direction(t_data *data, char dir)
 {
 	printf("%c\n", dir);
@@ -77,7 +91,7 @@ void	player_direction(t_data *data, char dir)
 	}
 }
 
-void init_player(t_data *data)
+void	init_player(t_data *data)
 {
 	char	player_dir;
 	double	planeRatio;
@@ -94,26 +108,32 @@ void init_player(t_data *data)
 	data->player->planey = -data->player->dirx / dirLength * planeRatio;
 }
 
-void init_ray(t_ray *ray, t_line *line)
+void	init_ray(t_data *data)
 {
-	ray->mapx = 0;
-	ray->mapy = 0;
-	ray->stepx = 0;
-	ray->stepy = 0;
-	ray->side = 0;
-	ray->wall = 0;
-	ray->camera_x = 0.0;
-	ray->dirx = 0.0;
-	ray->diry = 0.0;
-	ray->init_dist_x= 0.0;
-	ray->init_dist_y = 0.0;
-	ray->delta_dist_x = 0.0;
-	ray->delta_dist_y = 0.0;
-	ray->perp_wall_dist = 0.0;
-	ray ->line = line;
+	t_ray	*tmp;
+
+	tmp = data->ray;
+	tmp->mapx = 0;
+	tmp->mapy = 0;
+	tmp->stepx = 0;
+	tmp->stepy = 0;
+	tmp->side = 0;
+	tmp->wall = 0;
+	tmp->camera_x = 0.0;
+	tmp->dirx = 0.0;
+	tmp->diry = 0.0;
+	tmp->init_dist_x = 0.0;
+	tmp->init_dist_y = 0.0;
+	tmp->delta_dist_x = 0.0;
+	tmp->delta_dist_y = 0.0;
+	tmp->perp_wall_dist = 0.0;
+	tmp->line = malloc(sizeof(t_line));
+	if (!tmp->line)
+		ft_error(data, "Malloc Failed");
+	init_line(data->ray->line);
 }
 
-void init_line(t_line *line)
+void	init_line(t_line *line)
 {
 	line->line_height = 0;
 	line->draw_start = 0;

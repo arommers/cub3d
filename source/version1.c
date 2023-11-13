@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   version1.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:42:30 by arommers      #+#    #+#                 */
-/*   Updated: 2023/10/27 13:43:55 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/10 10:25:33 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,14 @@ void draw_map(mlx_t *mlx)
             if (map[y * mapX + x] == 1)
                 mlx_image_to_window(mlx, wall, y * 64, x * 64);
 			else
-				mlx_image_to_window(mlx, background, y * 64, x * 64); 
-        }
-    }
-}
-
-void draw_player(void* param)
-{
-    int32_t color = ft_pixel(255, 255, 0, 255);
-	for (int32_t i = 0; i < player->width; ++i)
-	{
-		for (int32_t y = 0; y < player->height; ++y)
-
-			mlx_put_pixel(player, i, y, color);
+				mlx_image_to_window(mlx, background, y * 64, x *	t_data		data;
+	t_player	player;
+	t_ray		ray;
+	t_line		line;
+	t_input		input;
+	mlx_t		*mlx;
+	mlx_image_t	*game_window;
+	
 	}
 }
 
