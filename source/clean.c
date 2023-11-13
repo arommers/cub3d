@@ -21,7 +21,7 @@ void	clean_textures(t_data *data)
 	i = 0;
 	while (i < 4)
 	{
-		if (data->walls[i].tex)
+		if (data->walls && data->walls[i].tex)
 			mlx_delete_texture(data->walls[i].tex);
 		i++;
 	}

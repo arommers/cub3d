@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: arommers <arommers@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/10 16:08:27 by arommers      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/23 11:39:00 by arommers          #+#    #+#             */
+/*   Updated: 2023/11/13 17:24:16 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ t_input			*texture_data(t_input *input, char *line);
 t_input			*texture_color_init(t_input *input, char *with_nl);
 t_input			*map_init(t_input *input, char *with_nl, t_file *file);
 void			input_data(int argc, char **argv, t_data *data);
+void			check_input_order(char *line, t_input *input, int lines_left);
 
 // DDA algorithm function
 void			game_loop(void *param);
@@ -166,6 +167,7 @@ void			ft_clean(t_data *data);
 void			ft_error(t_data *data, char *msg);
 void			clean_textures(t_data *data);
 void			free_2darray(char **arr);
+void			clean_input(t_input *input);
 
 int				main(int argc, char **argv);
 

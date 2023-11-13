@@ -1,79 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_input.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/13 17:17:58 by psadeghi          #+#    #+#             */
+/*   Updated: 2023/11/13 17:21:54 by psadeghi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
-
-void	check_wall_rightside(char var)
-{
-	if (var != '1')
-	{
-		printf("Map should be surrounded by walls!\n");
-		exit (1);
-	}
-}
-int	check_wall_spaces(char **map, int size_map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map[i] != NULL)
-	{
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] == ' ')
-			{
-				if (i != size_map - 1 && !(map[i + 1][j] == ' ' || map[i + 1][j] == '1'))
-				{
-					printf("Map should be surrounded by walls!\n");
-					exit (1);
-				}
-				if (i != 0 && !(map[i - 1][j] == ' ' || map[i - 1][j] == '1'))
-				{
-					printf("Map should be surrounded by walls!\n");
-					exit (1);
-				}
-			}
-			j++;
-		}
-		if (i < size_map && map[i][0] == '\0')
-		{
-			printf("Map should be surrounded by walls!\n");
-			exit (1);
-		}
-		check_wall_rightside(map[i][j - 1]);
-		j = 0;
-		i++;
-	}
-	return (0);
-}
-
-int	check_wall_leftside(char **map)
-{
-		int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (map[i] != NULL)
-	{
-		while (map[i][j] != '\0')
-		{
-			while(map[i][j] != '\0' && map[i][j] == ' ')
-			{
-				j++;
-			}
-			if (map[i][j] == '1')
-				break;
-			else
-			{
-				printf("Map should be surrounded by walls!\n");
-				exit (1);
-			}
-		}
-		j = 0;
-		i++;
-	}
-	return (0);
-}
 
 int	check_colors(t_input *input)
 {
@@ -112,10 +49,7 @@ int	check_map_char(t_input *input)
 			temp->map[i][j] == '1' || temp->map[i][j] == ' ' \
 			|| temp->map[i][j] == 'N' || temp->map[i][j] == 'S' || \
 			temp->map[i][j] == 'W' || temp->map[i][j] == 'E'))
-			{
-				printf("temp->map[i][j] = %c\n", temp->map[i][j]);
 				return (1);
-			}
 			j++;
 		}
 		j = 0;
@@ -124,39 +58,38 @@ int	check_map_char(t_input *input)
 	return (0);
 }
 
+void	check_input_order(char *line, t_input *input, int lines_left)
+{
+	if (!line)
+	{
+		if (lines_left == 0)
+			printf("invalid map\n");
+		else
+			printf("allocation failed!\n");
+		exit (1);
+	}
+	if (input->no_texture == NULL || input->so_texture == NULL || \
+	input->ea_texture == NULL || input->we_texture == NULL || \
+	input->ceiling_color == false || input->floor_color == false)
+	{
+		printf("Invalid map!\n");
+		exit (1);
+	}
+}
+
 void	check_input(t_data *data, int size_map)
 {
 	t_input	*temp;
 
 	temp = data->input;
 	if (check_colors(data->input) != 0)
-	{
-		printf("Colors should be in the range of 0 to 255\n");
-		//ft_clean(data);
-		free(data->input);
-		exit(1);
-	}
+		ft_error(data, "Colors should be in the range of 0 to 255\n");
 	if (check_map_char(data->input) != 0)
-	{
-		printf("Invalid map\n");
-		//ft_clean(data);
-		free(data->input);
-		exit(1);
-	}
-	if (check_wall_spaces(temp->map, size_map) != 0)
-	{
-		//ft_clean(data);
-		free(data->input);
-		exit (2);
-	}
-	if (check_wall_leftside(data->input->map) != 0)
-	{
-		//ft_clean(data);
-		free(data->input);
-		exit (2);
-	}
+		ft_error(data, "Map should only contain 0s and 1s\n");
+	if (check_wall_spaces(temp->map, size_map) != 0 || \
+	check_wall_leftside(data->input->map) != 0)
+		ft_error(data, "Map should be surrounded by walls\n");
 }
-
 
 void	check_args(int argc, char **argv)
 {

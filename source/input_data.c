@@ -1,49 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_data.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/13 17:20:00 by psadeghi          #+#    #+#             */
+/*   Updated: 2023/11/13 17:23:40 by psadeghi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
-
-t_input	*texture_data(t_input *input, char *line)
-{
-	char	**path_data;
-	char	*texture_path;
-
-	path_data = ft_split(line, ' ');
-	texture_path = ft_strdup(path_data[1]);
-	if (line[0] == 'N' && line[1] == 'O')
-		input->no_texture = texture_path;
-	else if (line[0] == 'S' && line[1] == 'O')
-		input->so_texture = texture_path;
-	else if (line[0] == 'W' && line[1] == 'E')
-		input->we_texture = texture_path;
-	else if (line[0] == 'E' && line[1] == 'A')
-		input->ea_texture = texture_path;
-	free_2darray(path_data);
-	return (input);
-}
-
-t_input	*f_c_colors(t_input *input, char *line)
-{
-	char	*before_split;
-	char	**colors;
-
-	before_split = ft_substr(line, 2, ft_strlen(line) - 2);
-	colors = ft_split(before_split, ',');
-	if (line[0] == 'F')
-	{
-		input->floor_color = true;
-		input->f_r = ft_atoi(colors[0]);
-		input->f_g = ft_atoi(colors[1]);
-		input->f_b = ft_atoi(colors[2]);
-	}
-	if (line[0] == 'C')
-	{
-		input->ceiling_color = true;
-		input->c_r = ft_atoi(colors[0]);
-		input->c_g = ft_atoi(colors[1]);
-		input->c_b = ft_atoi(colors[2]);
-	}
-	free_2darray(colors);
-	free(before_split);
-	return (input);
-}
 
 t_input	*texture_color_init(t_input *input, char *with_nl)
 {
@@ -93,23 +60,6 @@ t_input	*map_init(t_input *input, char *with_nl, t_file *file)
 	return (input);
 }
 
-void	check_input_order(char *line, t_input *input, int lines_left)
-{
-	if (!line)
-	{
-		if (lines_left == 0)
-			printf("invalid map\n");
-		else
-			printf("allocation failed!\n");
-		exit (1);
-	}
-	if (input->no_texture == NULL || input->so_texture == NULL || input->ea_texture == NULL || input->we_texture == NULL || input->ceiling_color == false || input->floor_color == false)
-	{
-		printf("Invalid map!\n");
-		exit (1);
-	}
-}
-
 char	*init_input(t_input *input, t_file *file, char *line)
 {
 	int	count_line;
@@ -124,7 +74,7 @@ char	*init_input(t_input *input, t_file *file, char *line)
 		{
 			count_line++;
 			free(line);
-			continue;
+			continue ;
 		}
 		if ((line[0] >= 'C' && line[0] <= 'W'))
 		{
@@ -132,7 +82,7 @@ char	*init_input(t_input *input, t_file *file, char *line)
 			input = texture_color_init(input, line);
 		}
 		else
-			break;
+			break ;
 		free(line);
 	}
 	file->lines_left = file->file_lines - count_line;
@@ -150,7 +100,6 @@ void	input_data(int argc, char **argv, t_data *data)
 	temp = initialize_data_struct(temp);
 	file->fd = open(argv[1], O_RDONLY);
 	line = init_input(temp, file, line);
-	printf("file->lines_left = %d\n", file->lines_left);
 	check_input_order(line, temp, file->lines_left);
 	temp = map_init(temp, line, file);
 	data->input = temp;

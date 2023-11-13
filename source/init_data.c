@@ -21,9 +21,14 @@ void	init_data(t_data *data, mlx_t *mlx, mlx_image_t * img)
 	data->ray = malloc(sizeof(t_ray));
 	if (!data->ray)
 		ft_error(data, "Malloc Failed");
+	data->ray->line = NULL;
 	data->walls = malloc(4 * sizeof(t_wall));
 	if (!data->walls)
 		ft_error(data, "Malloc Failed");
+	data->walls[0].tex = NULL;
+	data->walls[1].tex = NULL;
+	data->walls[2].tex = NULL;
+	data->walls[3].tex = NULL;
 	data->player = malloc(sizeof(t_player));
 	if (!data->player)
 		ft_error(data, "Malloc Failed");
