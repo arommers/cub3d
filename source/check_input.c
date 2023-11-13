@@ -17,8 +17,10 @@ int	check_wall_spaces(char **map, int size_map)
 	j = 0;
 	while (map[i] != NULL)
 	{
+		printf("here i = %d\n", i);
 		while (map[i][j] != '\0')
 		{
+			printf("j = %d\n", j);
 			if (map[i][j] == ' ')
 			{
 				if (i != size_map - 1 && !(map[i + 1][j] == ' ' || map[i + 1][j] == '1'))
@@ -33,6 +35,11 @@ int	check_wall_spaces(char **map, int size_map)
 				}
 			}
 			j++;
+		}
+		if (i < size_map && map[i][j] == '\0')
+		{
+			printf("4 ERRROROROOROROROROOROR\n");
+			exit (1);
 		}
 		check_wall_rightside(map[i][j - 1]);
 		j = 0;
@@ -119,29 +126,39 @@ int	check_map_char(t_input *input)
 	return (0);
 }
 
-int	check_input(t_input *input, int size_map)
+void	check_input(t_data *data, int size_map)
 {
-	if (check_colors(input) != 0)
+	t_input	*temp;
+
+	temp = data->input;
+	if (check_colors(data->input) != 0)
 	{
 		printf("colors should be in the range of 0 to 255\n");
+		//ft_clean(data);
+		free(data->input);
 		exit(1);
 	}
-	if (check_map_char(input) != 0)
+	if (check_map_char(data->input) != 0)
 	{
 		printf("invalid map\n");
+		//ft_clean(data);
+		free(data->input);
 		exit(1);
 	}
-	if (check_wall_spaces(input->map, size_map) != 0)
+	if (check_wall_spaces(temp->map, size_map) != 0)
 	{
 		printf("!!oh no!!\n");
+		//ft_clean(data);
+		free(data->input);
 		exit (2);
 	}
-	if (check_wall_leftside(input->map) != 0)
+	if (check_wall_leftside(data->input->map) != 0)
 	{
 		printf("!!oh no!!\n");
+		//ft_clean(data);
+		free(data->input);
 		exit (2);
 	}
-	return (0);
 }
 
 

@@ -26,6 +26,18 @@ void	clean_textures(t_data *data)
 		i++;
 	}
 }
+void	free_2darray(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
 
 void	ft_clean(t_data *data)
 {
@@ -41,6 +53,11 @@ void	ft_clean(t_data *data)
 	{
 		clean_textures(data);
 		free(data->walls);
+	}
+	if (data->input)
+	{
+		free_2darray(data->input->map);
+		free(data->input);
 	}
 }
 

@@ -14,8 +14,10 @@
 
 void	init_data(t_data *data, mlx_t *mlx, mlx_image_t * img)
 {
-	data->input = NULL;
 	data->map = NULL;
+	data->input = malloc(sizeof(t_input));
+	if (!data->input)
+		ft_error(data, "Malloc Failed");
 	data->ray = malloc(sizeof(t_ray));
 	if (!data->ray)
 		ft_error(data, "Malloc Failed");
@@ -35,14 +37,12 @@ void	init_data(t_data *data, mlx_t *mlx, mlx_image_t * img)
 
 char	player_pos(t_data *data)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	**map;
 
 	x = 0;
 	y = 0;
-	if (data->input == NULL)
-		printf("i am empty\n");
 	printf("data->input->map[0] = %s\n", data->input->map[0]);
 	map = data->input->map;
 	while (map[y] != NULL)

@@ -20,13 +20,12 @@ int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 int	main(int argc, char *argv[])
 {
 	t_data		data;
-	t_input		input;
 	mlx_t		*mlx;
 	mlx_image_t	*screen;
 
 	check_args(argc, argv);
 	init_data(&data, mlx, screen);
-	input_data(argc, argv, &input, &data);
+	input_data(argc, argv, &data);
 	init_player(&data);
 	init_ray(&data);
 	load_textures(&data);

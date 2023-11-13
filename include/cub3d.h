@@ -97,6 +97,13 @@ typedef struct s_input
 	char		**map;
 }	t_input;
 
+typedef struct s_file
+{
+	int	fd;
+	int		file_lines;
+	int		lines_left;
+}				t_file;
+
 typedef struct s_data
 {
 	t_input			*input;
@@ -113,15 +120,15 @@ char			player_pos(t_data *data);
 void			player_direction(t_data *data, char dir);
 void			check_args(int argc, char **argv);
 int				line_counter(char *file);
-int				check_input(t_input *input, int size_map);
+void			check_input(t_data *data, int size_map);
 int				check_wall_spaces(char **map, int size_map);
 int				check_wall_leftside(char **map);
 t_input			*initialize_data_struct(t_input *input);
 t_input			*f_c_colors(t_input *input, char *line);
 t_input			*texture_data(t_input *input, char *line);
 t_input			*texture_color_init(t_input *input, char *with_nl);
-t_input			*map_init(t_input *input, char *with_nl, int fd, int size_map);
-t_input			*input_data(int argc, char **argv, t_input *input, t_data *data);
+t_input			*map_init(t_input *input, char *with_nl, t_file *file);
+void			input_data(int argc, char **argv, t_data *data);
 
 // DDA algorithm function
 void			game_loop(void *param);
@@ -158,6 +165,7 @@ void			scroll(double xdelta, double ydelta, void *param);
 void			ft_clean(t_data *data);
 void			ft_error(t_data *data, char *msg);
 void			clean_textures(t_data *data);
+void			free_2darray(char **arr);
 
 int				main(int argc, char **argv);
 
