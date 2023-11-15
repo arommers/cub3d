@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/15 11:47:05 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/15 12:52:19 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,13 @@ typedef struct s_player
 	struct s_data	*data;
 }	t_player;
 
+typedef struct s_file
+{
+	int	fd;
+	int	file_lines;
+	int	lines_left;
+}				t_file;
+
 typedef struct s_input
 {
 	char		*no_texture;
@@ -94,15 +101,9 @@ typedef struct s_input
 	int			c_r;
 	int			c_g;
 	int			c_b;
+	t_file		*file;
 	char		**map;
 }	t_input;
-
-typedef struct s_file
-{
-	int	fd;
-	int		file_lines;
-	int		lines_left;
-}				t_file;
 
 typedef struct s_data
 {
@@ -128,9 +129,9 @@ t_input			*initialize_data_struct(t_input *input);
 t_input			*f_c_colors(t_input *input, char *line);
 t_input			*texture_data(t_input *input, char *line);
 t_input			*texture_color_init(t_input *input, char *with_nl);
-t_input			*map_init(t_input *input, char *with_nl, t_file *file);
+t_input			*map_init(t_input *input, char *with_nl);
 void			input_data(int argc, char **argv, t_data *data);
-void			check_input_order(char *line, t_input *input, int lines_left);
+void			check_input_order(char *line, t_input *input);
 
 // DDA algorithm function
 void			game_loop(void *param);

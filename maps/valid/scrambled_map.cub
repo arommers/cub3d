@@ -1,0 +1,28 @@
+
+
+
+NO ./textures/dungeonTexture.png
+C 93,142,193
+WE ./textures/dungeonTexture.png
+
+
+
+EA ./textures/dungeonTexture.png
+
+
+
+
+F 231,230,230
+
+
+
+
+SO ./textures/dungeonTexture.png
+
+1111111111111
+1111011111111
+1111011111111
+1100000011011
+1000000000001
+1000000N00001
+1111111111111

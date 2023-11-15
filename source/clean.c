@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/10 12:31:21 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/15 12:36:08 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/15 17:04:18 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	clean_input(t_input *input)
 	free(input->so_texture);
 	free(input->ea_texture);
 	free(input->we_texture);
+	free(input->file);
 }
 
 void	ft_clean(t_data *data)

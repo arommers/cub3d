@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   check_input.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 17:17:58 by psadeghi          #+#    #+#             */
-/*   Updated: 2023/11/13 17:21:54 by psadeghi         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   check_input.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/11/13 17:17:58 by psadeghi      #+#    #+#                 */
+/*   Updated: 2023/11/15 12:49:58 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ int	check_map_char(t_input *input)
 	return (0);
 }
 
-void	check_input_order(char *line, t_input *input, int lines_left)
+void	check_input_order(char *line, t_input *input)
 {
 	if (!line)
 	{
-		if (lines_left == 0)
+		if (input->file->lines_left == 0)
 			printf("invalid map\n");
 		else
 			printf("allocation failed!\n");

@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/13 17:20:00 by psadeghi      #+#    #+#                 */
-/*   Updated: 2023/11/15 12:26:56 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/15 17:03:34 by parisasadeq   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,22 @@ t_input	*texture_color_init(t_input *input, char *with_nl)
 	return (input);
 }
 
-t_input	*map_init(t_input *input, char *with_nl, t_file *file)
+t_input	*map_init(t_input *input, char *with_nl)
 {
 	int		i;
 	char	*line;
 	t_input	*temp;
 
 	i = 1;
-	input->map = malloc(sizeof(char *) * (file->lines_left + 1));
+	input->map = malloc(sizeof(char *) * (input->file->lines_left + 1));
 	temp = input;
 	line = ft_strtrim(with_nl, "\n");
 	free(with_nl);
 	temp->map[0] = line;
 	printf("temp->map[0] = %s\n", temp->map[0]);
-	while (i < file->lines_left)
+	while (i < temp->file->lines_left)
 	{
-		with_nl = get_next_line(file->fd);
+		with_nl = get_next_line(temp->file->fd);
 		line = ft_strtrim(with_nl, "\n");
 		free(with_nl);
 		temp->map[i] = line;
@@ -60,14 +60,14 @@ t_input	*map_init(t_input *input, char *with_nl, t_file *file)
 	return (input);
 }
 
-char	*init_input(t_input *input, t_file *file, char *line)
+char	*init_input(t_input *input, char *line)
 {
 	int	count_line;
 
 	count_line = 0;
 	while (1)
 	{
-		line = get_next_line(file->fd);
+		line = get_next_line(input->file->fd);
 		if (!line)
 			break ;
 		if (strcmp(line, "\n") == 0)
@@ -85,24 +85,23 @@ char	*init_input(t_input *input, t_file *file, char *line)
 			break ;
 		free(line);
 	}
-	file->lines_left = file->file_lines - count_line;
+	input->file->lines_left = input->file->file_lines - count_line;
 	return (line);
 }
 
 void	input_data(int argc, char **argv, t_data *data)
 {
 	char	*line;
-	t_file	*file;
 	t_input	*temp;
 
-	file = malloc(sizeof(t_file));
+	data->input->file = malloc(sizeof(t_file));
+	data->input->file->file_lines = line_counter(argv[1]);
 	temp = data->input;
-	file->file_lines = line_counter(argv[1]);
 	temp = initialize_data_struct(temp);
-	file->fd = open(argv[1], O_RDONLY);
-	line = init_input(temp, file, line);
-	check_input_order(line, temp, file->lines_left);
-	temp = map_init(temp, line, file);
+	data->input->file->fd = open(argv[1], O_RDONLY);
+	line = init_input(temp, line);
+	check_input_order(line, temp);
+	temp = map_init(temp, line);
 	data->input = temp;
-	check_input(data, file->lines_left);
+	check_input(data, data->input->file->lines_left);
 }
