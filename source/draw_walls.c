@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/15 11:48:57 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/15 12:27:43 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ unsigned int	get_pixel(mlx_texture_t	*t, int32_t x, int32_t y)
 /*	Fill in the celing color pixels on the x coordinate of the screen 
 	until the start of the texture */
 
-void	put_ceiling(t_data *data, int x,  int start)
+void	put_ceiling(t_data *data, int x, int start)
 {
 	int		y;
 	int32_t	color;
@@ -56,7 +56,7 @@ void	put_ceiling(t_data *data, int x,  int start)
 /*	Fill in the floor color pixels on the x coordinate of the screen 
 	from the end of the texture untill the bottom */
 
-void	put_floor(t_data *data, int x, int start,  int height)
+void	put_floor(t_data *data, int x, int start, int height)
 {
 	int32_t	color;
 
