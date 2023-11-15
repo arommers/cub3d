@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/10 16:03:35 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/15 11:28:41 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,25 +87,23 @@ void	run_dda_algo(t_data *data, t_ray *ray)
 
 void	game_loop(void *param)
 {
-	int			x;
 	t_data		*data;
-	t_player	*tmp_p;
-	t_ray		*tmp_r;
+	t_player	*p;
+	t_ray		*r;
 
-	x = 0;
 	data = param;
-	tmp_p = data->player;
-	tmp_r = data->ray;
-	while (x < WIDTH)
+	p = data->player;
+	r = data->ray;
+	while (data->x < WIDTH)
 	{
-		tmp_r->camera_x = 2 * x / (double)WIDTH -1;
-		tmp_r->dirx = tmp_p->dirx + tmp_p->planex * tmp_r->camera_x;
-		tmp_r->diry = tmp_p->diry + tmp_p->planey * tmp_r->camera_x;
-		prep_dda_algo(tmp_r, tmp_p);
-		run_dda_algo(data, tmp_r);
-		prep_wall_draw(tmp_r);
-		//draw_wall(data, x, tmp_r->line->draw_start, tmp_r->line->draw_end);
-		prep_vert_line(data, x, tmp_r->line->draw_start, tmp_r->line->draw_end);
-		x++;
+		r->camera_x = 2 * data->x / (double)WIDTH -1;
+		r->dirx = p->dirx + p->planex * r->camera_x;
+		r->diry = p->diry + p->planey * r->camera_x;
+		prep_dda_algo(r, p);
+		run_dda_algo(data, r);
+		prep_wall_draw(r);
+		//draw_wall(data, x, r->line->draw_start, r->line->draw_end);
+		prep_vert_line(data, data->x, r->line->draw_start, r->line->draw_end);
+		data->x++;
 	}
 }

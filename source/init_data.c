@@ -6,14 +6,15 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/10 16:02:18 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/15 11:26:56 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	init_data(t_data *data, mlx_t *mlx, mlx_image_t * img)
+void	init_data(t_data *data, mlx_t *mlx, mlx_image_t *img)
 {
+	data->x = 0;
 	data->map = NULL;
 	data->input = malloc(sizeof(t_input));
 	if (!data->input)

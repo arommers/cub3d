@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/08 15:56:28 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/15 11:48:57 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	prep_wall_draw(t_ray *ray)
 {
-	t_line *tmp;
+	t_line	*tmp;
 
 	tmp = ray->line;
 	tmp->line_height = (int)(HEIGHT / ray->perp_wall_dist);
@@ -35,7 +35,7 @@ unsigned int	get_pixel(mlx_texture_t	*t, int32_t x, int32_t y)
 	r = t->pixels[(y * t->width + x) * t->bytes_per_pixel];
 	g = t->pixels[(y * t->width + x) * t->bytes_per_pixel + 1];
 	b = t->pixels[(y * t->width + x) * t->bytes_per_pixel + 2];
-	
+
 	return ((unsigned int)(r << 24 | g << 16 | b << 8 | 255));
 }
 
@@ -85,10 +85,10 @@ void	prep_vert_line(t_data *data, int x, int start, int end)
 	// determine the x coordinate of the texture and mirror the location if necessary
 	tex_x = (int)(wall_hit * (double)TEXW);
 	if (data->ray->side == 0 && data->ray->dirx > 0)
-		tex_x =  TEXW - tex_x - 1;
+		tex_x = TEXW - tex_x - 1;
 	if (data->ray->side == 1 && data->ray->diry < 0)
-		tex_x =  TEXW - tex_x - 1;
-	put_vert_line(data, x, start, end, tex_x);
+		tex_x = TEXW - tex_x - 1;
+	put_vert_line(data, start, end, tex_x);
 }
 
 /*	Fill in a vertical line of pixels for the passed x coordinate of the screen
@@ -99,7 +99,7 @@ void	prep_vert_line(t_data *data, int x, int start, int end)
 	- We retreive pixels from the corresponding texture and put them in the screen image
 	- We fill the rest of the vertical line with floor pixels*/
 
-void	put_vert_line(t_data *data, int x, int start, int end, int tex_x)
+void	put_vert_line(t_data *data, int start, int end, int tex_x)
 {
 	int32_t	color;
 	int		tex_y; // y coordinate of the texture
@@ -109,7 +109,7 @@ void	put_vert_line(t_data *data, int x, int start, int end, int tex_x)
 	step = 1.0 * TEXH / data->ray->line->line_height;
 	tex_start = (start - HEIGHT / 2 + data->ray->line->line_height / 2) * step;
 	int y = start;
-	put_ceiling(data, x, start);
+	put_ceiling(data, data->x, start);
 	while (y < end)
 	{
 		tex_y = (int)tex_start & (TEXH - 1);
@@ -117,10 +117,10 @@ void	put_vert_line(t_data *data, int x, int start, int end, int tex_x)
 		color = get_pixel(check_side(data), tex_x, tex_y);
 		if (data->ray->side == 1)
 			color *= 0.75;
-		mlx_put_pixel(data->img, x, y, color);
+		mlx_put_pixel(data->img, data->x, y, color);
 		y++;
 	}
-	put_floor(data, x, end, HEIGHT);
+	put_floor(data, data->x, end, HEIGHT);
 }
 
 // Draw al the walls by putting pixels where our rays hit the walls.
@@ -129,7 +129,7 @@ void	put_vert_line(t_data *data, int x, int start, int end, int tex_x)
 // {
 // 	int color;
 // 	char mapValue;
-	
+
 // 	mapValue = data->input->map[data->ray->mapx][data->ray->mapy];
 // 	if (mapValue == '1')
 // 		color = ft_pixel(0, 255, 255, 255);  //red

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   input_data.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 17:20:00 by psadeghi          #+#    #+#             */
-/*   Updated: 2023/11/13 17:23:40 by psadeghi         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   input_data.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/11/13 17:20:00 by psadeghi      #+#    #+#                 */
+/*   Updated: 2023/11/15 11:33:31 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	input_data(int argc, char **argv, t_data *data)
 	t_file	*file;
 	t_input	*temp;
 
+	file = malloc(sizeof(t_file));
 	temp = data->input;
 	file->file_lines = line_counter(argv[1]);
 	temp = initialize_data_struct(temp);

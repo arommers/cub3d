@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 12:59:35 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/08 11:14:35 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/15 11:52:21 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	clear_frame(t_data *data)
 		x = 0;
 		y++;
 	}
-	return ;
 }
 
 
