@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 11:39:00 by arommers          #+#    #+#             */
-/*   Updated: 2023/11/13 17:24:16 by psadeghi         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
+/*   Updated: 2023/11/15 10:29:55 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define MAPH 24
 # define TEXW 64
 # define TEXH 64
-# define WIDTH 1024
-# define HEIGHT 1024
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct s_line
 {
