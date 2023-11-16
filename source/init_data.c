@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/15 11:26:56 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/16 12:15:42 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ void	init_data(t_data *data, mlx_t *mlx, mlx_image_t *img)
 	if (!data->ray)
 		ft_error(data, "Malloc Failed");
 	data->ray->line = NULL;
-	data->walls = malloc(4 * sizeof(t_wall));
+	data->walls = malloc(5 * sizeof(t_wall));
 	if (!data->walls)
 		ft_error(data, "Malloc Failed");
 	data->walls[0].tex = NULL;
 	data->walls[1].tex = NULL;
 	data->walls[2].tex = NULL;
 	data->walls[3].tex = NULL;
+	data->walls[4].tex = NULL;
 	data->player = malloc(sizeof(t_player));
 	if (!data->player)
 		ft_error(data, "Malloc Failed");
@@ -58,9 +59,9 @@ char	player_pos(t_data *data)
 			if (map[y][x] == 'E' || map[y][x] == 'W' || \
 			map[y][x] == 'N' || map[y][x] == 'S')
 			{
-				data->player->x = x;
+				data->player->x = y;
 				printf("x = %d and y = %d\n", x, y);
-				data->player->y = y;
+				data->player->y = x;
 				return (map[y][x]);
 			}
 			else

@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/10 12:31:21 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/15 12:36:08 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/16 10:02:22 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	clean_textures(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (data->walls && data->walls[i].tex)
 			mlx_delete_texture(data->walls[i].tex);

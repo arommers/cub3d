@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 12:59:35 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/15 12:30:36 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/16 12:21:24 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,33 +84,33 @@ void	moves(mlx_key_data_t keydata, void *param)
 		mlx_close_window(data->mlx);
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 	{
-		if (data->input->map[(int)(player->x + player->dirx * moveSpeed)][(int)(player->y)] == '0')
+		if (data->input->map[(int)(player->x + player->dirx * moveSpeed)][(int)(player->y)] != '1')
 			player->x += player->dirx * moveSpeed;
-		if (data->input->map[(int)(player->x)][(int)(player->y + player->diry * moveSpeed)] == '0')
+		if (data->input->map[(int)(player->x)][(int)(player->y + player->diry * moveSpeed)] != '1')
 			player->y += player->diry * moveSpeed;
 	}
 	//move backwards if no wall behind you
 	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
 	{
-		if (data->input->map[(int)(player->x - player->dirx * moveSpeed)][(int)(player->y)] == '0')
+		if (data->input->map[(int)(player->x - player->dirx * moveSpeed)][(int)(player->y)] != '1')
 			player->x -= player->dirx * moveSpeed;
-		if (data->input->map[(int)(player->x)][(int)(player->y - player->diry * moveSpeed)] == '0')
+		if (data->input->map[(int)(player->x)][(int)(player->y - player->diry * moveSpeed)] != '1')
 			player->y -= player->diry * moveSpeed;
 	}
 	// strave left
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
 	{
-		if (data->input->map[(int)(player->x - player->diry * moveSpeed)][(int)(player->y)] == '0')
+		if (data->input->map[(int)(player->x - player->diry * moveSpeed)][(int)(player->y)] != '1')
 			player->x -= player->diry * moveSpeed;
-		if (data->input->map[(int)(player->x)][(int)(player->y + player->dirx * moveSpeed)] == '0')
+		if (data->input->map[(int)(player->x)][(int)(player->y + player->dirx * moveSpeed)] != '1')
 			player->y += player->dirx * moveSpeed;
 	}
 	// strave right
 	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
 	{
-		if (data->input->map[(int)(player->x + player->diry * moveSpeed)][(int)(player->y)] == '0')
+		if (data->input->map[(int)(player->x + player->diry * moveSpeed)][(int)(player->y)] != '1')
 			player->x += player->diry * moveSpeed;
-		if (data->input->map[(int)(player->x)][(int)(player->y - player->dirx * moveSpeed)] == '0')
+		if (data->input->map[(int)(player->x)][(int)(player->y - player->dirx * moveSpeed)] != '1')
 			player->y -= player->dirx * moveSpeed;
 	}
 	//rotate to the right

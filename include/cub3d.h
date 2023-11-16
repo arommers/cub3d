@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/15 11:47:05 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/16 12:03:17 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include <unistd.h>
 # include <math.h>
 
-# define MAPW 24
-# define MAPH 24
 # define TEXW 64
 # define TEXH 64
 # define WIDTH 1920
@@ -40,7 +38,8 @@ typedef enum e_side
 	NO,
 	EA,
 	SO,
-	WE
+	WE,
+	F
 }	t_side;
 
 typedef struct t_wall
@@ -100,21 +99,45 @@ typedef struct s_input
 typedef struct s_file
 {
 	int	fd;
-	int		file_lines;
-	int		lines_left;
-}				t_file;
+	int	file_lines;
+	int	lines_left;
+}	t_file;
 
 typedef struct s_data
 {
 	int			x;
 	t_input		*input;
-	int			(*map)[MAPH];
+	int			**map;
 	mlx_t		*mlx;
 	t_ray		*ray;
 	t_wall		*walls;
 	t_player	*player;
 	mlx_image_t	*img;
 }	t_data;
+
+typedef struct s_floor
+{
+	int		p;
+	float	z;
+
+	float	row_d;
+	float	step_x;
+	float	step_y;
+
+	float	floor_x;
+	float	floor_y;
+
+	float	ray_xl;
+	float	ray_yl;
+	float	ray_xr;
+	float	ray_yr;
+
+	int		cell_x;
+	int		cell_y;
+
+	int		tex_x;
+	int		tex_y;
+}	t_floor;
 
 // Input Data
 char			player_pos(t_data *data);
@@ -150,6 +173,8 @@ void			put_vert_line(t_data *data, int start, int end, int tex_x);
 int32_t			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void			put_floor(t_data *data, int x, int start, int height);
 unsigned int	get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
+
+void			draw_background(t_data *data);
 
 // temporary init functions
 void			init_line(t_line *line);
