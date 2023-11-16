@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 12:31:21 by arommers          #+#    #+#             */
-/*   Updated: 2023/11/16 12:24:38 by psadeghi         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   clean.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/11/10 12:31:21 by arommers      #+#    #+#                 */
+/*   Updated: 2023/11/16 12:45:13 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	clean_textures(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 5)
+	while (i < 4)
 	{
 		if (data->walls && data->walls[i].tex)
 			mlx_delete_texture(data->walls[i].tex);

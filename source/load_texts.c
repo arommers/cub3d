@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/05 13:52:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/16 11:37:27 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/16 12:43:28 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	load_textures(t_data *data)
 	data->walls[EA].tex = mlx_load_png(tmp->ea_texture);
 	data->walls[SO].tex = mlx_load_png(tmp->so_texture);
 	data->walls[WE].tex = mlx_load_png(tmp->we_texture);
-	data->walls[F].path = "./textures/grass.png";
-	data->walls[F].tex = mlx_load_png(data->walls[F].path);
+	// data->walls[F].path = "./textures/grass.png";
+	// data->walls[F].tex = mlx_load_png(data->walls[F].path);
 }
 
 /*	Determines which texture to retrieve the pixels from based on the direction of the ray
@@ -53,53 +53,53 @@ mlx_texture_t	*check_side(t_data *data)
 		return (data->walls[NO].tex);
 }
 
-void	draw_background(t_data *data)
-{
-	t_player	*tmp = data->player;
-	int		y;
-	int		x;
-	int32_t	color;
+// void	draw_background(t_data *data)
+// {
+// 	t_player	*tmp = data->player;
+// 	int		y;
+// 	int		x;
+// 	int32_t	color;
 
 
-	float	raydirxl;
-	float	raydiryl;
-	float	raydirxr;
-	float	raydiryr;
+// 	float	raydirxl;
+// 	float	raydiryl;
+// 	float	raydirxr;
+// 	float	raydiryr;
 
-	y = 0;
-	while (y < HEIGHT)
-	{
-		raydirxl = tmp->dirx - tmp->planex;
-		raydiryl = tmp->diry - tmp->planey;
-		raydirxr = tmp->dirx + tmp->planex;
-		raydiryr = tmp->diry + tmp->planey;
+// 	y = 0;
+// 	while (y < HEIGHT)
+// 	{
+// 		raydirxl = tmp->dirx - tmp->planex;
+// 		raydiryl = tmp->diry - tmp->planey;
+// 		raydirxr = tmp->dirx + tmp->planex;
+// 		raydiryr = tmp->diry + tmp->planey;
 
-		int p = y - 0.5 * HEIGHT;
-		float pos_z = 0.5 * HEIGHT;
+// 		int p = y - 0.5 * HEIGHT;
+// 		float pos_z = 0.5 * HEIGHT;
 
-		float row_dist = pos_z / p;
+// 		float row_dist = pos_z / p;
 		
-		float floor_step_x = row_dist * (raydirxr - raydirxl) / WIDTH;
-		float floor_step_y = row_dist * (raydiryr - raydiryl) / WIDTH;
+// 		float floor_step_x = row_dist * (raydirxr - raydirxl) / WIDTH;
+// 		float floor_step_y = row_dist * (raydiryr - raydiryl) / WIDTH;
 
-		float floor_x = tmp->x + row_dist * raydirxl;
-		float floor_y = tmp->y + row_dist * raydiryl;
+// 		float floor_x = tmp->x + row_dist * raydirxl;
+// 		float floor_y = tmp->y + row_dist * raydiryl;
 
-		x = 0;
-		while (x < WIDTH)
-		{
-			int cell_x = (int)floor_x;
-			int cell_y = (int)floor_y;
+// 		x = 0;
+// 		while (x < WIDTH)
+// 		{
+// 			int cell_x = (int)floor_x;
+// 			int cell_y = (int)floor_y;
 			
-			int tex_x = (int)(TEXW * (floor_x - cell_x)) & (TEXW - 1);
-			int tex_y = (int)(TEXH * (floor_y - cell_y)) & (TEXH - 1);
+// 			int tex_x = (int)(TEXW * (floor_x - cell_x)) & (TEXW - 1);
+// 			int tex_y = (int)(TEXH * (floor_y - cell_y)) & (TEXH - 1);
 
-			floor_x += floor_step_x;
-			floor_y += floor_step_y;
-			color = get_pixel(data->walls[F].tex, tex_x, tex_y);
-			mlx_put_pixel(data->img, x, y, color);
-			x++;
-		}
-		y++;
-	}
-}
+// 			floor_x += floor_step_x;
+// 			floor_y += floor_step_y;
+// 			color = get_pixel(data->walls[F].tex, tex_x, tex_y);
+// 			mlx_put_pixel(data->img, x, y, color);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
