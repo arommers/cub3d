@@ -1,22 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-<<<<<<< HEAD
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:39:00 by arommers          #+#    #+#             */
-/*   Updated: 2023/11/16 11:32:07 by psadeghi         ###   ########.fr       */
-=======
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/16 12:03:17 by arommers      ########   odam.nl         */
->>>>>>> main
+/*   Updated: 2023/11/16 12:27:24 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,16 +104,6 @@ typedef struct s_input
 	char		**map;
 }	t_input;
 
-<<<<<<< HEAD
-=======
-typedef struct s_file
-{
-	int	fd;
-	int	file_lines;
-	int	lines_left;
-}	t_file;
-
->>>>>>> main
 typedef struct s_data
 {
 	int			x;

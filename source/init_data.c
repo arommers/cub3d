@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   init_data.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: arommers <arommers@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/16 12:15:42 by arommers      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   init_data.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/03 09:18:11 by arommers          #+#    #+#             */
+/*   Updated: 2023/11/16 12:30:09 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,23 @@ char	player_pos(t_data *data)
 
 void	player_direction(t_data *data, char dir)
 {
-	printf("%c\n", dir);
-	if (dir == 'N')
+	printf("Player direction %c\n", dir);
+	if (dir == 'E')
 	{
 		data->player->dirx = 0;
 		data->player->diry = 1;
 	}
-	else if (dir == 'S')
+	else if (dir == 'W')
 	{
 		data->player->dirx = 0;
 		data->player->diry = -1;
 	}
-	else if (dir == 'W')
+	else if (dir == 'S')
 	{
 		data->player->dirx = -1;
 		data->player->diry = 0;
 	}
-	else if (dir == 'E')
+	else if (dir == 'N')
 	{
 		data->player->dirx = 1;
 		data->player->diry = 0;
