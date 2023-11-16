@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/15 12:27:43 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/15 15:34:51 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,12 @@ void	put_vert_line(t_data *data, int start, int end, int tex_x)
 		tex_y = (int)tex_start & (TEXH - 1);
 		tex_start += step;
 		color = get_pixel(check_side(data), tex_x, tex_y);
-		if (data->ray->side == 1)
-			color *= 0.75;
+		// if (data->ray->side == 1)
+		// 	color *= 0.75;
 		mlx_put_pixel(data->img, data->x, y, color);
 		y++;
 	}
-	put_floor(data, data->x, end, HEIGHT);
+	// put_floor(data, data->x, end, HEIGHT);
 }
 
 // Draw al the walls by putting pixels where our rays hit the walls.

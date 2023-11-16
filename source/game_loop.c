@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/15 12:32:53 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/16 12:20:37 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void	run_dda_algo(t_data *data, t_ray *ray)
 			ray->mapy += ray->stepy;
 			ray->side = 1;
 		}
-		if (data->input->map[ray->mapx][ray->mapy] != '0')
+		if (data->input->map[ray->mapx][ray->mapy] == '1'
+				|| data->input->map[ray->mapx][ray->mapy] == '2')
 			ray->wall = 1;
 	}
 	calc_ray_length(ray);
@@ -95,6 +96,7 @@ void	game_loop(void *param)
 	p = data->player;
 	r = data->ray;
 	data->x = 0;
+	draw_background(data);
 	while (data->x < WIDTH)
 	{
 		r->camera_x = 2 * data->x / (double)WIDTH -1;

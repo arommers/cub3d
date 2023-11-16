@@ -1,7 +1,7 @@
-NO ./textures/colorstone.png
-SO ./textures/colorstone.png
-WE ./textures/colorstone.png
-EA ./textures/colorstone.png
+NO ./textures/bricks.png
+SO ./textures/bricks.png
+WE ./textures/brick.png
+EA ./textures/brick.png
 
 
 F 65,152,10
