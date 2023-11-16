@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/16 12:44:42 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/16 16:07:27 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ void	init_data(t_data *data, mlx_t *mlx, mlx_image_t *img)
 	if (!data->ray)
 		ft_error(data, "Malloc Failed");
 	data->ray->line = NULL;
-	data->walls = malloc(4 * sizeof(t_wall));
+	data->walls = malloc(6 * sizeof(t_wall));
 	if (!data->walls)
 		ft_error(data, "Malloc Failed");
 	data->walls[0].tex = NULL;
 	data->walls[1].tex = NULL;
 	data->walls[2].tex = NULL;
 	data->walls[3].tex = NULL;
-	// data->walls[4].tex = NULL;
+	data->walls[4].tex = NULL;
+	data->walls[5].tex = NULL;
 	data->player = malloc(sizeof(t_player));
 	if (!data->player)
 		ft_error(data, "Malloc Failed");
@@ -40,6 +41,8 @@ void	init_data(t_data *data, mlx_t *mlx, mlx_image_t *img)
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->img)
 		ft_error(data, "MLX42 Error");
+	data->floor = malloc(sizeof(t_floor));
+	data->ceiling = malloc(sizeof(t_floor));
 }
 
 char	player_pos(t_data *data)

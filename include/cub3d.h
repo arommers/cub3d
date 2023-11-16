@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 11:39:00 by arommers          #+#    #+#             */
-/*   Updated: 2023/11/16 12:27:24 by psadeghi         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
+/*   Updated: 2023/11/16 16:17:02 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef enum e_side
 	EA,
 	SO,
 	WE,
+	C,
 	F
 }	t_side;
 
@@ -104,6 +105,25 @@ typedef struct s_input
 	char		**map;
 }	t_input;
 
+typedef struct s_floor
+{
+	int		p;
+	float	z;
+	float	row_dis;
+	float	x;
+	float	y;
+	float	step_x;
+	float	step_y;
+	float	ray_xl;
+	float	ray_yl;
+	float	ray_xr;
+	float	ray_yr;
+	int		cell_x;
+	int		cell_y;
+	int		tex_x;
+	int		tex_y;
+}	t_floor;
+
 typedef struct s_data
 {
 	int			x;
@@ -113,32 +133,11 @@ typedef struct s_data
 	t_ray		*ray;
 	t_wall		*walls;
 	t_player	*player;
+	t_floor		*floor;
+	t_floor		*ceiling;
 	mlx_image_t	*img;
 }	t_data;
 
-typedef struct s_floor
-{
-	int		p;
-	float	z;
-
-	float	row_d;
-	float	step_x;
-	float	step_y;
-
-	float	floor_x;
-	float	floor_y;
-
-	float	ray_xl;
-	float	ray_yl;
-	float	ray_xr;
-	float	ray_yr;
-
-	int		cell_x;
-	int		cell_y;
-
-	int		tex_x;
-	int		tex_y;
-}	t_floor;
 
 // Input Data
 char			player_pos(t_data *data);
@@ -175,9 +174,11 @@ int32_t			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void			put_floor(t_data *data, int x, int start, int height);
 unsigned int	get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
 
-void			draw_background(t_data *data);
+void			draw_floor(t_data *data);
+void			draw_ceiling(t_data *data);
+void			draw_horo_line(t_data *data, t_floor *f, int y, int half);
 
-// temporary init functions
+// Init functions
 void			init_line(t_line *line);
 void			init_player(t_data *data);
 void			init_ray(t_data *data);

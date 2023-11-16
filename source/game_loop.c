@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/16 12:44:01 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/16 15:32:49 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void	game_loop(void *param)
 	p = data->player;
 	r = data->ray;
 	data->x = 0;
-	// draw_background(data);
+	draw_ceiling(data);
+	draw_floor(data);
 	while (data->x < WIDTH)
 	{
 		r->camera_x = 2 * data->x / (double)WIDTH -1;

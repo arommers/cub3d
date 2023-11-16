@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/10 12:31:21 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/16 12:45:13 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/16 16:25:10 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	clean_textures(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 6)
 	{
 		if (data->walls && data->walls[i].tex)
 			mlx_delete_texture(data->walls[i].tex);
@@ -69,6 +69,8 @@ void	ft_clean(t_data *data)
 		clean_input(data->input);
 		free(data->input);
 	}
+	free(data->ceiling);
+	free(data->floor);
 }
 
 void	ft_error(t_data *data, char *msg)

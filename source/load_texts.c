@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/05 13:52:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/16 12:43:28 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/16 16:38:05 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ void	load_textures(t_data *data)
 	data->walls[EA].tex = mlx_load_png(tmp->ea_texture);
 	data->walls[SO].tex = mlx_load_png(tmp->so_texture);
 	data->walls[WE].tex = mlx_load_png(tmp->we_texture);
-	// data->walls[F].path = "./textures/grass.png";
-	// data->walls[F].tex = mlx_load_png(data->walls[F].path);
+	data->walls[C].path = "./textures/sky.png";
+	data->walls[C].tex = mlx_load_png(data->walls[C].path);
+	data->walls[F].path = "./textures/grass.png";
+	data->walls[F].tex = mlx_load_png(data->walls[F].path);
 }
 
 /*	Determines which texture to retrieve the pixels from based on the direction of the ray
@@ -53,53 +55,134 @@ mlx_texture_t	*check_side(t_data *data)
 		return (data->walls[NO].tex);
 }
 
-// void	draw_background(t_data *data)
+void	draw_ceiling(t_data *data)
+{
+	t_floor		*f;
+	t_player	*p;
+	int			y;
+
+	f = data->floor;
+	p = data->player;
+	y = 0;
+	while (y < HEIGHT / 2)
+	{
+		f->ray_xl = p->dirx - p->planex;
+		f->ray_yl = p->diry - p->planey;
+		f->ray_xr = p->dirx + p->planex;
+		f->ray_yr = p->diry + p->planey;
+		f->p = y - 0.5 * HEIGHT;
+		f->z = 0.5 * HEIGHT;
+		f->row_dis = f->z / f->p;
+		f->x = p->x + f->row_dis * f->ray_xl;
+		f->y = p->y + f->row_dis * f->ray_yl;
+		f->step_x = f->row_dis * (f->ray_xr - f->ray_xl) / WIDTH;
+		f->step_y = f->row_dis * (f->ray_yr - f->ray_yl) / WIDTH;
+		draw_horo_line(data, f, HEIGHT / 2 - y - 1, 0);
+		y++;
+	}
+}
+
+void	draw_floor(t_data *data)
+{
+	t_floor		*f;
+	t_player	*p;
+	int			y;
+
+	f = data->floor;
+	p = data->player;
+	y = HEIGHT / 2;
+	while (y < HEIGHT)
+	{
+		f->ray_xl = p->dirx - p->planex;
+		f->ray_yl = p->diry - p->planey;
+		f->ray_xr = p->dirx + p->planex;
+		f->ray_yr = p->diry + p->planey;
+		f->p = y - 0.5 * HEIGHT;
+		f->z = 0.5 * HEIGHT;
+		f->row_dis = f->z / f->p;
+		f->x = p->x + f->row_dis * f->ray_xl;
+		f->y = p->y + f->row_dis * f->ray_yl;
+		f->step_x = f->row_dis * (f->ray_xr - f->ray_xl) / WIDTH;
+		f->step_y = f->row_dis * (f->ray_yr - f->ray_yl) / WIDTH;
+		draw_horo_line(data, f, y, 1);
+		y++;
+	}
+}
+
+void	draw_horo_line(t_data *data, t_floor *f, int y, int half)
+{
+	int		x;
+	int32_t	color;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		f->cell_x = (int)f->x;
+		f->cell_y = (int)f->y;
+
+		f->tex_x = (int)(TEXW * (f->x - f->cell_x)) & (TEXW - 1);
+		f->tex_y = (int)(TEXH * (f->y - f->cell_y)) & (TEXH - 1);
+
+		f->x += f->step_x;
+		f->y += f->step_y;
+		if (half == 0)
+			color = get_pixel(data->walls[C].tex, f->tex_x, f->tex_y);
+		else
+			color = get_pixel(data->walls[F].tex, f->tex_x, f->tex_y);
+		mlx_put_pixel(data->img, x, y, color);
+		x++;
+	}
+}
+
+// void	draw_background(t_data *data, int half)
 // {
-// 	t_player	*tmp = data->player;
-// 	int		y;
+// 	t_floor		*f;
+// 	t_player	*p;
+// 	int			y;
+// 	int			end;
+
+// 	f = data->floor;
+// 	p = data->player;
+// 	end = check_half(half, &y);
+// 	while (y < end)
+// 	{
+// 		f->ray_xl = p->dirx - p->planex;
+// 		f->ray_yl = p->diry - p->planey;
+// 		f->ray_xr = p->dirx + p->planex;
+// 		f->ray_yr = p->diry + p->planey;
+// 		f->p = y - 0.5 * HEIGHT;
+// 		f->z = 0.5 * HEIGHT;
+// 		f->row_dis = f->z / f->p;
+// 		f->x = p->x + f->row_dis * f->ray_xl;
+// 		f->y = p->y + f->row_dis * f->ray_yl;
+// 		f->step_x = f->row_dis * (f->ray_xr - f->ray_xl) / WIDTH;
+// 		f->step_y = f->row_dis * (f->ray_yr - f->ray_yl) / WIDTH;
+// 		draw_horo_line(data, f, y, half);
+// 		y++;
+// 	}
+// }
+
+// void	draw_horo_line(t_data *data, t_floor *f, int y, int half)
+// {
 // 	int		x;
 // 	int32_t	color;
 
-
-// 	float	raydirxl;
-// 	float	raydiryl;
-// 	float	raydirxr;
-// 	float	raydiryr;
-
-// 	y = 0;
-// 	while (y < HEIGHT)
+// 	x = 0;
+// 	while (x < WIDTH)
 // 	{
-// 		raydirxl = tmp->dirx - tmp->planex;
-// 		raydiryl = tmp->diry - tmp->planey;
-// 		raydirxr = tmp->dirx + tmp->planex;
-// 		raydiryr = tmp->diry + tmp->planey;
+// 		f->cell_x = (int)f->x;
+// 		f->cell_y = (int)f->y;
 
-// 		int p = y - 0.5 * HEIGHT;
-// 		float pos_z = 0.5 * HEIGHT;
+// 		f->tex_x = (int)(TEXW * (f->x - f->cell_x)) & (TEXW - 1);
+// 		f->tex_y = (int)(TEXH * (f->y - f->cell_y)) & (TEXH - 1);
 
-// 		float row_dist = pos_z / p;
-		
-// 		float floor_step_x = row_dist * (raydirxr - raydirxl) / WIDTH;
-// 		float floor_step_y = row_dist * (raydiryr - raydiryl) / WIDTH;
-
-// 		float floor_x = tmp->x + row_dist * raydirxl;
-// 		float floor_y = tmp->y + row_dist * raydiryl;
-
-// 		x = 0;
-// 		while (x < WIDTH)
-// 		{
-// 			int cell_x = (int)floor_x;
-// 			int cell_y = (int)floor_y;
-			
-// 			int tex_x = (int)(TEXW * (floor_x - cell_x)) & (TEXW - 1);
-// 			int tex_y = (int)(TEXH * (floor_y - cell_y)) & (TEXH - 1);
-
-// 			floor_x += floor_step_x;
-// 			floor_y += floor_step_y;
-// 			color = get_pixel(data->walls[F].tex, tex_x, tex_y);
-// 			mlx_put_pixel(data->img, x, y, color);
-// 			x++;
-// 		}
-// 		y++;
+// 		f->x += f->step_x;
+// 		f->y += f->step_y;
+// 		if (half == 0)
+// 			color = get_pixel(data->walls[C].tex, f->tex_x, f->tex_y);
+// 		else
+// 			color = get_pixel(data->walls[F].tex, f->tex_x, f->tex_y);
+// 		mlx_put_pixel(data->img, x, y, color);
+// 		x++;
 // 	}
 // }

@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/16 12:44:07 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/16 15:31:49 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	put_vert_line(t_data *data, int start, int end, int tex_x)
 	step = 1.0 * TEXH / data->ray->line->line_height;
 	tex_start = (start - HEIGHT / 2 + data->ray->line->line_height / 2) * step;
 	int y = start;
-	put_ceiling(data, data->x, start);
+	// put_ceiling(data, data->x, start);
 	while (y < end)
 	{
 		tex_y = (int)tex_start & (TEXH - 1);
@@ -120,7 +120,7 @@ void	put_vert_line(t_data *data, int start, int end, int tex_x)
 		mlx_put_pixel(data->img, data->x, y, color);
 		y++;
 	}
-	put_floor(data, data->x, end, HEIGHT);
+	// put_floor(data, data->x, end, HEIGHT);
 }
 
 // Draw al the walls by putting pixels where our rays hit the walls.
