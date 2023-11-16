@@ -1,7 +1,7 @@
-NO ./textures/dungeonTexture.png
-SO ./textures/dungeonTexture.png
-WE ./textures/dungeonTexture.png
-EA ./textures/dungeonTexture.png
+NO ./textures/colorstone.png
+SO ./textures/colorstone.png
+WE ./textures/colorstone.png
+EA ./textures/colorstone.png
 
 C 93,142,193
 F 231,230,230

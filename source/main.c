@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: arommers <arommers@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/10/30 13:04:05 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/15 12:32:00 by arommers      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/30 13:04:05 by arommers          #+#    #+#             */
+/*   Updated: 2023/11/16 11:31:49 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 
 	check_args(argc, argv);
 	init_data(&data, mlx, screen);
-	input_data(argc, argv, &data);
+	input_data(argv, &data);
 	init_player(&data);
 	init_ray(&data);
 	load_textures(&data);

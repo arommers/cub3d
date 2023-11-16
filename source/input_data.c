@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   input_data.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/11/13 17:20:00 by psadeghi      #+#    #+#                 */
-/*   Updated: 2023/11/15 17:03:34 by parisasadeq   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   input_data.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/13 17:20:00 by psadeghi          #+#    #+#             */
+/*   Updated: 2023/11/16 11:31:46 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,12 @@ char	*init_input(t_input *input, char *line)
 	return (line);
 }
 
-void	input_data(int argc, char **argv, t_data *data)
+void	input_data(char **argv, t_data *data)
 {
 	char	*line;
 	t_input	*temp;
 
+	line = NULL;
 	data->input->file = malloc(sizeof(t_file));
 	data->input->file->file_lines = line_counter(argv[1]);
 	temp = data->input;

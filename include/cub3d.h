@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/15 12:52:19 by parisasadeq   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/23 11:39:00 by arommers          #+#    #+#             */
+/*   Updated: 2023/11/16 11:32:07 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ t_input			*f_c_colors(t_input *input, char *line);
 t_input			*texture_data(t_input *input, char *line);
 t_input			*texture_color_init(t_input *input, char *with_nl);
 t_input			*map_init(t_input *input, char *with_nl);
-void			input_data(int argc, char **argv, t_data *data);
+void			input_data(char **argv, t_data *data);
 void			check_input_order(char *line, t_input *input);
 
 // DDA algorithm function

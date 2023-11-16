@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:18:48 by psadeghi          #+#    #+#             */
-/*   Updated: 2023/11/13 17:19:30 by psadeghi         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:39:07 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	check_ws_horizontal(char **map, int i, int size_map)
 int	check_wall_spaces(char **map, int size_map)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (map[i] != NULL)

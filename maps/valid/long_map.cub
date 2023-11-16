@@ -1,7 +1,7 @@
-NO ./textures/brown_weevil.png
-SO ./textures/happy_weevil.png
-WE ./textures/glitter_weevil.png
-EA ./textures/smol_weevil.png
+NO ./textures/colorstone.png
+SO ./textures/colorstone.png
+WE ./textures/colorstone.png
+EA ./textures/colorstone.png
 
 C 93,142 ,     103
 F 231,230,230

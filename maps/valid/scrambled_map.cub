@@ -1,13 +1,13 @@
 
 
 
-NO ./textures/dungeonTexture.png
+NO ./textures/colorstone.png
 C 93,142,193
-WE ./textures/dungeonTexture.png
+WE ./textures/colorstone.png
 
 
 
-EA ./textures/dungeonTexture.png
+EA ./textures/colorstone.png
 
 
 
@@ -17,7 +17,7 @@ F 231,230,230
 
 
 
-SO ./textures/dungeonTexture.png
+SO ./textures/colorstone.png
 
 1111111111111
 1111011111111
