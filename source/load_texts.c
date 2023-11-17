@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/05 13:52:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/16 16:38:05 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/17 11:26:37 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,8 @@ void	draw_horo_line(t_data *data, t_floor *f, int y, int half)
 	{
 		f->cell_x = (int)f->x;
 		f->cell_y = (int)f->y;
-
 		f->tex_x = (int)(TEXW * (f->x - f->cell_x)) & (TEXW - 1);
 		f->tex_y = (int)(TEXH * (f->y - f->cell_y)) & (TEXH - 1);
-
 		f->x += f->step_x;
 		f->y += f->step_y;
 		if (half == 0)

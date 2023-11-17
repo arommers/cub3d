@@ -6,7 +6,7 @@
 /*   By: arommers <arommers@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:42:30 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/10 10:25:33 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/17 12:19:30 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,8 @@ void draw_map(mlx_t *mlx)
             if (map[y * mapX + x] == 1)
                 mlx_image_to_window(mlx, wall, y * 64, x * 64);
 			else
-				mlx_image_to_window(mlx, background, y * 64, x *	t_data		data;
-	t_player	player;
-	t_ray		ray;
-	t_line		line;
-	t_input		input;
-	mlx_t		*mlx;
-	mlx_image_t	*game_window;
+				mlx_image_to_window(mlx, background, y * 64, x *	t_data		data);
+		}
 	
 	}
 }

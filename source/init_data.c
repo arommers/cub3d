@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/16 16:07:27 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/17 11:04:53 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	init_data(t_data *data, mlx_t *mlx, mlx_image_t *img)
 	if (!data->img)
 		ft_error(data, "MLX42 Error");
 	data->floor = malloc(sizeof(t_floor));
-	data->ceiling = malloc(sizeof(t_floor));
 }
 
 char	player_pos(t_data *data)

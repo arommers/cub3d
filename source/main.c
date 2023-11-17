@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 13:04:05 by arommers          #+#    #+#             */
-/*   Updated: 2023/11/16 12:27:45 by psadeghi         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/10/30 13:04:05 by arommers      #+#    #+#                 */
+/*   Updated: 2023/11/17 14:35:59 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char *argv[])
 	init_ray(&data);
 	load_textures(&data);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
+	make_mm_img(&data);
 	mlx_loop_hook(data.mlx, &game_loop, &data);
 	mlx_key_hook(data.mlx, &moves, &data);
 	mlx_scroll_hook(data.mlx, &scroll, &data);

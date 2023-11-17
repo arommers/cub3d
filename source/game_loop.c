@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/16 15:32:49 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/17 14:37:09 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,5 @@ void	game_loop(void *param)
 		prep_vert_line(data, data->x, r->line->draw_start, r->line->draw_end);
 		data->x++;
 	}
+	draw_mm(data);
 }

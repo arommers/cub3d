@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/16 16:17:02 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/17 14:08:24 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define TEXH 64
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MMS 0.20
 
 typedef struct s_line
 {
@@ -134,12 +135,15 @@ typedef struct s_data
 	t_wall		*walls;
 	t_player	*player;
 	t_floor		*floor;
-	t_floor		*ceiling;
 	mlx_image_t	*img;
+
+	mlx_image_t	*m_map;
+	mlx_image_t	*tile;
+	mlx_image_t	*dot;
 }	t_data;
 
 
-// Input Data
+// Input Data functions
 char			player_pos(t_data *data);
 void			player_direction(t_data *data, char dir);
 void			check_args(int argc, char **argv);
@@ -155,7 +159,7 @@ t_input			*map_init(t_input *input, char *with_nl);
 void			input_data(char **argv, t_data *data);
 void			check_input_order(char *line, t_input *input);
 
-// DDA algorithm function
+// DDA algorithm functions
 void			game_loop(void *param);
 void			prep_wall_draw(t_ray *ray);
 void			calc_ray_length(t_ray *ray);
@@ -185,7 +189,7 @@ void			init_ray(t_data *data);
 void			init_data(t_data *data, mlx_t *mlx, mlx_image_t *img);
 void			load_textures(t_data *data);
 
-// Moves
+// Move functions
 void			clear_frame(t_data *data);
 void			moves(mlx_key_data_t keydata, void *param);
 void			scroll(double xdelta, double ydelta, void *param);
@@ -196,6 +200,12 @@ void			ft_error(t_data *data, char *msg);
 void			clean_textures(t_data *data);
 void			free_2darray(char **arr);
 void			clean_input(t_input *input);
+
+// Mini map functions
+void			draw_mm(t_data *data);
+void			make_mm_img(t_data *data);
+void			make_map(mlx_image_t *m_map);
+void			make_tile(mlx_image_t *tile);
 
 int				main(int argc, char **argv);
 

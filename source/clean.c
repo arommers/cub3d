@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/10 12:31:21 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/16 16:25:10 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/17 11:06:34 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	clean_textures(t_data *data)
 		i++;
 	}
 }
+
 void	free_2darray(char **arr)
 {
 	int	i;
@@ -69,7 +70,6 @@ void	ft_clean(t_data *data)
 		clean_input(data->input);
 		free(data->input);
 	}
-	free(data->ceiling);
 	free(data->floor);
 }
 
