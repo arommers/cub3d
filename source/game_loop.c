@@ -6,12 +6,15 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/19 21:34:30 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/19 22:42:06 by adri          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+/*	- Sets the perp_wall_dist based on which the side of the wall is hit
+	- Vertical (side 0) or horizontal (side 1) */
+	
 void	calc_ray_length(t_ray *ray)
 {
 	if (ray->side == 0)
@@ -19,6 +22,12 @@ void	calc_ray_length(t_ray *ray)
 	else
 		ray->perp_wall_dist = (ray->init_dist_y - ray->delta_dist_y);
 }
+
+/*	- Sets up the initial values for the DDA algorithm
+	  based on the direction of the ray and the player's position
+	- Determines the step direction (stepx and stepy)
+	- Calculates the initial distances (init_dist_x and init_dist_y)
+	  for the DDA algorithm based on the direction of the ray and the player's position.*/
 
 void	calc_start(t_ray *ray, t_player *player)
 {
@@ -44,6 +53,9 @@ void	calc_start(t_ray *ray, t_player *player)
 	}
 }
 
+/*	- Prepares the variables necessary for the DDA algorithm
+	- Set the initial map coordinates based on the player's position
+	- Ensure non-zero values for delta_dist_x and y to avoid division by zero */
 
 void	prep_dda_algo(t_ray *ray, t_player *player)
 {
@@ -62,6 +74,12 @@ void	prep_dda_algo(t_ray *ray, t_player *player)
 	ray->wall = 0;
 }
 
+/*	- Implemnets the DDA) algorithm to determine the distance
+	  to the nearest wall in the ray's path
+	- Updates the ray's position (init_dist_x or y)
+	  based on the side with the shorter distance
+	- Stops when it encounters a wall */
+	
 void	run_dda_algo(t_data *data, t_ray *ray)
 {
 	while (!ray->wall)
@@ -84,6 +102,13 @@ void	run_dda_algo(t_data *data, t_ray *ray)
 	}
 	calc_ray_length(ray);
 }
+
+/*	- The main loop for rendering the game
+	- It iterates through each x coordinate of the screen
+	- Calculates the ray direction based on the player's view
+	- Performs the DDA algorithm for each individual ray
+	- Prepares the data for drawing the walls
+	- Draws the vertical column one at a time */
 
 void	game_loop(void *param)
 {

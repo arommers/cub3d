@@ -6,11 +6,16 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/19 21:37:39 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/19 22:47:30 by adri          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+/*	- Calculates the line height based on the perpendicular wall distance
+	- Determines the starting and ending positions on the screen
+	  where the wall should be drawn.
+	- We make sure these positions are within the bounds of the screen. */
 
 void	prep_wall_draw(t_ray *ray)
 {
@@ -26,10 +31,10 @@ void	prep_wall_draw(t_ray *ray)
 		tmp->draw_end = HEIGHT -1;
 }
 
-/*	Calculate the x coordinate of our texture from where the ray hits the wall.
-	If necessary the x coordinate of the texture is mirrored
-	- x  		= coordinate of the texture
-	- hit	= coordinate where the wall was hit, either x on a horo line or y on a vert line */
+/*	- Prepares the data for drawing a vertical line on the screen
+	  based on the wall hit during the raycasting process.
+	- Calculates the texture coordinates based on the hit point of the ray
+	  with the wall and adjusts them based on which side and direction of the wal was hit */
 
 void	prep_vert_line(t_data *data, int x, int start, int end)
 {
@@ -52,13 +57,13 @@ void	prep_vert_line(t_data *data, int x, int start, int end)
 	put_vert_line(data, start, end, tex_x);
 }
 
-/*	Fill in a vertical line of pixels for the passed x coordinate of the screen
-	- First we determine how many pixels in our texture we need to increment based on the lineheigh.
-	  This is stored in 'step'
+/*	- Fill in a vertical line of pixels for the passed x coordinate of the screen
+	- First we determine how many pixels in our texture we need to increment
+	  based on the lineheight and stores this in 'step'
 	- Then we determine where we start drawing the texture pixels in our screen image
 	- We fill the screen up until start with ceiling pixels
 	- We retreive pixels from the corresponding texture and put them in the screen image
-	- We fill the rest of the vertical line with floor pixels*/
+	- We fill the rest of the vertical line with floor pixels */
 
 void	put_vert_line(t_data *data, int start, int end, int tex_x)
 {

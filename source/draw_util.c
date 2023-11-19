@@ -6,16 +6,26 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/19 10:06:46 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/19 21:37:47 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/19 22:58:53 by adri          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+/*	- Combines the RGBA components into a single integer
+	  where the most significant byte is the red component
+	  followed by green, blue, and alpha
+	- The color components are bit shifted
+	  and combined using the bitwise OR operator*/
+
 int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
+
+/*	- Retrieves the RGB values of a pixel from a texture (mlx_texture_t)
+	  at the specified coordinates (x, y)
+	- We calculate the linear index that corresponds to our 2D coordinates (x, y) */
 
 unsigned int	get_pixel(mlx_texture_t	*t, int32_t x, int32_t y)
 {
