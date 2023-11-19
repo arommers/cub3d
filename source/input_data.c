@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   input_data.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 17:20:00 by psadeghi          #+#    #+#             */
-/*   Updated: 2023/11/16 11:31:46 by psadeghi         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   input_data.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/11/13 17:20:00 by psadeghi      #+#    #+#                 */
+/*   Updated: 2023/11/19 22:03:35 by adri          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_input	*map_init(t_input *input, char *with_nl)
 	line = ft_strtrim(with_nl, "\n");
 	free(with_nl);
 	temp->map[0] = line;
-	printf("temp->map[0] = %s\n", temp->map[0]);
 	while (i < temp->file->lines_left)
 	{
 		with_nl = get_next_line(temp->file->fd);
@@ -53,10 +52,7 @@ t_input	*map_init(t_input *input, char *with_nl)
 	temp->map[i] = NULL;
 	i = 0;
 	while (temp->map[i] != NULL)
-	{
-		printf("temp->map[%d] = %s\n", i, temp->map[i]);
 		i++;
-	}
 	return (input);
 }
 

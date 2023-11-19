@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   input_data_utils.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 17:29:51 by psadeghi          #+#    #+#             */
-/*   Updated: 2023/11/16 12:10:26 by psadeghi         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   input_utils.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/11/13 17:29:51 by psadeghi      #+#    #+#                 */
+/*   Updated: 2023/11/19 22:04:12 by adri          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,15 @@ t_input	*f_c_colors(t_input *input, char *line)
 	{
 		input->floor_color = true;
 		input->f_r = ft_atoi(colors[0]);
-		printf("f_r = %d\n", input->f_r);
 		input->f_g = ft_atoi(colors[1]);
-		printf("f_g = %d\n", input->f_g);
 		input->f_b = ft_atoi(colors[2]);
-		printf("f_b = %d\n", input->f_b);
 	}
 	if (line[0] == 'C')
 	{
 		input->ceiling_color = true;
 		input->c_r = ft_atoi(colors[0]);
-		printf("c_r = %d\n", input->c_r);
 		input->c_g = ft_atoi(colors[1]);
-		printf("c_g = %d\n", input->c_g);
 		input->c_b = ft_atoi(colors[2]);
-		printf("c_b = %d\n", input->c_b);
 	}
 	free_2darray(colors);
 	free(before_split);
