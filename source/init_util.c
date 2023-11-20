@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/19 09:44:50 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/20 10:52:31 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/20 11:56:23 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,14 @@ void	init_line(t_line *line)
 	line->line_height = 0;
 	line->draw_start = 0;
 	line->draw_end = 0;
+}
+
+void	init_mlx(t_data *data)
+{
+	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
+	if (!data->mlx)
+		ft_error(data, "MLX42 Error");
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (!data->img)
+		ft_error(data, "MLX42 Error");
 }
