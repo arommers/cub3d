@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 11:39:00 by arommers          #+#    #+#             */
-/*   Updated: 2023/11/20 11:42:17 by psadeghi         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
+/*   Updated: 2023/11/20 11:55:05 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,19 +117,19 @@ typedef struct s_data
 
 // Input Data functions
 char			player_pos(t_data *data);
-void			player_direction(t_data *data, char dir);
-void			check_args(int argc, char **argv);
 int				line_counter(char *file);
-void			check_input(t_data *data, int size_map);
-int				check_wall_spaces(char **map, int size_map);
 int				check_wall_leftside(char **map);
+void			check_args(int argc, char **argv);
+void			input_data(char **argv, t_data *data);
+void			check_input(t_data *data, int size_map);
 t_input			*initialize_data_struct(t_input *input);
 t_input			*f_c_colors(t_input *input, char *line);
-t_input			*texture_data(t_input *input, char *line);
-t_input			*texture_color_init(t_input *input, char *with_nl);
+void			player_direction(t_data *data, char dir);
 t_input			*map_init(t_input *input, char *with_nl);
-void			input_data(char **argv, t_data *data);
+t_input			*texture_data(t_input *input, char *line);
+int				check_wall_spaces(char **map, int size_map);
 void			check_input_order(char *line, t_input *input);
+t_input			*texture_color_init(t_input *input, char *with_nl);
 
 // DDA algorithm functions
 void			game_loop(void *param);
@@ -144,35 +144,36 @@ mlx_texture_t	*check_side(t_data *data);
 void			prep_wall_draw(t_ray *ray);
 void			put_ceiling(t_data *data, int x, int start);
 void			prep_vert_line(t_data *data, int start, int end);
-void			put_vert_line(t_data *data, int start, int end, int tex_x);
 int32_t			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void			put_floor(t_data *data, int x, int start, int height);
 unsigned int	get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
+void			put_vert_line(t_data *data, int start, int end, int tex_x);
 
 // Init functions
+void			init_mlx(t_data *data);
 void			init_ray(t_data *data);
+void			init_data(t_data *data);
 void			init_line(t_line *line);
 void    		init_walls(t_wall *walls);
 void			init_player(t_data *data);
 void			load_textures(t_data *data);
-void			init_data(t_data *data);
 
 // Move functions
 void			clear_frame(t_data *data);
+void			scroll_left(t_data *data, double rot);
+void			scroll_right(t_data *data, double rot);
 void			controls(mlx_key_data_t keydata, void *param);
 void			scroll(double xdelta, double ydelta, void *param);
 void			move_up_down(mlx_key_data_t key, t_data *d, double move);
 void			rot_left_right(mlx_key_data_t key, t_data *d, double rot);
 void			move_left_right(mlx_key_data_t key, t_data *d, double move);
-void			scroll_left(t_data *data, double rot);
-void			scroll_right(t_data *data, double rot);
 
 
 // Cleanup functions
 void			ft_clean(t_data *data);
-void			ft_error(t_data *data, char *msg);
-void			clean_textures(t_data *data);
 void			free_2darray(char **arr);
 void			clean_input(t_input *input);
+void			clean_textures(t_data *data);
+void			ft_error(t_data *data, char *msg);
 
 #endif

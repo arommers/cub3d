@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 09:18:11 by arommers          #+#    #+#             */
-/*   Updated: 2023/11/20 11:14:52 by psadeghi         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   init_data.c                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
+/*   Updated: 2023/11/20 12:05:48 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 /*	- Initializes a t_data struct
 	- Sets initial values for its members
-	- Allocating memory for nested struct
-	- Initializes graphics components using MLX42 */
+	- Allocating memory for nested struct */
 
 void	init_data(t_data *data)
 {
@@ -36,12 +35,6 @@ void	init_data(t_data *data)
 	data->player = malloc(sizeof(t_player));
 	if (!data->player)
 		ft_error(data, "Malloc Failed");
-	data->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
-	if (!data->mlx)
-		ft_error(data, "MLX42 Error");
-	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (!data->img)
-		ft_error(data, "MLX42 Error");
 }
 
 /*	- Searches the input map for the player's initial position
