@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   game_loop.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: adri <adri@student.codam.nl>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/20 10:48:56 by arommers      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   game_loop.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/02 12:59:57 by adri              #+#    #+#             */
+/*   Updated: 2023/11/20 11:13:48 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	game_loop(void *param)
 		prep_dda_algo(r, p);
 		run_dda_algo(data, r);
 		prep_wall_draw(r);
-		prep_vert_line(data, data->x, r->line->draw_start, r->line->draw_end);
+		prep_vert_line(data, r->line->draw_start, r->line->draw_end);
 		data->x++;
 	}
 }

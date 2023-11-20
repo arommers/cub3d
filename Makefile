@@ -1,7 +1,7 @@
 PROJECT = Cub3d
 NAME 	= cub3d
 CC 		= cc
-CFLAGS 	= -lm
+CFLAGS 	= -Wall -Werror -Wextra -g -fsanitize=address
 LIBFT	:= ./libft
 HEADERS := -I $(LIBFT)/include -I include
 LIB		:= $(LIBFT)/libft.a
@@ -48,7 +48,7 @@ libft:
 
 $(NAME): $(OBJ)
 	@echo "Compiled with $(GREEN)$(BOLD)$(CFLAGS)$(RESET)"
-	@$(CC) $(OBJ) $(CFLAGS) $(LIB) $(HEADERS) ./MLX42/build/libmlx42.a -Iinclude -lglfw -o $(NAME)
+	@$(CC) $(OBJ) $(CFLAGS) $(LIB) $(HEADERS) ./MLX42/build/libmlx42.a -Iinclude -lglfw -lm -o $(NAME)
 	@echo "$(BLUE)$(BOLD)----------------------------------------"
 	@echo "     $(PROJECT) = NOW READY FOR USE!"
 	@echo "----------------------------------------$(RESET)"

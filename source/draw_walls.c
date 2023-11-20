@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   draw_walls.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: adri <adri@student.codam.nl>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/11/02 16:01:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/20 10:47:45 by arommers      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   draw_walls.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/02 16:01:04 by adri              #+#    #+#             */
+/*   Updated: 2023/11/20 11:13:12 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	prep_wall_draw(t_ray *ray)
 	  with the wall and adjusts them based on
 	  which side and direction of the wal was hit */
 
-void	prep_vert_line(t_data *data, int x, int start, int end)
+void	prep_vert_line(t_data *data, int start, int end)
 {
 	t_ray	*r;
 	int		tex_x;

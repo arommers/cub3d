@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   controls.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: arommers <arommers@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/11/03 12:59:35 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/20 10:42:10 by arommers      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   controls.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/03 12:59:35 by arommers          #+#    #+#             */
+/*   Updated: 2023/11/20 11:23:16 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	scroll(double xdelta, double ydelta, void *param)
 	rot = 0.2;
 	clear_frame(data);
 	if (ydelta > 0)
-		scroll_left(data, xdelta, ydelta, rot);
-	else
-		scroll_right(data, xdelta, ydelta, rot);
+		scroll_left(data, rot);
+	if (ydelta < 0 && xdelta == 0)
+		scroll_right(data, rot);
 }
 
 void	controls(mlx_key_data_t keydata, void *param)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/10/30 13:04:05 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/19 20:59:23 by adri          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/30 13:04:05 by arommers          #+#    #+#             */
+/*   Updated: 2023/11/20 11:15:24 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int	main(int argc, char *argv[])
 	mlx_t		*mlx;
 	mlx_image_t	*screen;
 
+	mlx = NULL;
+	screen = NULL;
 	check_args(argc, argv);
-	init_data(&data, mlx, screen);
+	init_data(&data);
 	input_data(argv, &data);
 	init_player(&data);
 	init_ray(&data);

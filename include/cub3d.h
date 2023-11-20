@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/20 10:38:47 by arommers      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/23 11:39:00 by arommers          #+#    #+#             */
+/*   Updated: 2023/11/20 11:19:45 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void			prep_DDA_algo(t_ray *ray, t_player *player);
 mlx_texture_t	*check_side(t_data *data);
 void			prep_wall_draw(t_ray *ray);
 void			put_ceiling(t_data *data, int x, int start);
-void			prep_vert_line(t_data *data, int x, int start, int end);
+void			prep_vert_line(t_data *data, int start, int end);
 void			put_vert_line(t_data *data, int start, int end, int tex_x);
 int32_t			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void			put_floor(t_data *data, int x, int start, int height);
@@ -175,7 +175,7 @@ void			init_line(t_line *line);
 void    		init_walls(t_wall *walls);
 void			init_player(t_data *data);
 void			load_textures(t_data *data);
-void			init_data(t_data *data, mlx_t *mlx, mlx_image_t *img);
+void			init_data(t_data *data);
 
 // Move functions
 void			clear_frame(t_data *data);
@@ -184,8 +184,8 @@ void			scroll(double xdelta, double ydelta, void *param);
 void			move_up_down(mlx_key_data_t key, t_data *d, double move);
 void			rot_left_right(mlx_key_data_t key, t_data *d, double rot);
 void			move_left_right(mlx_key_data_t key, t_data *d, double move);
-void			scroll_left(t_data *data, double xdelta, double ydelta, double rot);
-void			scroll_right(t_data *data, double xdelta, double ydelta, double rot);
+void			scroll_left(t_data *data, double rot);
+void			scroll_right(t_data *data, double rot);
 
 
 // Cleanup functions

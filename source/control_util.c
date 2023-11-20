@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   control_util.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: adri <adri@student.codam.nl>                 +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/11/19 21:00:59 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/20 10:59:25 by arommers      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   control_util.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/19 21:00:59 by adri              #+#    #+#             */
+/*   Updated: 2023/11/20 11:16:44 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	rot_left_right(mlx_key_data_t key, t_data *d, double rot)
 	}
 }
 
-void	scroll_left(t_data *data, double xdelta, double ydelta, double rot)
+void	scroll_left(t_data *data, double rot)
 {
 	t_player	*p;
 	double		old_x;
@@ -96,7 +96,7 @@ void	scroll_left(t_data *data, double xdelta, double ydelta, double rot)
 	p->planey = old_p_x * sin(-rot) + p->planey * cos(-rot);
 }
 
-void	scroll_right(t_data *data, double xdelta, double ydelta, double rot)
+void	scroll_right(t_data *data, double rot)
 {
 	t_player	*p;
 	double		old_x;
