@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 12:31:21 by arommers          #+#    #+#             */
-/*   Updated: 2023/11/20 11:39:46 by psadeghi         ###   ########.fr       */
+/*   Updated: 2023/11/20 12:03:13 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	free_2darray(char **arr)
 
 void	clean_input(t_input *input)
 {
-	free_2darray(input->map);
+	if (input->map)
+		free_2darray(input->map);
 	free(input->no_texture);
 	free(input->so_texture);
 	free(input->ea_texture);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   input_data.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/11/13 17:20:00 by psadeghi      #+#    #+#                 */
-/*   Updated: 2023/11/19 22:03:35 by adri          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   input_data.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/13 17:20:00 by psadeghi          #+#    #+#             */
+/*   Updated: 2023/11/20 12:07:14 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,26 @@ t_input	*map_init(t_input *input, char *with_nl)
 	char	*line;
 	t_input	*temp;
 
-	i = 1;
+	i = 0;
 	input->map = malloc(sizeof(char *) * (input->file->lines_left + 1));
+	if (!input->map)
+	{
+		printf("Malloc Failed\n");
+		clean_input(input);
+		exit (1);
+	}
 	temp = input;
 	line = ft_strtrim(with_nl, "\n");
 	free(with_nl);
 	temp->map[0] = line;
-	while (i < temp->file->lines_left)
+	while (++i < temp->file->lines_left)
 	{
 		with_nl = get_next_line(temp->file->fd);
 		line = ft_strtrim(with_nl, "\n");
 		free(with_nl);
 		temp->map[i] = line;
-		i++;
 	}
 	temp->map[i] = NULL;
-	i = 0;
-	while (temp->map[i] != NULL)
-		i++;
 	return (input);
 }
 
@@ -92,6 +94,8 @@ void	input_data(char **argv, t_data *data)
 
 	line = NULL;
 	data->input->file = malloc(sizeof(t_file));
+	if (!data->input->file)
+		ft_error(data, "Malloc Failed");
 	data->input->file->file_lines = line_counter(argv[1]);
 	temp = data->input;
 	temp = initialize_data_struct(temp);
