@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 11:39:00 by arommers          #+#    #+#             */
-/*   Updated: 2023/11/20 11:19:45 by psadeghi         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:42:17 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,25 +102,6 @@ typedef struct s_input
 	char		**map;
 }	t_input;
 
-typedef struct s_floor
-{
-	int		p;
-	float	z;
-	float	row_dis;
-	float	x;
-	float	y;
-	float	step_x;
-	float	step_y;
-	float	ray_xl;
-	float	ray_yl;
-	float	ray_xr;
-	float	ray_yr;
-	int		cell_x;
-	int		cell_y;
-	int		tex_x;
-	int		tex_y;
-}	t_floor;
-
 typedef struct s_data
 {
 	int			x;
@@ -131,7 +112,6 @@ typedef struct s_data
 	t_ray		*ray;
 	t_wall		*walls;
 	t_player	*player;
-	t_floor		*floor;
 	mlx_image_t	*img;
 }	t_data;
 
