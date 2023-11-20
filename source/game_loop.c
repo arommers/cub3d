@@ -6,7 +6,7 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/02 12:59:57 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/19 22:42:06 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/20 10:48:56 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*	- Sets the perp_wall_dist based on which the side of the wall is hit
 	- Vertical (side 0) or horizontal (side 1) */
-	
+
 void	calc_ray_length(t_ray *ray)
 {
 	if (ray->side == 0)
@@ -27,7 +27,8 @@ void	calc_ray_length(t_ray *ray)
 	  based on the direction of the ray and the player's position
 	- Determines the step direction (stepx and stepy)
 	- Calculates the initial distances (init_dist_x and init_dist_y)
-	  for the DDA algorithm based on the direction of the ray and the player's position.*/
+	  for the DDA algorithm based on the direction of the ray
+	  and the player's position.*/
 
 void	calc_start(t_ray *ray, t_player *player)
 {
@@ -61,7 +62,6 @@ void	prep_dda_algo(t_ray *ray, t_player *player)
 {
 	ray->mapx = (int)player->x;
 	ray->mapy = (int)player->y;
-
 	if (ray->delta_dist_x == 0)
 		ray->delta_dist_x = 1e30;
 	else
@@ -79,7 +79,7 @@ void	prep_dda_algo(t_ray *ray, t_player *player)
 	- Updates the ray's position (init_dist_x or y)
 	  based on the side with the shorter distance
 	- Stops when it encounters a wall */
-	
+
 void	run_dda_algo(t_data *data, t_ray *ray)
 {
 	while (!ray->wall)

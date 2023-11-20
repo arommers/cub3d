@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/19 21:56:49 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/20 10:38:47 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 # define TEXW 64
 # define TEXH 64
-# define WIDTH 1080
-# define HEIGHT 540
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct s_line
 {

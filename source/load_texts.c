@@ -6,13 +6,14 @@
 /*   By: adri <adri@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/05 13:52:04 by adri          #+#    #+#                 */
-/*   Updated: 2023/11/19 21:41:22 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/20 10:53:55 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-// Use mlx_load_to png to intialize our walls array with the texture paths from the scene description
+/*	- Use mlx_load_to png to intialize our walls array
+	  with the texture paths from the scene description */
 
 void	load_textures(t_data *data)
 {
@@ -33,8 +34,9 @@ void	load_textures(t_data *data)
 		ft_error(data, "MLX42 Error");
 }
 
-/*	Determines which texture to retrieve the pixels from based on the direction of the ray
-	Using the four quadrants of a unit circle */
+/*	- Determines which texture to retrieve the pixels from
+	  based on the direction of the ray using the four quadrants
+	  of a unit circle */
 
 mlx_texture_t	*check_side(t_data *data)
 {

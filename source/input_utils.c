@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/13 17:29:51 by psadeghi      #+#    #+#                 */
-/*   Updated: 2023/11/19 22:04:12 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/20 10:39:49 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ t_input	*texture_data(t_input *input, char *line)
 
 	path_data = ft_split(line, ' ');
 	texture_path = ft_strdup(path_data[1]);
-	printf("texture_path = %s\n", texture_path);
 	if (line[0] == 'N' && line[1] == 'O')
 		input->no_texture = texture_path;
 	else if (line[0] == 'S' && line[1] == 'O')

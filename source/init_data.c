@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/03 09:18:11 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/19 22:23:25 by adri          ########   odam.nl         */
+/*   Updated: 2023/11/20 10:50:29 by arommers      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,20 +115,20 @@ void	init_player(t_data *data)
 {
 	char	player_dir;
 	double	planeratio;
-	double	dirLength;
+	double	dirlength;
 
 	player_dir = player_pos(data);
 	player_direction(data, player_dir);
 	planeratio = 0.66;
-	dirLength = sqrt(data->player->dirx * data->player->dirx 
-	+ data->player->diry * data->player->diry);
-	data->player->planex = data->player->diry / dirLength * planeratio;
-	data->player->planey = -data->player->dirx / dirLength * planeratio;
+	dirlength = sqrt(data->player->dirx * data->player->dirx
+			+ data->player->diry * data->player->diry);
+	data->player->planex = data->player->diry / dirlength * planeratio;
+	data->player->planey = -data->player->dirx / dirlength * planeratio;
 }
 
 /*	- Sets initial values for ray struct members*
 	- Allocates memory for the nested line struct */
-	
+
 void	init_ray(t_data *data)
 {
 	t_ray	*tmp;
