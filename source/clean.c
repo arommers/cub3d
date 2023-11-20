@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 12:31:21 by arommers          #+#    #+#             */
-/*   Updated: 2023/11/20 11:36:15 by psadeghi         ###   ########.fr       */
+/*   Updated: 2023/11/20 11:39:46 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	ft_clean(t_data *data)
 void	ft_error(t_data *data, char *msg)
 {
 	printf("%s", msg);
-	//perror(msg);
 	ft_clean(data);
 	exit(EXIT_FAILURE);
 }
