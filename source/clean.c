@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   clean.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/11/10 12:31:21 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/19 09:56:19 by adri          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   clean.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/10 12:31:21 by arommers          #+#    #+#             */
+/*   Updated: 2023/11/20 11:36:15 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ void	ft_clean(t_data *data)
 		clean_input(data->input);
 		free(data->input);
 	}
-	free(data->floor);
 }
 
 void	ft_error(t_data *data, char *msg)
 {
-	perror(msg);
+	printf("%s", msg);
+	//perror(msg);
 	ft_clean(data);
 	exit(EXIT_FAILURE);
 }

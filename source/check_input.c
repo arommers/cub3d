@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   check_input.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/11/13 17:17:58 by psadeghi      #+#    #+#                 */
-/*   Updated: 2023/11/15 12:49:58 by parisasadeq   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   check_input.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/13 17:17:58 by psadeghi          #+#    #+#             */
+/*   Updated: 2023/11/20 11:37:48 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,12 @@ void	check_args(int argc, char **argv)
 	char	*cub_file;
 	int		filename_size;
 
-	filename_size = ft_strlen(argv[1]);
 	if (argc > 2 || argc == 1)
 	{
 		printf("Put the right amount of input\n");
 		exit (1);
 	}
+	filename_size = ft_strlen(argv[1]);
 	cub_file = ft_substr(argv[1], filename_size - 4, 4);
 	if (ft_strncmp(cub_file, ".cub", 4) != 0)
 	{
