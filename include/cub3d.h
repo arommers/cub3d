@@ -6,7 +6,7 @@
 /*   By: psadeghi <psadeghi@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/23 11:39:00 by arommers      #+#    #+#                 */
-/*   Updated: 2023/11/17 14:08:24 by arommers      ########   odam.nl         */
+/*   Updated: 2023/11/19 21:56:49 by adri          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@
 
 # define TEXW 64
 # define TEXH 64
-# define WIDTH 1920
-# define HEIGHT 1080
-# define MMS 0.20
+# define WIDTH 1080
+# define HEIGHT 540
 
 typedef struct s_line
 {
@@ -40,43 +39,40 @@ typedef enum e_side
 	EA,
 	SO,
 	WE,
-	C,
-	F
 }	t_side;
 
 typedef struct t_wall
 {
-	char			*path;
 	mlx_texture_t	*tex;
 }	t_wall;
 
 typedef struct s_ray
 {
-	int				mapx; 			// Which x square of the map we are in
-	int				mapy; 			// Which y square of the map we are in
-	int				stepx; 			// What direction to step in during DDA (+1 or -1)
-	int				stepy; 			// What direction to step in during DDA (+1 or -1) 
-	int				side; 			// Did we hit a vertical or horizontal side of a wall
-	int				wall; 			// Did the ray hit a wall?
-	double			camera_x; 		// Coordinate in camera space
-	double			dirx; 			// x part of ray direction vector
-	double			diry; 			// y part of ray direction vector
-	double			init_dist_x; 	// Initial length from player to first vertical wall
-	double			init_dist_y; 	// Initial length from player to first horizontal wall
-	double			delta_dist_x; 	// Length of the ray from one vertical line to the next
-	double			delta_dist_y; 	// Length of the ray from one horizontal line to the next
-	double			perp_wall_dist; // Eventual ray length/distance
+	int				mapx;
+	int				mapy;
+	int				stepx;
+	int				stepy;
+	int				side;
+	int				wall;
+	double			camera_x;
+	double			dirx;
+	double			diry;
+	double			init_dist_x;
+	double			init_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
 	t_line			*line;
 }	t_ray;
 
 typedef struct s_player
 {
-	double			x;		// player x position
-	double			y;		// player y position
-	double			dirx;	// direction vector x position
-	double			diry;	// direction vector y position
-	double			planex;	// camera plane vector x position
-	double			planey;	// camera plane vector y position
+	double			x;
+	double			y;
+	double			dirx;
+	double			diry;
+	double			planex;
+	double			planey;
 	mlx_image_t		*img;
 	struct s_data	*data;
 }	t_player;
@@ -128,20 +124,16 @@ typedef struct s_floor
 typedef struct s_data
 {
 	int			x;
-	t_input		*input;
+	int			y;
 	int			**map;
+	t_input		*input;
 	mlx_t		*mlx;
 	t_ray		*ray;
 	t_wall		*walls;
 	t_player	*player;
 	t_floor		*floor;
 	mlx_image_t	*img;
-
-	mlx_image_t	*m_map;
-	mlx_image_t	*tile;
-	mlx_image_t	*dot;
 }	t_data;
-
 
 // Input Data functions
 char			player_pos(t_data *data);
@@ -171,28 +163,30 @@ void			prep_DDA_algo(t_ray *ray, t_player *player);
 mlx_texture_t	*check_side(t_data *data);
 void			prep_wall_draw(t_ray *ray);
 void			put_ceiling(t_data *data, int x, int start);
-void			draw_wall(t_data *data, int x, int start, int end);
 void			prep_vert_line(t_data *data, int x, int start, int end);
 void			put_vert_line(t_data *data, int start, int end, int tex_x);
 int32_t			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void			put_floor(t_data *data, int x, int start, int height);
 unsigned int	get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
 
-void			draw_floor(t_data *data);
-void			draw_ceiling(t_data *data);
-void			draw_horo_line(t_data *data, t_floor *f, int y, int half);
-
 // Init functions
-void			init_line(t_line *line);
-void			init_player(t_data *data);
 void			init_ray(t_data *data);
-void			init_data(t_data *data, mlx_t *mlx, mlx_image_t *img);
+void			init_line(t_line *line);
+void    		init_walls(t_wall *walls);
+void			init_player(t_data *data);
 void			load_textures(t_data *data);
+void			init_data(t_data *data, mlx_t *mlx, mlx_image_t *img);
 
 // Move functions
 void			clear_frame(t_data *data);
-void			moves(mlx_key_data_t keydata, void *param);
+void			controls(mlx_key_data_t keydata, void *param);
 void			scroll(double xdelta, double ydelta, void *param);
+void			move_up_down(mlx_key_data_t key, t_data *d, double move);
+void			rot_left_right(mlx_key_data_t key, t_data *d, double rot);
+void			move_left_right(mlx_key_data_t key, t_data *d, double move);
+void			scroll_left(t_data *data, double xdelta, double ydelta, double rot);
+void			scroll_right(t_data *data, double xdelta, double ydelta, double rot);
+
 
 // Cleanup functions
 void			ft_clean(t_data *data);
@@ -200,13 +194,5 @@ void			ft_error(t_data *data, char *msg);
 void			clean_textures(t_data *data);
 void			free_2darray(char **arr);
 void			clean_input(t_input *input);
-
-// Mini map functions
-void			draw_mm(t_data *data);
-void			make_mm_img(t_data *data);
-void			make_map(mlx_image_t *m_map);
-void			make_tile(mlx_image_t *tile);
-
-int				main(int argc, char **argv);
 
 #endif
