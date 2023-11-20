@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ft_calloc.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: arommers <arommers@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/10/17 08:44:25 by arommers      #+#    #+#                 */
-/*   Updated: 2023/03/18 22:18:17 by adri          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/17 08:44:25 by arommers          #+#    #+#             */
+/*   Updated: 2023/11/20 11:46:21 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_calloc(size_t count, size_t size)
 	while (i < (count * size))
 	{
 		(*(unsigned char *)(ptr + i)) = 0;
-			i++;
+		i++;
 	}
 	return (ptr);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   libft.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: arommers <arommers@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2022/10/14 16:51:47 by arommers      #+#    #+#                 */
-/*   Updated: 2023/03/18 22:20:26 by adri          ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psadeghi <psadeghi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/14 16:51:47 by arommers          #+#    #+#             */
+/*   Updated: 2023/11/20 11:44:36 by psadeghi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ char				*ft_strnstr(const char *haystack, const char *needle,
 #  define BUFFER_SIZE 10
 # endif
 
-char	*get_next_line(int fd);
-char	*read_and_save(int fd, char *stash);
-char	*find_char(char *str, char p);
-char	*join_stash_and_buffer(char *stash, char *buffer);
-char	*get_new_stash(char *stash);
-char	*print_line(char	*stash);
-char	*ft_substr_gnl(char	*s, unsigned int start, size_t	len);
-char	*ft_strdup_gnl(char *str);
+char				*get_next_line(int fd);
+char				*read_and_save(int fd, char *stash);
+char				*find_char(char *str, char p);
+char				*join_stash_and_buffer(char *stash, char *buffer);
+char				*get_new_stash(char *stash);
+char				*print_line(char	*stash);
+char				*ft_substr_gnl(char	*s, unsigned int start, size_t	len);
+char				*ft_strdup_gnl(char *str);
 
 #endif
