@@ -1,6 +1,6 @@
 ![banner](https://i.imgur.com/yQdXzmb.jpeg)
 
-# !!!The readme and the project itself is very much a work in progress!!!
+# !!! The readme and the project itself is very much a work in progress !!!
 
 # cub3d
 A "3D" game realized with ray casting
